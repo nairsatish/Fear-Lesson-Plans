@@ -1,2 +1,2 @@
-node_type_id morphology model_template mem_potential model_type pop_name
-100  hoc:stylized_typeC e biophysical PyrC
+node_type_id model_template model_type pop_name mem_potential morphology
+100 hoc:feng_typeC biophysical PyrC e 

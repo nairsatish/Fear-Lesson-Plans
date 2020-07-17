@@ -374,7 +374,7 @@ extern void _cvode_abstol( Symbol**, double*, int);
  pnt_receive[_mechtype] = _net_receive;
  pnt_receive_size[_mechtype] = 1;
  	hoc_register_var(hoc_scdoub, hoc_vdoub, hoc_intfunc);
- 	ivoc_help("help ?1 tone2pyr /home/mizzou/Learning/biophys_components/mechanisms/x86_64/tone2pyr.mod\n");
+ 	ivoc_help("help ?1 tone2pyr /home/mizzou/PlasticityToyModel/biophys_components/mechanisms/x86_64/tone2pyr.mod\n");
  hoc_register_limits(_mechtype, _hoc_parm_limits);
  hoc_register_units(_mechtype, _hoc_parm_units);
  }
@@ -428,7 +428,6 @@ static int _ode_spec1(_threadargsproto_);
      scaleW = sqrt ( fabs ( 1.0 - normW ) ) ;
      }
    W = W + dW_ampa * scaleW ;
-   printf ( "%g %g %g %g\n" , capoolcon * 1e3 , threshold1 , threshold2 , W ) ;
    if ( W > Wmax ) {
      W = Wmax ;
      }
@@ -478,7 +477,6 @@ static int _ode_spec1(_threadargsproto_);
    scaleW = sqrt ( fabs ( 1.0 - normW ) ) ;
    }
  W = W + dW_ampa * scaleW ;
- printf ( "%g %g %g %g\n" , capoolcon * 1e3 , threshold1 , threshold2 , W ) ;
  if ( W > Wmax ) {
    W = Wmax ;
    }
@@ -528,7 +526,6 @@ static int _ode_spec1(_threadargsproto_);
      scaleW = sqrt ( fabs ( 1.0 - normW ) ) ;
      }
    W = W + dW_ampa * scaleW ;
-   printf ( "%g %g %g %g\n" , capoolcon * 1e3 , threshold1 , threshold2 , W ) ;
    if ( W > Wmax ) {
      W = Wmax ;
      }
@@ -837,7 +834,7 @@ _first = 0;
 #endif
 
 #if NMODL_TEXT
-static const char* nmodl_filename = "/home/mizzou/Learning/biophys_components/mechanisms/modfiles/tone2pyr.mod";
+static const char* nmodl_filename = "/home/mizzou/PlasticityToyModel/biophys_components/mechanisms/modfiles/tone2pyr.mod";
 static const char* nmodl_file_text = 
   ":Tone to Pyramidal Cells AMPA+NMDA with local Ca2+ pool\n"
   "\n"
@@ -992,7 +989,7 @@ static const char* nmodl_file_text =
   "\n"
   "	W = W + dW_ampa*scaleW\n"
   "	\n"
-  "	printf(\"%g %g %g %g\\n\",capoolcon*1e3, threshold1, threshold2, W)\n"
+  "	:printf(\"%g %g %g %g\\n\",capoolcon*1e3, threshold1, threshold2, W)\n"
   "	:Weight value limits\n"
   "	if (W > Wmax) { \n"
   "		W = Wmax\n"

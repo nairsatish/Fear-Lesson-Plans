@@ -170,7 +170,7 @@ proc mechinit() {
 		Vrest = -70
 		celsius = 31.0 
 
-		Rm = 30000
+		Rm = 10000
 		gleak = 1/Rm
 		Ena = 45
 		Ek = -80

@@ -24,7 +24,7 @@ num_exc = [1]
 net.add_nodes(N=1, pop_name='PyrC',
         mem_potential='e',
         model_type='biophysical',
-        model_template='hoc:stylized_typeC',
+        model_template='hoc:feng_typeC',
         morphology=None)
 
 
@@ -65,23 +65,23 @@ def one_to_one(source, target):
 
     return tmp_nsyn
 
-# Create connections between Inh --> Pyr cells
+# Create connections between Shock --> Pyr cells
 net.add_edges(source=shock.nodes(), target=net.nodes(),
                 connection_rule=one_to_one,
                 syn_weight=1.0,
-                target_sections=['dend'],
+                target_sections=['somatic'],
                 delay=0.1,
-                distance_range=[0.0, 300.0],
+                distance_range=[10.0,11.0],
                 dynamics_params='shock2PN.json',
                 model_template=syn['shock2PN.json']['level_of_detail'])
 
-# Create connections between Exc --> Pyr cells
+# Create connections between Tone --> Pyr cells
 net.add_edges(source=tone.nodes(), target=net.nodes(),
                 connection_rule=one_to_one,
                 syn_weight=1.0,
-                target_sections=['dend'],
+                target_sections=['somatic'],
                 delay=0.1,
-                distance_range=[0.0, 300.0],
+                distance_range=[10.0, 11.0],
                 dynamics_params='tone2PN.json',
                 model_template=syn['tone2PN.json']['level_of_detail'])
 

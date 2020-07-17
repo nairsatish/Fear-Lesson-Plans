@@ -66,31 +66,6 @@ proc connect_sections() { local i
 	for i=1,10{connect axon[i](0), axon[i-1](1)}
 }
 
-objref cclA, AMP, f
-strdef fdef 
-proc add_noise(){
-
-	cclA = new IClamp(0.5)
-	cclA.del = 0                          // (ms)
-	cclA.dur = 10e9                 // (ms)
-			
-	print "making AMP"	
-	AMP = new Vector()
-	f = new File()
-	fdef = "5Hz_nonoise.csv"
-	len_AMP = 100000
-	print "!!!! len_AMP:", len_AMP
-	f.ropen(fdef)
-	print "opened file", fdef
-	for i=0,len_AMP-1{
-		AMP.append(f.scanvar())
-		print(AMP.x(i))
-	}
-	f.close()
-	AMP.play(&cclA.amp,0.1)	
-	print "Done playing"
-
-}
 
 
 proc size_sections() {local thetaz
@@ -307,27 +282,6 @@ proc insert_mechs(){
 			  gbar_kca = gkca_soma          // 0.3
 			  gbar_ca = gca_soma            // 0.3
 			insert capool taucas = 1000  fcas_capool = 0.05 
-		/*	
-			noiseRandObj_exc=new Random()
-			noiseRandObj_exc.Random123(100)   
-    			noiseRandObj_exc.normal(0,1)
-	
-			noise_exc = new Gfluct2_exc(0.5)
-    
-    			noise_exc.g_e0 = 0.0032//0.0032
-    			noise_exc.std_e = 0.003//0.003	
-    			noise_exc.setRandObj(noiseRandObj_exc)
-			
-			noiseRandObj_inh=new Random()
-			noiseRandObj_inh.Random123(100)   
-    			noiseRandObj_inh.normal(0,1)
-	
-			noise_inh = new Gfluct2_inh(0.5)
-    
-    			noise_inh.g_e0 = 0.021
-    			noise_inh.std_e = 0.008	
-    			noise_inh.setRandObj(noiseRandObj_inh)
-		*/
 
 		}
 
@@ -393,105 +347,6 @@ proc set_chanparams() {
 	}
 }
 
-/*
-proc connect_pre() {  // $o1 target point process, $o2 returned NetCon
-	axon[10] $o2 = new NetCon (&v(0.5), $o1)
-			$o2.threshold = -10
-
-}
-
-func is_art()  { return 0 }
-
-proc position(){ local i
-	forall {
-		for i = 0, n3d()-1 {
-			pt3dchange(i, $1-x+x3d(i), $2-y+y3d(i), $3-z+z3d(i), diam3d(i))
-		}
-	}
-	x = $1  y = $2  z = $3	
-}
-
-proc get_root() {local i localobj sref
-	rootlist = new SectionList()
-	rootlist.allroots()
-	i=0
-	forsec all {
-		sref = new SectionRef()
-		if (sref.has_parent==0) {
-			myroot = secname()
-			i=i+1
-		}
-		for(x,0) {
-			if (diam(x) <=0.01) print "WARNING: tiny diameter of ",  diam(x), " um at ", secname(), ", point ", x, "!"
-			if (diam3d(x) <=0.01) print "WARNING: tiny 3d diameter of ", diam3d(x), " um at ", secname(), ", point ", x, "!"
-		}
-		if (L <=0.001) print "WARNING: tiny length of ", L, " um at ", secname(), "!"
-	}
-	if (i>1) {
-		print "WARNING: cell ", gid, " has ", i, " root sections!"
-	}
-}
-strdef myStr
-
-objref newSecRef, syn, SynRecord, SynRecordVec
-proc define_synapses() {
-	SynRecord = new List()
-	ind = $1
-	i = 0
-
-	access soma[0]
-	{distance()}
-
-	for celltype = 0, numCellTypes-1 {
-		templist = new List ()
-		for r=0, cellType[ind].SynList[celltype].count()-1 {
-		
-			execute(cellType[ind].SynList[celltype].object(r).NewSynStr, this) // sets newSecRef
-						
-			forsec newSecRef {		
-				for (x,0) {
-					// Decides if distance is correct
-					execute(cellType[ind].SynList[celltype].object(r).CondStr, this)
-					
-					 if (y==1) {
-						// Declares new synapse
-						execute(cellType[ind].SynList[celltype].object(r).SynStr, this)
-						if (cellType[ind].SynList[celltype].object(r).GABAabFlag==0) {
-							syn.tau1 = cellType[ind].SynList[celltype].object(r).tau1
-							syn.tau2 = cellType[ind].SynList[celltype].object(r).tau2
-							syn.e = cellType[ind].SynList[celltype].object(r).efirst
-							if (strcmp(cellType[ind].SynList[celltype].object(r).SynType,"MyExp2Sidnw")==0) {
-								syn.nw = cellType[ind].SynList[celltype].object(r).Scaling
-							}
-						} else {
-							syn.tau1a = cellType[ind].SynList[celltype].object(r).tau1a
-							syn.tau2a = cellType[ind].SynList[celltype].object(r).tau2a
-							syn.ea = cellType[ind].SynList[celltype].object(r).ea
-							syn.tau1b = cellType[ind].SynList[celltype].object(r).tau1b
-							syn.tau2b = cellType[ind].SynList[celltype].object(r).tau2b
-							syn.eb = cellType[ind].SynList[celltype].object(r).eb
-						}
-						syn.sid = i
-						indx = VClampVector.indwhere("==",gid)
-						
-						
-						if(indx>=0){
-							print "Recording synapse ", i, "on a pyrC cell"
-							SynRecordVec = new Vector()
-							SynRecordVec.record(&syn.i)
-							SynRecord.append(SynRecordVec)
-						}
-						templist.append(syn)
-						i = i + 1
-					}
-				}
-			}
-		}
-		pre_list.append(templist)
-		findme = 1
-	}
-}
-	*/
 
 init()
 endtemplate stylized_typeC
