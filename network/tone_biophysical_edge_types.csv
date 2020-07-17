@@ -1,0 +1,2 @@
+edge_type_id target_query source_query model_template distance_range target_sections delay dynamics_params syn_weight
+101 * * tone2pyr "[0.0, 300.0]" ['dend'] 0.1 tone2PN.json 1.0

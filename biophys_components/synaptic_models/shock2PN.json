@@ -1,0 +1,15 @@
+{
+    "level_of_detail": "shock2pyr",
+    "AlphaTmax_ampa": "3.8142",
+    "Beta_ampa": "0.1429",
+    "Cdur_ampa": "1.4210",
+    "gbar_ampa": "0.001",
+    "Erev_ampa": "0",
+    "AlphaTmax_nmda": "0.2659",
+    "Beta_nmda": "0.008",
+    "Cdur_nmda": "16.7650",
+    "gbar_nmda": "0.0005",
+    "Erev_nmda": "0",
+    "initW": "10",
+    "delay": "0.1"
+}
