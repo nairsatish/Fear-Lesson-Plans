@@ -1,0 +1,12 @@
+load_file("OLM.hoc")
+
+objref cell, stim
+
+cell = new OLMCell()
+
+cell.soma stim = new IClamp(0.5)
+stim.amp = -0.1
+stim.del = 1000
+stim.dur = 1000
+
+tstop = 2500

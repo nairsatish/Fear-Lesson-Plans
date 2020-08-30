@@ -11,8 +11,8 @@ PARAMETER {
 	v (mV)
 		celsius		(degC)
 		gkabar=.008 (mho/cm2)
-        vhalfn=11   (mV)
-        vhalfl=-56   (mV)
+        vhalfn=-20 :-11   (mV)
+        vhalfl=-50   (mV) :56
         a0l=0.05      (/ms)
         a0n=0.05    (/ms)
         zetan=-1.5    (1)
@@ -20,7 +20,7 @@ PARAMETER {
         gmn=0.55   (1)
         gml=1   (1)
 		lmin=2  (mS)
-		nmin=0.1  (mS)
+		nmin=0.01  (mS)
 		pw=-1    (1)
 		tq=-40
 		qq=5
@@ -31,7 +31,7 @@ PARAMETER {
 
 
 NEURON {
-	SUFFIX kap
+	SUFFIX kapOLM
 	USEION k READ ek WRITE ik
         RANGE gka ,gkabar, i, ninf, linf
         RANGE taul,taun : ,lmin
@@ -106,7 +106,7 @@ PROCEDURE rates(v (mV)) { :callable from hoc
         taun = betn(v)/(qt*a0n*(1+a))
 	if (taun<nmin) {taun=nmin}
         a = alpl(v)
-		linf = 1 / ( 1 + exp( ( - v - 56 ) / (-8.738) ) )
+		linf = 1 / ( 1 + exp( ( - v - 56 ) / (-0.1) ) ) :-56/-8.739
 	taul = 0.26*(v+50)/qtl
 	if (taul<lmin/qtl) {taul=lmin/qtl}
 }

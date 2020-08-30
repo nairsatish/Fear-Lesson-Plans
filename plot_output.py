@@ -16,8 +16,9 @@ cai_file = './output/cai_report.h5'
 
 # load 
 f = h5py.File(mem_pot_file,'r')
+g = h5py.File(cai_file,'r')
 
-mem_potential = f['report']['tone']['data']
+mem_potential = f['report']['biophysical']['data']
 plt.plot(np.arange(0,mem_potential.shape[0]/10,.1),mem_potential[:,0])
 plt.text(200,-80,'tone')
 plt.text(700,-80,'tone+shock')
@@ -25,6 +26,9 @@ plt.text(1600,-80,'tone+shock')
 plt.text(2600,-80,'tone')
 plt.xlabel('time (ms)')
 plt.ylabel('membrane potential (mV)')
+
+#caiplt = g['report']['biophysical']['data']
+#plt.plot(caiplt[:,0])
 
 plt.show()
 

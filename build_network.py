@@ -21,10 +21,24 @@ num_exc = [1]
 ##################################################################################
 ###################################Pyr Type C#####################################
 
-net.add_nodes(N=1, pop_name='PyrC',
+net.add_nodes(N=5, pop_name='PyrA',
         mem_potential='e',
         model_type='biophysical',
-        model_template='hoc:feng_typeC',
+        model_template='hoc:Cell_A',
+        morphology=None)
+
+
+net.add_nodes(N=3, pop_name='PyrC',
+        mem_potential='e',
+        model_type='biophysical',
+        model_template='hoc:Cell_C',
+        morphology=None)
+        
+
+net.add_nodes(N=2, pop_name='Int',
+        mem_potential='e',
+        model_type='biophysical',
+        model_template='hoc:InterneuronCell',
         morphology=None)
 
 
@@ -66,8 +80,26 @@ def one_to_one(source, target):
     return tmp_nsyn
 
 # Create connections between Shock --> Pyr cells
-net.add_edges(source=shock.nodes(), target=net.nodes(),
-                connection_rule=one_to_one,
+net.add_edges(source=shock.nodes(), target=net.nodes(pop_name='PyrA'),
+                connection_rule=3,
+                syn_weight=1.0,
+                target_sections=['somatic'],
+                delay=0.1,
+                distance_range=[10.0,11.0],
+                dynamics_params='shock2PN.json',
+                model_template=syn['shock2PN.json']['level_of_detail'])
+                
+net.add_edges(source=shock.nodes(), target=net.nodes(pop_name='PyrC'),
+                connection_rule=2,
+                syn_weight=1.0,
+                target_sections=['somatic'],
+                delay=0.1,
+                distance_range=[10.0,11.0],
+                dynamics_params='shock2PN.json',
+                model_template=syn['shock2PN.json']['level_of_detail'])
+
+net.add_edges(source=shock.nodes(), target=net.nodes(pop_name='Int'),
+                connection_rule=2,
                 syn_weight=1.0,
                 target_sections=['somatic'],
                 delay=0.1,
@@ -76,8 +108,26 @@ net.add_edges(source=shock.nodes(), target=net.nodes(),
                 model_template=syn['shock2PN.json']['level_of_detail'])
 
 # Create connections between Tone --> Pyr cells
-net.add_edges(source=tone.nodes(), target=net.nodes(),
-                connection_rule=one_to_one,
+net.add_edges(source=tone.nodes(), target=net.nodes(pop_name='PyrA'),
+                connection_rule=2,
+                syn_weight=1.0,
+                target_sections=['somatic'],
+                delay=0.1,
+                distance_range=[10.0, 11.0],
+                dynamics_params='tone2PN.json',
+                model_template=syn['tone2PN.json']['level_of_detail'])
+                
+net.add_edges(source=tone.nodes(), target=net.nodes(pop_name='PyrC'),
+                connection_rule=2,
+                syn_weight=1.0,
+                target_sections=['somatic'],
+                delay=0.1,
+                distance_range=[10.0, 11.0],
+                dynamics_params='tone2PN.json',
+                model_template=syn['tone2PN.json']['level_of_detail'])
+                
+net.add_edges(source=tone.nodes(), target=net.nodes(pop_name='Int'),
+                connection_rule=2,
                 syn_weight=1.0,
                 target_sections=['somatic'],
                 delay=0.1,
@@ -85,7 +135,94 @@ net.add_edges(source=tone.nodes(), target=net.nodes(),
                 dynamics_params='tone2PN.json',
                 model_template=syn['tone2PN.json']['level_of_detail'])
 
+# Create connections between Pyr --> Pyr cells
+net.add_edges(source=net.nodes(pop_name='PyrA'), target=net.nodes(pop_name='PyrA'),
+                connection_rule=20,
+                syn_weight=1.0,
+                target_sections=['somatic'],
+                delay=0.1,
+                distance_range=[10.0,11.0],
+                dynamics_params='AMPA_ExcToExc.json',
+                model_template=syn['AMPA_ExcToExc.json']['level_of_detail'])
 
+net.add_edges(source=net.nodes(pop_name='PyrA'), target=net.nodes(pop_name='PyrC'),
+                connection_rule=15,
+                syn_weight=1.0,
+                target_sections=['somatic'],
+                delay=0.1,
+                distance_range=[10.0,11.0],
+                dynamics_params='AMPA_ExcToExc.json',
+                model_template=syn['AMPA_ExcToExc.json']['level_of_detail'])
+
+net.add_edges(source=net.nodes(pop_name='PyrC'), target=net.nodes(pop_name='PyrA'),
+                connection_rule=15,
+                syn_weight=1.0,
+                target_sections=['somatic'],
+                delay=0.1,
+                distance_range=[10.0,11.0],
+                dynamics_params='AMPA_ExcToExc.json',
+                model_template=syn['AMPA_ExcToExc.json']['level_of_detail'])
+
+net.add_edges(source=net.nodes(pop_name='PyrC'), target=net.nodes(pop_name='PyrC'),
+                connection_rule=6,
+                syn_weight=1.0,
+                target_sections=['somatic'],
+                delay=0.1,
+                distance_range=[10.0,11.0],
+                dynamics_params='AMPA_ExcToExc.json',
+                model_template=syn['AMPA_ExcToExc.json']['level_of_detail'])
+
+
+#Create connections between Pyr --> Int cells
+net.add_edges(source=net.nodes(pop_name='PyrA'), target=net.nodes(pop_name='Int'),
+                connection_rule=10,
+                syn_weight=1.0,
+                target_sections=['somatic'],
+                delay=0.1,
+                distance_range=[10.0,11.0],
+                dynamics_params='AMPA_ExcToInh.json',
+                model_template=syn['AMPA_ExcToInh.json']['level_of_detail'])
+
+net.add_edges(source=net.nodes(pop_name='PyrC'), target=net.nodes(pop_name='Int'),
+                connection_rule=6,
+                syn_weight=1.0,
+                target_sections=['somatic'],
+                delay=0.1,
+                distance_range=[10.0,11.0],
+                dynamics_params='AMPA_ExcToInh.json',
+                model_template=syn['AMPA_ExcToInh.json']['level_of_detail'])
+
+#Create connections Int --> Int cells
+
+net.add_edges(source=net.nodes(pop_name='Int'), target=net.nodes(pop_name='Int'),
+                connection_rule=2,
+                syn_weight=1.0,
+                target_sections=['somatic'],
+                delay=0.1,
+                distance_range=[10.0,11.0],
+                dynamics_params='GABA_InhToInh.json',
+                model_template=syn['GABA_InhToInh.json']['level_of_detail'])
+                
+
+#Create connections Int --> Pyr cells
+net.add_edges(source=net.nodes(pop_name='Inta'), target=net.nodes(pop_name='PyrA'),
+                connection_rule=10,
+                syn_weight=1.0,
+                target_sections=['somatic'],
+                delay=0.1,
+                distance_range=[10.0,11.0],
+                dynamics_params='GABA_InhToExc.json',
+                model_template=syn['GABA_InhToExc.json']['level_of_detail'])
+
+net.add_edges(source=net.nodes(pop_name='Int'), target=net.nodes(pop_name='PyrC'),
+                connection_rule=6,
+                syn_weight=1.0,
+                target_sections=['somatic'],
+                delay=0.1,
+                distance_range=[10.0,11.0],
+                dynamics_params='GABA_InhToExc.json',
+                model_template=syn['GABA_InhToExc.json']['level_of_detail'])
+                
 # Build and save our networks
 net.build()
 net.save_nodes(output_dir='network')
@@ -117,8 +254,8 @@ from bmtk.utils.sim_setup import build_env_bionet
 
 build_env_bionet(base_dir='./',
                 network_dir='./network',
-                tstop=3000.0, dt = 0.1,
+                tstop=4000.0, dt = 0.1,
                 report_vars=['v','cai'],
                 spikes_inputs=[('tone', 'tone_spikes.csv'), ('shock', 'shock_spikes.csv')],
                 components_dir='biophys_components',
-                compile_mechanisms=True)
+                compile_mechanisms=False)

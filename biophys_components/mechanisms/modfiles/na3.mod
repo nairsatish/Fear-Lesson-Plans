@@ -31,10 +31,10 @@ PARAMETER {
 	qq   = 10        (mV)
 	tq   = -55      (mV)
 
-	thinf  = -50 	(mV)		: inact inf slope	
+	thinf  = -40 	(mV)		: inact inf slope -50	
 	qinf  = 4 	(mV)		: inact inf slope 
 
-        vhalfs=-60	(mV)		: slow inact.
+        vhalfs=-30 :-60	(mV)		: slow inact.
         a0s=0.0003	(ms)		: a0s=b0s
         zetas=12	(1)
         gms=0.2		(1)

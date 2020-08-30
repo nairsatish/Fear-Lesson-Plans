@@ -15,7 +15,7 @@ PARAMETER {
         ek (mV)		: must be explicitely def. in hoc
 	celsius		(degC)
 	gbar=.003 (mho/cm2)
-        vhalfn = -15: 13 : -25  : -20  (mV)
+        vhalfn = 0 :-15: 13 : -25  : -20  (mV)
         a0n=0.02      (/ms)
         zetan=-3    (1)
         gmn=0.7  (1)
@@ -25,7 +25,7 @@ PARAMETER {
 
 
 NEURON {
-	SUFFIX kdr
+	SUFFIX kdrOLM
 	USEION k READ ek WRITE ik
         RANGE gkdr, i, gbar
 	RANGE ninf,taun

@@ -1,0 +1,123 @@
+begintemplate OLMCell
+
+
+
+create soma, dend
+public soma, dend
+
+proc init(){
+	
+v_init = -55
+	
+gna = 0.008
+gk = 0.03
+ghd = 1e-5
+gka = 0.0142
+gnap = 0.0008
+gca = 1e-3
+
+connect dend(0), soma(1)
+
+		/////// geometry ////////
+		soma {
+			nseg=1
+			L=40 //15		// (micrometer)
+			diam=40 //15		// (micrometer)
+	    	}
+
+		dend {
+			nseg=1
+			L=200		// (micrometer)
+			diam=10		// (micrometer)
+		}
+
+		/////// biophysics //////
+		soma {
+			cm = 1//1		    // (microF/cm2)
+			Ra = 150*22.5	// (ohm-cm)
+			Rm = 20000	    // (ohm-cm2)
+			
+			insert leakinterOLM
+			glbar_inter_leakinterOLM = 3.8e-5 // (siemens/cm2)
+			el_leakinterOLM = -80	// (mV)
+
+			
+			insert kdrOLM
+			/*
+			insert hd
+			*/
+			insert kapOLM
+			insert natOLM
+			
+			//insert cadyn
+			//insert capool
+			//insert nap
+			
+			
+	    	}
+
+		dend {
+			cm = 1//1		// (microF/cm2)
+			Ra = 150	// (ohm-cm)
+			Rm = 20000	// (ohm-cm2)
+			
+			insert leakinterOLM
+			glbar_inter_leakinterOLM = 3.8e-5 // (siemens/cm2)
+			el_leakinterOLM = -80	// (mV)
+
+			insert natOLM
+			insert kdrOLM
+			insert kapOLM
+			
+			//insert cadyn
+			//insert capool
+			//insert nap
+			
+	
+		}
+		
+		soma {
+		
+			ena = 55		// (mV)
+				// (siemens/cm2)
+
+			ek = -80		// (mV)
+			gbar_kdrOLM = gk// (siemens/cm2)
+			/*
+			ehd=-45
+			ghd_bar = ghd
+			*/
+			gkabar_kapOLM = gka
+			gbar_natOLM = gna
+			
+			/*
+			eca=120
+			gcabar_cadyn = gca
+			taucas = 5000  
+			fcas_capool = 0.01  
+			cainf = 5.e-6
+			*/
+				//x_xtra=$1*1000 y_xtra=$2*1000 z_xtra=$3*1000
+		}
+
+		dend {
+		
+			ena = 55		// (mV)
+				// (siemens/cm2)
+
+			ek = -80		// (mV)
+			gbar_kdrOLM = gk // (siemens/cm2)
+			gkabar_kapOLM = gka
+			gbar_natOLM = gna
+			
+			/*
+			eca=120
+			gcabar_cadyn = gca
+			taucas = 5000  
+			fcas_capool = 0.01  
+			cainf = 5.e-6
+			*/
+		}
+	}
+endtemplate OLMCell
+

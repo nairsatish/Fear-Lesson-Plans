@@ -1,0 +1,60 @@
+load_file("OLM.hoc")
+
+//simuation constants
+SIMRUNTIME = 1000
+DELAY = 200
+INJTIME = 600
+I_INJ = 0.8
+
+tstop = SIMRUNTIME
+v_init = -80
+
+objectvar membrane_voltage, time
+membrane_voltage = new Vector()
+time = new Vector()
+
+objectvar cell
+cell = new OLMCell()
+
+//record the cells membrane voltage.
+membrane_voltage.record(&cell.soma.v(0.5))
+time.record(&t)
+
+//First graph the membrane potential vs time plot.
+
+//Create a current clamp.
+objectvar i_inj
+cell.soma i_inj = new IClamp(0.5)
+i_inj.del = DELAY
+i_inj.dur = INJTIME
+i_inj.amp = I_INJ
+
+//run the simulation and plot the outcome
+run()
+
+//Membrane voltage vs. time
+objectvar g_mvt
+g_mvt = new Graph()
+g_mvt.size(0,SIMRUNTIME, 30, -90)
+g_mvt.vector(membrane_voltage.size(), &time.x[0], &membrane_voltage.x[0])
+g_mvt.flush()
+
+
+objref nc, nil, spvec
+func runSim(){
+
+
+    cell.soma nc = new NetCon(&v(0.5),nil)
+	nc.threshold = 0
+    spvec = new Vector()
+    nc.record(spvec)
+
+    i_inj.amp=$1
+
+    run()
+
+    return (spvec.size() / (INJTIME)) * 1000
+}
+
+printf("Cell fi at %f nA injection: %f\n",I_INJ,runSim(I_INJ))
+
