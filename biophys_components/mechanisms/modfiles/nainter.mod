@@ -52,19 +52,19 @@ DERIVATIVE states {
 UNITSOFF
 
 FUNCTION malf(v(mV)) {
-	malf = 2.1*exp((v+18.5)/11.75)   :malf = 2.1*exp((v+18.5)/11.57) :18.5
+	malf = 2.1*exp((v+18.5)/11.75)   :malf = 2.1*exp((v+18.5)/11.57)
 }
 
 FUNCTION mbet(v(mV)) {
-	mbet = 2.1*exp(-(v+18.5)/27) :18.5
+	mbet = 2.1*exp(-(v+18.5)/27)
 }	
 
 FUNCTION half(v(mV)) {
-	half = 0.045*exp(-(v+29)/33) :29/33
+	half = 0.045*exp(-(v+29)/33)
 }
 
 FUNCTION hbet(v(mV)) {
-	hbet = 0.045*exp((v+29)/12.2) :29/12.2
+	hbet = 0.045*exp((v+29)/12.2)
 }
 
 PROCEDURE rate(v(mV)) { LOCAL msum, hsum, ma, mb, ha, hb

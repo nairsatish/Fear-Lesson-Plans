@@ -24,21 +24,21 @@ num_exc = [1]
 net.add_nodes(N=5, pop_name='PyrA',
         mem_potential='e',
         model_type='biophysical',
-        model_template='hoc:Cell_A',
+        model_template='hoc:feng_typeA',
         morphology=None)
 
 
 net.add_nodes(N=3, pop_name='PyrC',
         mem_potential='e',
         model_type='biophysical',
-        model_template='hoc:Cell_C',
+        model_template='hoc:feng_typeC',
         morphology=None)
         
 
 net.add_nodes(N=2, pop_name='Int',
         mem_potential='e',
         model_type='biophysical',
-        model_template='hoc:InterneuronCell',
+        model_template='hoc:basket',
         morphology=None)
 
 

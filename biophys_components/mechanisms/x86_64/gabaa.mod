@@ -1,1 +1,1 @@
-../modfiles/gabaa.mod
+../modfiles//gabaa.mod

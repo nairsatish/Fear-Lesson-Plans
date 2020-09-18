@@ -1,1 +1,1 @@
-../modfiles/MyExp2Sid.mod
+../modfiles//MyExp2Sid.mod
