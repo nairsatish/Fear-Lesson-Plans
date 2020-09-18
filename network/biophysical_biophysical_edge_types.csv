@@ -1,10 +1,10 @@
-edge_type_id target_query source_query model_template dynamics_params syn_weight delay target_sections distance_range
-106 pop_name=='PyrA' pop_name=='PyrA' exp2syn AMPA_ExcToExc.json 1.0 0.1 ['somatic'] "[10.0, 11.0]"
-107 pop_name=='PyrC' pop_name=='PyrA' exp2syn AMPA_ExcToExc.json 1.0 0.1 ['somatic'] "[10.0, 11.0]"
-108 pop_name=='PyrA' pop_name=='PyrC' exp2syn AMPA_ExcToExc.json 1.0 0.1 ['somatic'] "[10.0, 11.0]"
-109 pop_name=='PyrC' pop_name=='PyrC' exp2syn AMPA_ExcToExc.json 1.0 0.1 ['somatic'] "[10.0, 11.0]"
-110 pop_name=='Int' pop_name=='PyrA' exp2syn AMPA_ExcToInh.json 1.0 0.1 ['somatic'] "[10.0, 11.0]"
-111 pop_name=='Int' pop_name=='PyrC' exp2syn AMPA_ExcToInh.json 1.0 0.1 ['somatic'] "[10.0, 11.0]"
-112 pop_name=='Int' pop_name=='Int' exp2syn GABA_InhToInh.json 1.0 0.1 ['somatic'] "[10.0, 11.0]"
-113 pop_name=='PyrA' pop_name=='Inta' exp2syn GABA_InhToExc.json 1.0 0.1 ['somatic'] "[10.0, 11.0]"
-114 pop_name=='PyrC' pop_name=='Int' exp2syn GABA_InhToExc.json 1.0 0.1 ['somatic'] "[10.0, 11.0]"
+edge_type_id target_query source_query model_template syn_weight dynamics_params distance_range delay target_sections
+106 pop_name=='PyrA' pop_name=='PyrA' exp2syn 1.0 AMPA_ExcToExc.json "[10.0, 11.0]" 0.1 ['somatic']
+107 pop_name=='PyrC' pop_name=='PyrA' exp2syn 1.0 AMPA_ExcToExc.json "[10.0, 11.0]" 0.1 ['somatic']
+108 pop_name=='PyrA' pop_name=='PyrC' exp2syn 1.0 AMPA_ExcToExc.json "[10.0, 11.0]" 0.1 ['somatic']
+109 pop_name=='PyrC' pop_name=='PyrC' exp2syn 1.0 AMPA_ExcToExc.json "[10.0, 11.0]" 0.1 ['somatic']
+110 pop_name=='Int' pop_name=='PyrA' exp2syn 1.0 AMPA_ExcToInh.json "[10.0, 11.0]" 0.1 ['somatic']
+111 pop_name=='Int' pop_name=='PyrC' exp2syn 1.0 AMPA_ExcToInh.json "[10.0, 11.0]" 0.1 ['somatic']
+112 pop_name=='Int' pop_name=='Int' exp2syn 1.0 GABA_InhToInh.json "[10.0, 11.0]" 0.1 ['somatic']
+113 pop_name=='PyrA' pop_name=='Inta' exp2syn 1.0 GABA_InhToExc.json "[10.0, 11.0]" 0.1 ['somatic']
+114 pop_name=='PyrC' pop_name=='Int' exp2syn 1.0 GABA_InhToExc.json "[10.0, 11.0]" 0.1 ['somatic']

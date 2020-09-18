@@ -1,0 +1,7 @@
+Building model at Fri Sep 18 11:44:12 PDT 2020
+/home/latimerb/.local/lib/python3.6/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+making 1 exc_stim nodes
+making 1 inh_stim nodes
+numprocs=1
+Done building model at Fri Sep 18 11:44:15 PDT 2020

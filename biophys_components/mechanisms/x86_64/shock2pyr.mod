@@ -1,1 +1,1 @@
-../modfiles/shock2pyr.mod
+../modfiles//shock2pyr.mod

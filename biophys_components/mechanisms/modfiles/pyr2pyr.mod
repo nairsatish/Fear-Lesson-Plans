@@ -211,9 +211,6 @@ DERIVATIVE release {
 
 	ICa = P0*g_nmda*(v - ECa)*sfunc(v)
 	Capoolcon'= -fCa*Afactor*ICa + (Cainf-Capoolcon)/tauCa
-	printf("Capoolcon: %g\n",Capoolcon)
-
-	:printf("W_nmda: %g\n",W_nmda)
 }
 
 NET_RECEIVE(dummy_weight) {

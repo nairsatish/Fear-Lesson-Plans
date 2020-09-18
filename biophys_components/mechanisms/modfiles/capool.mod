@@ -16,7 +16,7 @@ UNITS {
 
 PARAMETER {
 	pi = 3.14159265
-	taucas= 10000 (ms) 	: decay time constant
+	taucas= 1000 (ms) 	: decay time constant
     cainf= 50e-6   (mM)  	: equilibrium ca2+ concentration
 	fcas = 0.024
     w = 1 (micrometer)     	: thickness of shell for ca2+ diffusion

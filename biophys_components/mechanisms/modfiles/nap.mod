@@ -21,8 +21,8 @@ NEURON {
 PARAMETER { 
 	gbar = 1e-4 	(mho/cm2)
 	v ena 		(mV)  
-	k = 0.1 :5      (mV)
-	vhalf = -40 :-48 (mV)
+	k = 5      (mV)
+	vhalf = -48 (mV)
 } 
 ASSIGNED { 
 	ina 		(mA/cm2) 

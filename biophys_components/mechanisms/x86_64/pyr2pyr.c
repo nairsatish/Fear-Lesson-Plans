@@ -438,7 +438,7 @@ extern void _cvode_abstol( Symbol**, double*, int);
  pnt_receive[_mechtype] = _net_receive;
  pnt_receive_size[_mechtype] = 1;
  	hoc_register_var(hoc_scdoub, hoc_vdoub, hoc_intfunc);
- 	ivoc_help("help ?1 pyr2pyr /home/mizzou/Learning/biophys_components/mechanisms/x86_64/pyr2pyr.mod\n");
+ 	ivoc_help("help ?1 pyr2pyr /home/latimerb/PlasticityToy/biophys_components/mechanisms/x86_64/pyr2pyr.mod\n");
  hoc_register_limits(_mechtype, _hoc_parm_limits);
  hoc_register_units(_mechtype, _hoc_parm_units);
  }
@@ -504,7 +504,6 @@ static int _ode_spec1(_threadargsproto_);
    i_ampa = W_ampa * g_ampa * ( v - Erev_ampa ) * ( 1.0 + ( bACH * ( ACH - 1.0 ) ) ) * ( aDA + ( bDA * ( DA - 1.0 ) ) ) ;
    ICa = P0 * g_nmda * ( v - ECa ) * sfunc ( _threadargscomma_ v ) ;
    DCapoolcon = - fCa * Afactor * ICa + ( Cainf - Capoolcon ) / tauCa ;
-   printf ( "Capoolcon: %g\n" , Capoolcon ) ;
    }
  return _reset;
 }
@@ -554,7 +553,6 @@ static int _ode_spec1(_threadargsproto_);
  i_ampa = W_ampa * g_ampa * ( v - Erev_ampa ) * ( 1.0 + ( bACH * ( ACH - 1.0 ) ) ) * ( aDA + ( bDA * ( DA - 1.0 ) ) ) ;
  ICa = P0 * g_nmda * ( v - ECa ) * sfunc ( _threadargscomma_ v ) ;
  DCapoolcon = DCapoolcon  / (1. - dt*( ( ( ( - 1.0 ) ) ) / tauCa )) ;
- printf ( "Capoolcon: %g\n" , Capoolcon ) ;
   return 0;
 }
  /*END CVODE*/
@@ -604,7 +602,6 @@ static int _ode_spec1(_threadargsproto_);
    i_ampa = W_ampa * g_ampa * ( v - Erev_ampa ) * ( 1.0 + ( bACH * ( ACH - 1.0 ) ) ) * ( aDA + ( bDA * ( DA - 1.0 ) ) ) ;
    ICa = P0 * g_nmda * ( v - ECa ) * sfunc ( _threadargscomma_ v ) ;
     Capoolcon = Capoolcon + (1. - exp(dt*(( ( ( - 1.0 ) ) ) / tauCa)))*(- ( ( ( - fCa )*( Afactor ) )*( ICa ) + ( ( Cainf ) ) / tauCa ) / ( ( ( ( - 1.0 ) ) ) / tauCa ) - Capoolcon) ;
-   printf ( "Capoolcon: %g\n" , Capoolcon ) ;
    }
   return 0;
 }
@@ -906,7 +903,7 @@ _first = 0;
 #endif
 
 #if NMODL_TEXT
-static const char* nmodl_filename = "/home/mizzou/Learning/biophys_components/mechanisms/modfiles/pyr2pyr.mod";
+static const char* nmodl_filename = "/home/latimerb/PlasticityToy/biophys_components/mechanisms/modfiles/pyr2pyr.mod";
 static const char* nmodl_file_text = 
   "NEURON {\n"
   "	POINT_PROCESS pyr2pyr\n"
@@ -1121,9 +1118,6 @@ static const char* nmodl_file_text =
   "\n"
   "	ICa = P0*g_nmda*(v - ECa)*sfunc(v)\n"
   "	Capoolcon'= -fCa*Afactor*ICa + (Cainf-Capoolcon)/tauCa\n"
-  "	printf(\"Capoolcon: %g\\n\",Capoolcon)\n"
-  "\n"
-  "	:printf(\"W_nmda: %g\\n\",W_nmda)\n"
   "}\n"
   "\n"
   "NET_RECEIVE(dummy_weight) {\n"
