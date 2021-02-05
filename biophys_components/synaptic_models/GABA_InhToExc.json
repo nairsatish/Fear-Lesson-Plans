@@ -1,7 +1,13 @@
 {
   "level_of_detail": "exp2syn",
-  "tau1": 2.7,
-  "tau2": 15.0,
-  "erev": -70.0
+  "tau1": 0.25,
+  "tau2": 3.75,
+  "erev": -75.0,
+  "initW": 5.0,
+  "fmax": 4,
+  "lambda1": 2.0,
+  "lambda2": 0.02,
+  "threshold1": 0.55,
+  "threshold2": 0.7
 }
 
