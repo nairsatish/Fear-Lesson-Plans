@@ -104,8 +104,8 @@ net.add_edges(source=shock.nodes(), target=net.nodes(pop_name='Int'),
                 target_sections=['somatic'],
                 delay=0.1,
                 distance_range=[10.0,11.0],
-                dynamics_params='shock2PN.json',
-                model_template=syn['shock2PN.json']['level_of_detail'])
+                dynamics_params='shock2INT.json',
+                model_template=syn['shock2INT.json']['level_of_detail'])
 
 # Create connections between Tone --> Pyr cells
 net.add_edges(source=tone.nodes(), target=net.nodes(pop_name='PyrA'),
@@ -132,8 +132,8 @@ net.add_edges(source=tone.nodes(), target=net.nodes(pop_name='Int'),
                 target_sections=['somatic'],
                 delay=0.1,
                 distance_range=[10.0, 11.0],
-                dynamics_params='tone2PN.json',
-                model_template=syn['tone2PN.json']['level_of_detail'])
+                dynamics_params='tone2INT.json',
+                model_template=syn['tone2INT.json']['level_of_detail'])
 
 # Create connections between Pyr --> Pyr cells
 net.add_edges(source=net.nodes(pop_name='PyrA'), target=net.nodes(pop_name='PyrA'),
