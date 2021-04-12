@@ -16,20 +16,20 @@
     "tone_spikes": {
       "input_type": "spikes",
       "module": "csv",
-      "input_file": "/home/latimerb/PlasticityToy/tone_spikes.csv",
+      "input_file": "C:\\Users\\drewa\\Desktop\\Neural Research\\PlasticityToy-master\\tone_spikes.csv",
       "node_set": "tone"
     },
     "shock_spikes": {
       "input_type": "spikes",
       "module": "csv",
-      "input_file": "/home/latimerb/PlasticityToy/shock_spikes.csv",
+      "input_file": "C:\\Users\\drewa\\Desktop\\Neural Research\\PlasticityToy-master\\shock_spikes.csv",
       "node_set": "shock"
     }
   },
   "output": {
-    "log_file": "/home/latimerb/PlasticityToy/output/log.txt",
-    "output_dir": "/home/latimerb/PlasticityToy/output",
-    "spikes_file": "/home/latimerb/PlasticityToy/output/spikes.h5"
+    "log_file": "C:\\Users\\drewa\\Desktop\\Neural Research\\PlasticityToy-master\\output\\log.txt",
+    "output_dir": "C:\\Users\\drewa\\Desktop\\Neural Research\\PlasticityToy-master\\output",
+    "spikes_file": "C:\\Users\\drewa\\Desktop\\Neural Research\\PlasticityToy-master\\output\\spikes.h5"
   },
   "reports": {
     "v_report": {
@@ -45,46 +45,46 @@
       "sections": "soma"
     }
   },
-  "node_sets_file": "/home/latimerb/PlasticityToy/node_sets.json",
-  "network": "/home/latimerb/PlasticityToy/circuit_config.json",
-  "config_path": "/home/latimerb/PlasticityToy/simulation_config.json",
-  "config_dir": "/home/latimerb/PlasticityToy",
+  "node_sets_file": "C:\\Users\\drewa\\Desktop\\Neural Research\\PlasticityToy-master\\node_sets.json",
+  "network": "C:\\Users\\drewa\\Desktop\\Neural Research\\PlasticityToy-master\\circuit_config.json",
+  "config_path": "C:\\Users\\drewa\\Desktop\\Neural Research\\PlasticityToy-master\\simulation_config.json",
+  "config_dir": "C:\\Users\\drewa\\Desktop\\Neural Research\\PlasticityToy-master",
   "components": {
-    "morphologies_dir": "/home/latimerb/PlasticityToy/biophys_components/morphologies",
-    "biophysical_neuron_models_dir": "/home/latimerb/PlasticityToy/biophys_components/biophysical_neuron_models",
-    "point_neuron_models_dir": "/home/latimerb/PlasticityToy/biophys_components/point_neuron_models",
-    "synaptic_models_dir": "/home/latimerb/PlasticityToy/biophys_components/synaptic_models",
-    "__pycache___dir": "/home/latimerb/PlasticityToy/biophys_components/__pycache__",
-    "templates_dir": "/home/latimerb/PlasticityToy/biophys_components/templates",
-    "mechanisms_dir": "/home/latimerb/PlasticityToy/biophys_components/mechanisms"
+    "biophysical_neuron_models_dir": "C:\\Users\\drewa\\Desktop\\Neural Research\\PlasticityToy-master\\biophys_components\\biophysical_neuron_models",
+    "mechanisms_dir": "C:\\Users\\drewa\\Desktop\\Neural Research\\PlasticityToy-master\\biophys_components\\mechanisms",
+    "morphologies_dir": "C:\\Users\\drewa\\Desktop\\Neural Research\\PlasticityToy-master\\biophys_components\\morphologies",
+    "point_neuron_models_dir": "C:\\Users\\drewa\\Desktop\\Neural Research\\PlasticityToy-master\\biophys_components\\point_neuron_models",
+    "synaptic_models_dir": "C:\\Users\\drewa\\Desktop\\Neural Research\\PlasticityToy-master\\biophys_components\\synaptic_models",
+    "templates_dir": "C:\\Users\\drewa\\Desktop\\Neural Research\\PlasticityToy-master\\biophys_components\\templates",
+    "__pycache___dir": "C:\\Users\\drewa\\Desktop\\Neural Research\\PlasticityToy-master\\biophys_components\\__pycache__"
   },
   "networks": {
     "nodes": [
       {
-        "node_types_file": "/home/latimerb/PlasticityToy/network/tone_node_types.csv",
-        "nodes_file": "/home/latimerb/PlasticityToy/network/tone_nodes.h5"
+        "nodes_file": "C:\\Users\\drewa\\Desktop\\Neural Research\\PlasticityToy-master\\network\\biophysical_nodes.h5",
+        "node_types_file": "C:\\Users\\drewa\\Desktop\\Neural Research\\PlasticityToy-master\\network\\biophysical_node_types.csv"
       },
       {
-        "nodes_file": "/home/latimerb/PlasticityToy/network/biophysical_nodes.h5",
-        "node_types_file": "/home/latimerb/PlasticityToy/network/biophysical_node_types.csv"
+        "nodes_file": "C:\\Users\\drewa\\Desktop\\Neural Research\\PlasticityToy-master\\network\\shock_nodes.h5",
+        "node_types_file": "C:\\Users\\drewa\\Desktop\\Neural Research\\PlasticityToy-master\\network\\shock_node_types.csv"
       },
       {
-        "node_types_file": "/home/latimerb/PlasticityToy/network/shock_node_types.csv",
-        "nodes_file": "/home/latimerb/PlasticityToy/network/shock_nodes.h5"
+        "nodes_file": "C:\\Users\\drewa\\Desktop\\Neural Research\\PlasticityToy-master\\network\\tone_nodes.h5",
+        "node_types_file": "C:\\Users\\drewa\\Desktop\\Neural Research\\PlasticityToy-master\\network\\tone_node_types.csv"
       }
     ],
     "edges": [
       {
-        "edges_file": "/home/latimerb/PlasticityToy/network/shock_biophysical_edges.h5",
-        "edge_types_file": "/home/latimerb/PlasticityToy/network/shock_biophysical_edge_types.csv"
+        "edges_file": "C:\\Users\\drewa\\Desktop\\Neural Research\\PlasticityToy-master\\network\\biophysical_biophysical_edges.h5",
+        "edge_types_file": "C:\\Users\\drewa\\Desktop\\Neural Research\\PlasticityToy-master\\network\\biophysical_biophysical_edge_types.csv"
       },
       {
-        "edge_types_file": "/home/latimerb/PlasticityToy/network/tone_biophysical_edge_types.csv",
-        "edges_file": "/home/latimerb/PlasticityToy/network/tone_biophysical_edges.h5"
+        "edges_file": "C:\\Users\\drewa\\Desktop\\Neural Research\\PlasticityToy-master\\network\\shock_biophysical_edges.h5",
+        "edge_types_file": "C:\\Users\\drewa\\Desktop\\Neural Research\\PlasticityToy-master\\network\\shock_biophysical_edge_types.csv"
       },
       {
-        "edges_file": "/home/latimerb/PlasticityToy/network/biophysical_biophysical_edges.h5",
-        "edge_types_file": "/home/latimerb/PlasticityToy/network/biophysical_biophysical_edge_types.csv"
+        "edges_file": "C:\\Users\\drewa\\Desktop\\Neural Research\\PlasticityToy-master\\network\\tone_biophysical_edges.h5",
+        "edge_types_file": "C:\\Users\\drewa\\Desktop\\Neural Research\\PlasticityToy-master\\network\\tone_biophysical_edge_types.csv"
       }
     ],
     "gap_juncs": []

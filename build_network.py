@@ -51,7 +51,7 @@ print("making {} exc_stim nodes".format(np.sum(num_exc)))
 
 # External excitatory inputs
 tone = NetworkBuilder('tone')
-tone.add_nodes(N=np.sum(num_exc),
+tone.add_nodes(N=1,
                 pop_name='tone',
                 potential='exc',
                 model_type='virtual')
@@ -59,7 +59,7 @@ tone.add_nodes(N=np.sum(num_exc),
 print("making {} inh_stim nodes".format(np.sum(num_inh)))
 # External inhibitory inputs
 shock = NetworkBuilder('shock')
-shock.add_nodes(N=np.sum(num_inh),
+shock.add_nodes(N=1,
                 pop_name='shock',
                 potential='exc',
                 model_type='virtual')
