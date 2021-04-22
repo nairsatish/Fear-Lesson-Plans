@@ -1,2 +1,13 @@
-2021-04-12 17:55:31,277 [INFO] Created log file
-2021-04-12 17:55:31,579 [INFO] Building cells.
+2021-04-22 12:53:31,292 [INFO] Created log file
+2021-04-22 12:53:31,503 [INFO] Building cells.
+2021-04-22 12:53:31,541 [INFO] Building recurrent connections
+2021-04-22 12:53:31,726 [INFO] Building virtual cell stimulations for tone_spikes
+2021-04-22 12:53:31,757 [INFO] Building virtual cell stimulations for shock_spikes
+2021-04-22 12:53:31,794 [INFO] Running simulation for 2000.000 ms with the time step 0.100 ms
+2021-04-22 12:53:31,794 [INFO] Starting timestep: 0 at t_sim: 0.000 ms
+2021-04-22 12:53:31,795 [INFO] Block save every 5000 steps
+2021-04-22 12:53:35,498 [INFO]     step:5000 t_sim:500.00 ms
+2021-04-22 12:53:38,803 [INFO]     step:10000 t_sim:1000.00 ms
+2021-04-22 12:53:42,082 [INFO]     step:15000 t_sim:1500.00 ms
+2021-04-22 12:53:45,342 [INFO]     step:20000 t_sim:2000.00 ms
+2021-04-22 12:53:45,365 [INFO] Simulation completed in 13.57 seconds 
