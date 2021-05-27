@@ -8,8 +8,8 @@ df = to_dataframe(config_file='simulation_config.json')
 
 df.to_csv('spikedata.csv')
 
-df0 = df.loc[df['node_ids'] == 0]
-#df0.to_csv('node0.csv')
+df0 = df.loc[df['node_ids'] == 9]
+df0.to_csv('node0.csv')
 x0 = df0['timestamps'].tolist()
 first_trial = []
 second_trial = []
@@ -85,3 +85,6 @@ plt.ylabel("spikes")
 plt.xlabel('ms')
 plt.xlim([0, 400])
 plt.show()
+print(len(df0))
+print(len(df))
+

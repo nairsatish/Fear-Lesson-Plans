@@ -90,7 +90,7 @@ plot_two = plot_traces(config_file='simulation_config.json', node_ids=[0], repor
 
 plt.show()
 
-h = h5py.File('output\\spikes.h5', 'r')
+h = h5py.File('output/spikes.h5', 'r')
 timestamps = h['spikes']['biophysical']['timestamps'][:]
 node_ids = h['spikes']['biophysical']['node_ids'][:]
 

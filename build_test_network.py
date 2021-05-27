@@ -12,6 +12,7 @@ net.add_nodes(
         model_template='hoc:feng_typeA',
         morphology=None)
 
+
 """
 net.add_nodes(
         mem_potential='e',
@@ -19,6 +20,7 @@ net.add_nodes(
         model_template='hoc:feng_typeC',
         morphology=None)
 """
+
 """
 net.add_nodes(
         mem_potential='e',
@@ -32,15 +34,15 @@ net.save_nodes(output_dir='network')
 from bmtk.utils.sim_setup import build_env_bionet
 build_env_bionet(base_dir='./',
                 network_dir='./network',
-                tstop=1000.0, dt = 0.1,
+                tstop=800.0, dt = 0.1,
                 report_vars=['v'],
                 current_clamp={
-                    'amp':0.300,
-                    'delay': 100.0,
-                    'duration':600
+                    'amp': 0.300,
+                    'delay': 50.0,
+                    'duration': 600 #200 for bask 600 for pyr
                 },
                 components_dir='biophys_components',
-                compile_mechanisms=True)
+                compile_mechanisms=False)
 
 
 from bmtk.simulator import bionet
