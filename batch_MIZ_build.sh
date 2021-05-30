@@ -3,7 +3,7 @@
 #SBATCH -n 1
 #SBATCH --qos=normal
 #SBATCH --job-name=10cell
-#SBATCH --output=build10Cell%j.out
+#SBATCH --output=build10Cell.out
 #SBATCH --time 0-00:30
 
 echo "building 10 cell model at $(date)"
