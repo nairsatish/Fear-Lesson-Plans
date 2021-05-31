@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -N 1
-#SBATCH -n 4
+#SBATCH -n 10
 #SBATCH --qos=normal
 #SBATCH --job-name=10Cell
 #SBATCH --output=Run10Cell.out
