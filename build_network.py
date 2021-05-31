@@ -312,4 +312,4 @@ build_env_bionet(base_dir='./',
                 report_vars=['v','cai'],
                 spikes_inputs=[('tone', 'tone_spikes.csv'), ('shock', 'shock_spikes.csv')],
                 components_dir='biophys_components',
-                compile_mechanisms=False)
+                compile_mechanisms=True)
