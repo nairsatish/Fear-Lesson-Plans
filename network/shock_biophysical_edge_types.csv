@@ -1,4 +1,4 @@
-edge_type_id target_query source_query syn_weight dynamics_params target_sections model_template distance_range delay
-100 pop_name=='PyrA' * 40.0 shock2PN.json ['somatic'] shock2pyr "[10.0, 11.0]" 0.1
-101 pop_name=='PyrC' * 40.0 shock2PN.json ['somatic'] shock2pyr "[10.0, 11.0]" 0.1
-102 pop_name=='Int' * 20.0 shock2INT.json ['somatic'] shock2pyr "[10.0, 11.0]" 0.1
+edge_type_id target_query source_query target_sections dynamics_params delay syn_weight distance_range model_template
+100 pop_name=='PyrA' * ['somatic'] shock2PN.json 0.1 40.0 "[10.0, 11.0]" shock2pyr
+101 pop_name=='PyrC' * ['somatic'] shock2PN.json 0.1 40.0 "[10.0, 11.0]" shock2pyr
+102 pop_name=='Int' * ['somatic'] shock2INT.json 0.1 20.0 "[10.0, 11.0]" shock2pyr

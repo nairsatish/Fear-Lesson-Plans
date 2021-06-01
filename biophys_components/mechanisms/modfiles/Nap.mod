@@ -1,77 +1,68 @@
-:Reference : Modeled according to kinetics derived from Magistretti & Alonso 1999
-:Comment: corrected rates using q10 = 2.3, target temperature 34, orginal 21
+TITLE Sodium persistent current for RD Traub, J Neurophysiol 89:909-921, 2003
 
-NEURON	{
-	SUFFIX Nap
+COMMENT
+
+	Implemented by Maciej Lazarewicz 2003 (mlazarew@seas.upenn.edu)
+
+ENDCOMMENT
+
+INDEPENDENT { t FROM 0 TO 1 WITH 1 (ms) }
+
+UNITS { 
+	(mV) = (millivolt) 
+	(mA) = (milliamp) 
+} 
+NEURON { 
+	SUFFIX nap
 	USEION na READ ena WRITE ina
-	RANGE gbar, g, ina
+	RANGE i, minf, mtau, gnap, gbar :, vhalf, k
 }
 
-UNITS	{
-	(S) = (siemens)
-	(mV) = (millivolt)
-	(mA) = (milliamp)
+PARAMETER { 
+	gbar = 1e-4 	(mho/cm2)
+	v ena 		(mV)  
+	k = 5      (mV)
+	vhalf = -48 (mV)
+} 
+ASSIGNED { 
+	ina 		(mA/cm2) 
+	i   		(mA/cm2)
+	minf 		(1)
+	mtau 		(ms) 
+	gnap		(mho/cm2)
+} 
+STATE {
+	m
 }
 
-PARAMETER	{
-	gbar = 0.00001 (S/cm2)
-}
-
-ASSIGNED	{
-	v	(mV)
-	ena	(mV)
-	ina	(mA/cm2)
-	g	(S/cm2)
-	celsius (degC)
-	mInf
-	hInf
-	hTau
-	hAlpha
-	hBeta
-}
-
-STATE	{
-	h
-}
-
-BREAKPOINT	{
+BREAKPOINT { 
 	SOLVE states METHOD cnexp
-	rates()
-	g = gbar*mInf*h
-	ina = g*(v-ena)
+	gnap = gbar * m
+	ina = gnap * ( v - ena ) 
+	i = ina
+} 
+
+INITIAL { 
+	rate(v)
+	m = minf
+} 
+
+DERIVATIVE states { 
+	rate(v)
+	m' = ( minf - m ) / mtau 
 }
-
-DERIVATIVE states	{
-	rates()
-	h' = (hInf-h)/hTau
-}
-
-INITIAL{
-	rates()
-	h = hInf
-}
-
-PROCEDURE rates(){
-  LOCAL qt
-  qt = 2.3^((celsius-21)/10)
-
-	UNITSOFF
-		mInf = 1.0/(1+exp((v- -52.6)/-4.6)) : assuming instantaneous activation as modeled by Magistretti and Alonso
-
-		hInf = 1.0/(1+exp((v- -48.8)/10))
-		hAlpha = 2.88e-6 * vtrap(v + 17, 4.63)
-		hBeta = 6.94e-6 * vtrap(-(v + 64.4), 2.63)
-
-		hTau = (1/(hAlpha + hBeta))/qt
-	UNITSON
-}
-
-FUNCTION vtrap(x, y) { : Traps for 0 in denominator of rate equations
-	UNITSOFF
-	if (fabs(x / y) < 1e-6) {
-		vtrap = y * (1 - x / y / 2)
-	} else {
-		vtrap = x / (exp(x / y) - 1)
+UNITSOFF
+ 
+PROCEDURE rate(v (mV)) {
+	if (v < -67.5 ) {
+	minf = 0
+	} else{
+	minf  = 1 / ( 1 + exp( ( vhalf - v ) / k ) )
 	}
-	UNITSON
+	if( v < -40.0 ) {
+		mtau = 100*(0.025 + 0.14 * exp( ( v + 40 ) / 10 ))
+	}else{
+		mtau = 100*(0.02 + 0.145 * exp( ( - v - 40 ) / 10 ))
+	}
 }
+UNITSON

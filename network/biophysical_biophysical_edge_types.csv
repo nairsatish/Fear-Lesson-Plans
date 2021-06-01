@@ -1,10 +1,10 @@
-edge_type_id target_query source_query syn_weight dynamics_params target_sections model_template distance_range delay
-106 pop_name=='PyrA' pop_name=='PyrA' 1.5 AMPA_ExcToExc.json ['somatic'] exp2syn "[10.0, 11.0]" 0.1
-107 pop_name=='PyrC' pop_name=='PyrA' 1.5 AMPA_ExcToExc.json ['somatic'] exp2syn "[10.0, 11.0]" 0.1
-108 pop_name=='PyrA' pop_name=='PyrC' 1.5 AMPA_ExcToExc.json ['somatic'] exp2syn "[10.0, 11.0]" 0.1
-109 pop_name=='PyrC' pop_name=='PyrC' 1.5 AMPA_ExcToExc.json ['somatic'] exp2syn "[10.0, 11.0]" 0.1
-110 pop_name=='Int' pop_name=='PyrA' 1.0 AMPA_ExcToInh.json ['somatic'] exp2syn "[10.0, 11.0]" 0.1
-111 pop_name=='Int' pop_name=='PyrC' 1.0 AMPA_ExcToInh.json ['somatic'] exp2syn "[10.0, 11.0]" 0.1
-112 pop_name=='Int' pop_name=='Int' 3.0 GABA_InhToInh.json ['somatic'] exp2syn "[10.0, 11.0]" 0.1
-113 pop_name=='PyrA' pop_name=='Int' 5.0 GABA_InhToExc.json ['somatic'] exp2syn "[10.0, 11.0]" 0.1
-114 pop_name=='PyrC' pop_name=='Int' 5.0 GABA_InhToExc.json ['somatic'] exp2syn "[10.0, 11.0]" 0.1
+edge_type_id target_query source_query target_sections dynamics_params delay syn_weight distance_range model_template
+106 pop_name=='PyrA' pop_name=='PyrA' ['somatic'] AMPA_ExcToExc.json 0.1 1.5 "[10.0, 11.0]" exp2syn
+107 pop_name=='PyrC' pop_name=='PyrA' ['somatic'] AMPA_ExcToExc.json 0.1 1.5 "[10.0, 11.0]" exp2syn
+108 pop_name=='PyrA' pop_name=='PyrC' ['somatic'] AMPA_ExcToExc.json 0.1 1.5 "[10.0, 11.0]" exp2syn
+109 pop_name=='PyrC' pop_name=='PyrC' ['somatic'] AMPA_ExcToExc.json 0.1 1.5 "[10.0, 11.0]" exp2syn
+110 pop_name=='Int' pop_name=='PyrA' ['somatic'] AMPA_ExcToInh.json 0.1 1.0 "[10.0, 11.0]" exp2syn
+111 pop_name=='Int' pop_name=='PyrC' ['somatic'] AMPA_ExcToInh.json 0.1 1.0 "[10.0, 11.0]" exp2syn
+112 pop_name=='Int' pop_name=='Int' ['somatic'] GABA_InhToInh.json 0.1 3.0 "[10.0, 11.0]" exp2syn
+113 pop_name=='PyrA' pop_name=='Int' ['somatic'] GABA_InhToExc.json 0.1 5.0 "[10.0, 11.0]" exp2syn
+114 pop_name=='PyrC' pop_name=='Int' ['somatic'] GABA_InhToExc.json 0.1 5.0 "[10.0, 11.0]" exp2syn
