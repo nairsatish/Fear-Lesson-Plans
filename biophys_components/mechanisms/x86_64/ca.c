@@ -251,19 +251,13 @@ extern void _cvode_abstol( Symbol**, double*, int);
   hoc_register_dparam_semantics(_mechtype, 2, "ca_ion");
  	hoc_register_cvode(_mechtype, _ode_count, 0, 0, 0);
  	hoc_register_var(hoc_scdoub, hoc_vdoub, hoc_intfunc);
- 	ivoc_help("help ?1 ca /Users/gregglickert/Desktop/PlasticityToy/biophys_components/mechanisms/modfiles/ca.mod\n");
+ 	ivoc_help("help ?1 ca /home/latimerb/PlasticityToy/biophys_components/mechanisms/x86_64/ca.mod\n");
  hoc_register_limits(_mechtype, _hoc_parm_limits);
  hoc_register_units(_mechtype, _hoc_parm_units);
  }
- 
-#define FARADAY _nrnunit_FARADAY[_nrnunit_use_legacy_]
-static double _nrnunit_FARADAY[2] = {0x1.78e555060882cp+16, 96485.3}; /* 96485.3321233100141 */
- 
-#define R _nrnunit_R[_nrnunit_use_legacy_]
-static double _nrnunit_R[2] = {0x1.0a1013e8990bep+3, 8.3145}; /* 8.3144626181532395 */
- 
-#define PI _nrnunit_PI[_nrnunit_use_legacy_]
-static double _nrnunit_PI[2] = {0x1.921fb54442d18p+1, 3.14159}; /* 3.14159265358979312 */
+ static double FARADAY = 96485.3;
+ static double R = 8.3145;
+ static double PI = 3.14159;
  static double _zmexp , _zhexp ;
  static double *_t_minf;
  static double *_t__zmexp;
@@ -571,7 +565,7 @@ _first = 0;
 }
 
 #if NMODL_TEXT
-static const char* nmodl_filename = "/Users/gregglickert/Desktop/PlasticityToy/biophys_components/mechanisms/modfiles/ca.mod";
+static const char* nmodl_filename = "/home/latimerb/PlasticityToy/biophys_components/mechanisms/modfiles/ca.mod";
 static const char* nmodl_file_text = 
   "\n"
   "COMMENT\n"

@@ -373,7 +373,7 @@ extern void _cvode_abstol( Symbol**, double*, int);
  pnt_receive[_mechtype] = _net_receive;
  pnt_receive_size[_mechtype] = 1;
  	hoc_register_var(hoc_scdoub, hoc_vdoub, hoc_intfunc);
- 	ivoc_help("help ?1 tone2pyr /Users/gregglickert/Desktop/PlasticityToy/biophys_components/mechanisms/modfiles/tone2pyr.mod\n");
+ 	ivoc_help("help ?1 tone2pyr /home/latimerb/PlasticityToy/biophys_components/mechanisms/x86_64/tone2pyr.mod\n");
  hoc_register_limits(_mechtype, _hoc_parm_limits);
  hoc_register_units(_mechtype, _hoc_parm_units);
  }
@@ -833,7 +833,7 @@ _first = 0;
 #endif
 
 #if NMODL_TEXT
-static const char* nmodl_filename = "/Users/gregglickert/Desktop/PlasticityToy/biophys_components/mechanisms/modfiles/tone2pyr.mod";
+static const char* nmodl_filename = "/home/latimerb/PlasticityToy/biophys_components/mechanisms/modfiles/tone2pyr.mod";
 static const char* nmodl_file_text = 
   ":Tone to Pyramidal Cells AMPA+NMDA with local Ca2+ pool\n"
   "\n"

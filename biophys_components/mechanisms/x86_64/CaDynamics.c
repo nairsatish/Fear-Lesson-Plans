@@ -212,13 +212,11 @@ extern void _cvode_abstol( Symbol**, double*, int);
  	hoc_register_cvode(_mechtype, _ode_count, _ode_map, _ode_spec, _ode_matsol);
  	hoc_register_tolerance(_mechtype, _hoc_state_tol, &_atollist);
  	hoc_register_var(hoc_scdoub, hoc_vdoub, hoc_intfunc);
- 	ivoc_help("help ?1 CaDynamics /Users/gregglickert/Desktop/PlasticityToy/biophys_components/mechanisms/modfiles/CaDynamics.mod\n");
+ 	ivoc_help("help ?1 CaDynamics /home/latimerb/PlasticityToy/biophys_components/mechanisms/x86_64/CaDynamics.mod\n");
  hoc_register_limits(_mechtype, _hoc_parm_limits);
  hoc_register_units(_mechtype, _hoc_parm_units);
  }
- 
-#define FARADAY _nrnunit_FARADAY[_nrnunit_use_legacy_]
-static double _nrnunit_FARADAY[2] = {0x1.78e555060882cp+16, 96485.3}; /* 96485.3321233100141 */
+ static double FARADAY = 96485.3;
 static int _reset;
 static char *modelname = "";
 
@@ -436,7 +434,7 @@ _first = 0;
 #endif
 
 #if NMODL_TEXT
-static const char* nmodl_filename = "/Users/gregglickert/Desktop/PlasticityToy/biophys_components/mechanisms/modfiles/CaDynamics.mod";
+static const char* nmodl_filename = "/home/latimerb/PlasticityToy/biophys_components/mechanisms/modfiles/CaDynamics.mod";
 static const char* nmodl_file_text = 
   ": Dynamics that track inside calcium concentration\n"
   ": modified from Destexhe et al. 1994\n"
