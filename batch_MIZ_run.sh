@@ -10,6 +10,6 @@ rm -rf output
 
 echo "Running 10 cell model at $(date)"
 
-mpiexec nrniv -mpi -quiet -python run_save_network.py simulation_config.json
+mpiexec nrniv -mpi -quiet -python run_network.py simulation_config.json
 
 echo "Done running 10 cell model at $(date)"

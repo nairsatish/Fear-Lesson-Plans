@@ -12,5 +12,5 @@ rm -rf network
 
 python3 build_network.py
 
-echo "Done building 10 cell model at $(data)"
+echo "Done building 10 cell model at $(date)"
 

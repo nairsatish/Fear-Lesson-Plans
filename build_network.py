@@ -308,7 +308,7 @@ from bmtk.utils.sim_setup import build_env_bionet
 
 build_env_bionet(base_dir='./',
                 network_dir='./network',
-                tstop=1300000.0, dt = 0.1,
+                tstop=43000.0, dt = 0.1,
                 report_vars=['v','cai'],
                 spikes_inputs=[('tone', 'tone_spikes.csv'), ('shock', 'shock_spikes.csv')],
                 components_dir='biophys_components',

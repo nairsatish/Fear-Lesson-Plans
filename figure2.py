@@ -8,7 +8,7 @@ df = to_dataframe(config_file='simulation_config.json')
 
 df.to_csv('spikedata.csv')
 
-df0 = df.loc[df['node_ids'] == 9]
+df0 = df.loc[df['node_ids'] == 7]
 df0.to_csv('node0.csv')
 x0 = df0['timestamps'].tolist()
 first_trial = []
