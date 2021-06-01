@@ -163,7 +163,7 @@ extern void _cvode_abstol( Symbol**, double*, int);
 #endif
   hoc_register_prop_size(_mechtype, 6, 0);
  	hoc_register_var(hoc_scdoub, hoc_vdoub, hoc_intfunc);
- 	ivoc_help("help ?1 TMonitor /home/latimerb/PlasticityToy/biophys_components/mechanisms/x86_64/function_TMonitor.mod\n");
+ 	ivoc_help("help ?1 TMonitor /Users/gregglickert/Desktop/PlasticityToy/biophys_components/mechanisms/modfiles/function_TMonitor.mod\n");
  hoc_register_limits(_mechtype, _hoc_parm_limits);
  hoc_register_units(_mechtype, _hoc_parm_units);
  }
@@ -309,7 +309,7 @@ _first = 0;
 #endif
 
 #if NMODL_TEXT
-static const char* nmodl_filename = "/home/latimerb/PlasticityToy/biophys_components/mechanisms/modfiles/function_TMonitor.mod";
+static const char* nmodl_filename = "/Users/gregglickert/Desktop/PlasticityToy/biophys_components/mechanisms/modfiles/function_TMonitor.mod";
 static const char* nmodl_file_text = 
   ": passive leak current\n"
   "\n"

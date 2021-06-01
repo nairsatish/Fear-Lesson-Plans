@@ -249,12 +249,16 @@ extern void _cvode_abstol( Symbol**, double*, int);
  	hoc_register_cvode(_mechtype, _ode_count, _ode_map, _ode_spec, _ode_matsol);
  	hoc_register_tolerance(_mechtype, _hoc_state_tol, &_atollist);
  	hoc_register_var(hoc_scdoub, hoc_vdoub, hoc_intfunc);
- 	ivoc_help("help ?1 cav31 /home/latimerb/PlasticityToy/biophys_components/mechanisms/x86_64/cav31.mod\n");
+ 	ivoc_help("help ?1 cav31 /Users/gregglickert/Desktop/PlasticityToy/biophys_components/mechanisms/modfiles/cav31.mod\n");
  hoc_register_limits(_mechtype, _hoc_parm_limits);
  hoc_register_units(_mechtype, _hoc_parm_units);
  }
- static double FARADAY = 96485.3;
- static double R = 8.3145;
+ 
+#define FARADAY _nrnunit_FARADAY[_nrnunit_use_legacy_]
+static double _nrnunit_FARADAY[2] = {0x1.78e555060882cp+16, 96485.3}; /* 96485.3321233100141 */
+ 
+#define R _nrnunit_R[_nrnunit_use_legacy_]
+static double _nrnunit_R[2] = {0x1.0a1013e8990bep+3, 8.3145}; /* 8.3144626181532395 */
 static int _reset;
 static char *modelname = "CaT channel alpha-1G from McRory et al, 2001";
 
@@ -500,7 +504,7 @@ _first = 0;
 }
 
 #if NMODL_TEXT
-static const char* nmodl_filename = "/home/latimerb/PlasticityToy/biophys_components/mechanisms/modfiles/cav31.mod";
+static const char* nmodl_filename = "/Users/gregglickert/Desktop/PlasticityToy/biophys_components/mechanisms/modfiles/cav31.mod";
 static const char* nmodl_file_text = 
   "TITLE CaT channel alpha-1G from McRory et al, 2001\n"
   ": Reversal potential described by Nernst equation\n"
