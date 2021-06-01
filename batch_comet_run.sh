@@ -2,7 +2,7 @@
 
 #SBATCH --partition compute
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=1
+#SBATCH --ntasks-per-node=10
 #SBATCH -A TG-DBS180005
 #SBATCH --job-name=full_run
 #SBATCH --output=full_run.out
