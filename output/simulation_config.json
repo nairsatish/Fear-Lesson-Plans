@@ -2,7 +2,7 @@
   "target_simulator": "NEURON",
   "run": {
     "tstart": 0.0,
-    "tstop": 43000.0,
+    "tstop": 2000.0,
     "dt": 0.1,
     "dL": 20.0,
     "spike_threshold": -15.0,
@@ -16,20 +16,20 @@
     "tone_spikes": {
       "input_type": "spikes",
       "module": "csv",
-      "input_file": "/Users/gregglickert/Desktop/PlasticityToy/tone_spikes.csv",
+      "input_file": "/Users/gregglickert/Documents/GitHub/10_cell_model/PlasticityToy/tone_spikes.csv",
       "node_set": "tone"
     },
     "shock_spikes": {
       "input_type": "spikes",
       "module": "csv",
-      "input_file": "/Users/gregglickert/Desktop/PlasticityToy/shock_spikes.csv",
+      "input_file": "/Users/gregglickert/Documents/GitHub/10_cell_model/PlasticityToy/shock_spikes.csv",
       "node_set": "shock"
     }
   },
   "output": {
-    "log_file": "/Users/gregglickert/Desktop/PlasticityToy/output/log.txt",
-    "output_dir": "/Users/gregglickert/Desktop/PlasticityToy/output",
-    "spikes_file": "/Users/gregglickert/Desktop/PlasticityToy/output/spikes.h5"
+    "log_file": "/Users/gregglickert/Documents/GitHub/10_cell_model/PlasticityToy/output/log.txt",
+    "output_dir": "/Users/gregglickert/Documents/GitHub/10_cell_model/PlasticityToy/output",
+    "spikes_file": "/Users/gregglickert/Documents/GitHub/10_cell_model/PlasticityToy/output/spikes.h5"
   },
   "reports": {
     "v_report": {
@@ -45,46 +45,46 @@
       "sections": "soma"
     }
   },
-  "node_sets_file": "/Users/gregglickert/Desktop/PlasticityToy/node_sets.json",
-  "network": "/Users/gregglickert/Desktop/PlasticityToy/circuit_config.json",
-  "config_path": "/Users/gregglickert/Desktop/PlasticityToy/simulation_config.json",
-  "config_dir": "/Users/gregglickert/Desktop/PlasticityToy",
+  "node_sets_file": "/Users/gregglickert/Documents/GitHub/10_cell_model/PlasticityToy/node_sets.json",
+  "network": "/Users/gregglickert/Documents/GitHub/10_cell_model/PlasticityToy/circuit_config.json",
+  "config_path": "/Users/gregglickert/Documents/GitHub/10_cell_model/PlasticityToy/simulation_config.json",
+  "config_dir": "/Users/gregglickert/Documents/GitHub/10_cell_model/PlasticityToy",
   "components": {
-    "mechanisms_dir": "/Users/gregglickert/Desktop/PlasticityToy/biophys_components/mechanisms",
-    "morphologies_dir": "/Users/gregglickert/Desktop/PlasticityToy/biophys_components/morphologies",
-    "__pycache___dir": "/Users/gregglickert/Desktop/PlasticityToy/biophys_components/__pycache__",
-    "synaptic_models_dir": "/Users/gregglickert/Desktop/PlasticityToy/biophys_components/synaptic_models",
-    "biophysical_neuron_models_dir": "/Users/gregglickert/Desktop/PlasticityToy/biophys_components/biophysical_neuron_models",
-    "templates_dir": "/Users/gregglickert/Desktop/PlasticityToy/biophys_components/templates",
-    "point_neuron_models_dir": "/Users/gregglickert/Desktop/PlasticityToy/biophys_components/point_neuron_models"
+    "mechanisms_dir": "/Users/gregglickert/Documents/GitHub/10_cell_model/PlasticityToy/biophys_components/mechanisms",
+    "morphologies_dir": "/Users/gregglickert/Documents/GitHub/10_cell_model/PlasticityToy/biophys_components/morphologies",
+    "__pycache___dir": "/Users/gregglickert/Documents/GitHub/10_cell_model/PlasticityToy/biophys_components/__pycache__",
+    "synaptic_models_dir": "/Users/gregglickert/Documents/GitHub/10_cell_model/PlasticityToy/biophys_components/synaptic_models",
+    "biophysical_neuron_models_dir": "/Users/gregglickert/Documents/GitHub/10_cell_model/PlasticityToy/biophys_components/biophysical_neuron_models",
+    "templates_dir": "/Users/gregglickert/Documents/GitHub/10_cell_model/PlasticityToy/biophys_components/templates",
+    "point_neuron_models_dir": "/Users/gregglickert/Documents/GitHub/10_cell_model/PlasticityToy/biophys_components/point_neuron_models"
   },
   "networks": {
     "nodes": [
       {
-        "nodes_file": "/Users/gregglickert/Desktop/PlasticityToy/network/tone_nodes.h5",
-        "node_types_file": "/Users/gregglickert/Desktop/PlasticityToy/network/tone_node_types.csv"
+        "nodes_file": "/Users/gregglickert/Documents/GitHub/10_cell_model/PlasticityToy/network/tone_nodes.h5",
+        "node_types_file": "/Users/gregglickert/Documents/GitHub/10_cell_model/PlasticityToy/network/tone_node_types.csv"
       },
       {
-        "node_types_file": "/Users/gregglickert/Desktop/PlasticityToy/network/shock_node_types.csv",
-        "nodes_file": "/Users/gregglickert/Desktop/PlasticityToy/network/shock_nodes.h5"
+        "node_types_file": "/Users/gregglickert/Documents/GitHub/10_cell_model/PlasticityToy/network/shock_node_types.csv",
+        "nodes_file": "/Users/gregglickert/Documents/GitHub/10_cell_model/PlasticityToy/network/shock_nodes.h5"
       },
       {
-        "node_types_file": "/Users/gregglickert/Desktop/PlasticityToy/network/biophysical_node_types.csv",
-        "nodes_file": "/Users/gregglickert/Desktop/PlasticityToy/network/biophysical_nodes.h5"
+        "node_types_file": "/Users/gregglickert/Documents/GitHub/10_cell_model/PlasticityToy/network/biophysical_node_types.csv",
+        "nodes_file": "/Users/gregglickert/Documents/GitHub/10_cell_model/PlasticityToy/network/biophysical_nodes.h5"
       }
     ],
     "edges": [
       {
-        "edge_types_file": "/Users/gregglickert/Desktop/PlasticityToy/network/shock_biophysical_edge_types.csv",
-        "edges_file": "/Users/gregglickert/Desktop/PlasticityToy/network/shock_biophysical_edges.h5"
+        "edge_types_file": "/Users/gregglickert/Documents/GitHub/10_cell_model/PlasticityToy/network/shock_biophysical_edge_types.csv",
+        "edges_file": "/Users/gregglickert/Documents/GitHub/10_cell_model/PlasticityToy/network/shock_biophysical_edges.h5"
       },
       {
-        "edges_file": "/Users/gregglickert/Desktop/PlasticityToy/network/biophysical_biophysical_edges.h5",
-        "edge_types_file": "/Users/gregglickert/Desktop/PlasticityToy/network/biophysical_biophysical_edge_types.csv"
+        "edges_file": "/Users/gregglickert/Documents/GitHub/10_cell_model/PlasticityToy/network/biophysical_biophysical_edges.h5",
+        "edge_types_file": "/Users/gregglickert/Documents/GitHub/10_cell_model/PlasticityToy/network/biophysical_biophysical_edge_types.csv"
       },
       {
-        "edge_types_file": "/Users/gregglickert/Desktop/PlasticityToy/network/tone_biophysical_edge_types.csv",
-        "edges_file": "/Users/gregglickert/Desktop/PlasticityToy/network/tone_biophysical_edges.h5"
+        "edge_types_file": "/Users/gregglickert/Documents/GitHub/10_cell_model/PlasticityToy/network/tone_biophysical_edge_types.csv",
+        "edges_file": "/Users/gregglickert/Documents/GitHub/10_cell_model/PlasticityToy/network/tone_biophysical_edges.h5"
       }
     ],
     "gap_juncs": []

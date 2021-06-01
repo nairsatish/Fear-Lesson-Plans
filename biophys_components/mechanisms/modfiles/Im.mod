@@ -1,75 +1,62 @@
-: voltage-gated persistent muscarinic channel
+: Reference:		Adams et al. 1982 - M-currents and other potassium currents in bullfrog sympathetic neurones
+: Comment: corrected rates using q10 = 2.3, target temperature 34, orginal 21
 
-NEURON {
-	SUFFIX im
+NEURON	{
+	SUFFIX Im
 	USEION k READ ek WRITE ik
-	RANGE gm, i,  gbar
-	RANGE ninf, taun
+	RANGE gbar, g, ik
 }
 
-UNITS {
-	(mA) = (milliamp)
+UNITS	{
+	(S) = (siemens)
 	(mV) = (millivolt)
+	(mA) = (milliamp)
 }
 
-PARAMETER {
-	gbar = 0.0003 (siemens/cm2) <0,1e9>
+PARAMETER	{
+	gbar = 0.00001 (S/cm2) 
 }
 
-ASSIGNED {
-	v (mV)
-	ek (mV)
-	ik (mA/cm2)
-	i  (mA/cm2)
-	ninf
-	taun (ms)
-	gm (siemens/cm2)
+ASSIGNED	{
+	v	(mV)
+	ek	(mV)
+	ik	(mA/cm2)
+	g	(S/cm2)
+	celsius (degC)
+	mInf
+	mTau
+	mAlpha
+	mBeta
 }
 
-STATE {
-	n
+STATE	{ 
+	m
 }
 
-BREAKPOINT {
+BREAKPOINT	{
 	SOLVE states METHOD cnexp
-	gm = gbar*n*n
-	ik = gm*(v-ek)
-	i = ik
+	g = gbar*m
+	ik = g*(v-ek)
 }
 
-INITIAL {
-	rate(v)
-	n = ninf
+DERIVATIVE states	{
+	rates()
+	m' = (mInf-m)/mTau
 }
 
-DERIVATIVE states {
-	rate(v)
-	n' = (ninf-n)/taun
+INITIAL{
+	rates()
+	m = mInf
 }
 
-FUNCTION alf(v (mV)) (/ms) {
+PROCEDURE rates(){
+  LOCAL qt
+  qt = 2.3^((celsius-21)/10)
+
 	UNITSOFF
-	alf = 0.016/exp(-(v+52.7)/23)
-	UNITSON
-}
-
-FUNCTION bet(v (mV)) (/ms) {
-	UNITSOFF
-	bet = 0.016/exp((v+52.7)/18.8)
-	UNITSON
-}
-
-PROCEDURE rate(v (mV)) {
-	LOCAL sum, aa, ab
-	UNITSOFF
-	aa=alf(v) ab=bet(v) 
-	
-	sum = aa+ab
-	if (v < -67.5 ) {
-	ninf = 0
-	} else {
-	ninf = 1 / ( 1 + exp( ( - v - 52.7 ) / 10.34 ) )
-	}
-	taun = 1/sum
+		mAlpha = 3.3e-3*exp(2.5*0.04*(v - -35))
+		mBeta = 3.3e-3*exp(-2.5*0.04*(v - -35))
+		mInf = mAlpha/(mAlpha + mBeta)
+		mTau = (1/(mAlpha + mBeta))/qt
 	UNITSON
 }
