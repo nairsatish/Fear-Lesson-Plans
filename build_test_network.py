@@ -6,6 +6,7 @@ import synapses
 
 net = NetworkBuilder("biophysical")
 
+
 net.add_nodes(
         mem_potential='e',
         model_type='biophysical',
@@ -34,11 +35,11 @@ net.save_nodes(output_dir='network')
 from bmtk.utils.sim_setup import build_env_bionet
 build_env_bionet(base_dir='./',
                 network_dir='./network',
-                tstop=800.0, dt = 0.1,
+                tstop=1500.0, dt = 0.1,
                 report_vars=['v'],
                 current_clamp={
                     'amp': 0.300,
-                    'delay': 50.0,
+                    'delay': 250.0,
                     'duration': 600 #200 for bask 600 for pyr
                 },
                 components_dir='biophys_components',

@@ -20,6 +20,10 @@
         "node_types_file": "$NETWORK_DIR/tone_node_types.csv"
       },
       {
+        "node_types_file": "$NETWORK_DIR/mthalamus_node_types.csv",
+        "nodes_file": "$NETWORK_DIR/mthalamus_nodes.h5"
+      },
+      {
         "node_types_file": "$NETWORK_DIR/shock_node_types.csv",
         "nodes_file": "$NETWORK_DIR/shock_nodes.h5"
       },
@@ -29,6 +33,10 @@
       }
     ],
     "edges": [
+      {
+        "edges_file": "$NETWORK_DIR/mthalamus_biophysical_edges.h5",
+        "edge_types_file": "$NETWORK_DIR/mthalamus_biophysical_edge_types.csv"
+      },
       {
         "edge_types_file": "$NETWORK_DIR/shock_biophysical_edge_types.csv",
         "edges_file": "$NETWORK_DIR/shock_biophysical_edges.h5"
