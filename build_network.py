@@ -328,7 +328,8 @@ thalamus.build()
 thalamus.save_nodes(output_dir='network')
 thalamus.save_edges(output_dir='network')
 
-t_sim = 40000 # early extinction time is 232500 sensitization time is 40000
+t_sim = 232500 # early extinction time is 232500 sensitization time is 40000
+print("stim time is set to %s" % t_sim)
 
 from bmtk.utils.reports.spike_trains import PoissonSpikeGenerator
 
@@ -345,7 +346,7 @@ from bmtk.utils.reports.spike_trains import PoissonSpikeGenerator
 
 psg = PoissonSpikeGenerator(population='mthalamus')
 psg.add(node_ids=range(5),  # Have 5 nodes to match mthalamus
-        firing_rate= 2,    # 2 Hz
+        firing_rate=2,    # 2 Hz
         times=(0.0, t_sim/1000)) # time is in seconds for some reason
 psg.to_sonata('mthalamus_spikes.h5')
 

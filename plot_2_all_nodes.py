@@ -221,15 +221,15 @@ def create_arrays_extinction(node_spike_array):
 
     #print(total_spikes)
     #node_spike_array = total_spikes
-    print(node_spike_array)
+    #print(node_spike_array)
 
 
 extinction_array = []
 create_arrays_extinction(extinction_array)
 #print(extinction_array)
 
-fig, axs = plt.subplots(3, 3, sharey=True, tight_layout=True, sharex=True)
-fig.suptitle('Spike histogram for extinction ms', y=1)
+#fig, axs = plt.subplots(3, 3, sharey=True, tight_layout=True, sharex=True)
+#fig.suptitle('Spike histogram for extinction ms', y=1)
 
 i = 0
 column_cnt = 0
@@ -262,7 +262,7 @@ plt.show()
 
 def create_arrays_extinction_final(node_spike_array):
     total_spikes = []
-    timestamp = 116400
+    timestamp = 116000
     node_num = 0
     while(node_num <= 9):
         df0 = df.loc[df['node_ids'] == node_num]
@@ -272,7 +272,7 @@ def create_arrays_extinction_final(node_spike_array):
         while(i < 30):
             for j in range(len(x0)):
                 if(x0[j] >= timestamp+(i*4000) and x0[j] <= timestamp+(i*4000+400)):
-                    value = x0[j]-(i*4000)
+                    value = (x0[j]-(i*4000) - timestamp)
                     trial_spikes.append(value)
         #should go through all 30 trials and get every value and condense them
             i = i+1
@@ -280,17 +280,16 @@ def create_arrays_extinction_final(node_spike_array):
         # should create a list of lists 9 of them each one being a node
         node_spike_array.append(trial_spikes)
         node_num = node_num+1
-
     #print(total_spikes)
     #node_spike_array = total_spikes
-    print(node_spike_array)
+    #print(node_spike_array)
 
 extinction_array = []
 create_arrays_extinction_final(extinction_array)
 #print(extinction_array)
 
 fig, axs = plt.subplots(3, 3, sharey=True, tight_layout=True, sharex=True)
-fig.suptitle('Spike histogram for extinction ms', y=1)
+fig.suptitle('Spike histogram for early extinction ms', y=1)
 
 i = 0
 column_cnt = 0
@@ -320,3 +319,5 @@ while(i < 9):
 for ax in axs.flat:
     ax.set(xlabel='time(ms)', ylabel='# of spikes')
 plt.show()
+
+
