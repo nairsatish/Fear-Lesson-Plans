@@ -167,7 +167,7 @@ def find_bins(array, width):
 create_arrays(node_spike_array)
 
 fig, axs = plt.subplots(3, 3, sharey=True, tight_layout=True, sharex=True)
-fig.suptitle('Spike histogram for the first 400 ms',y=1)
+fig.suptitle('Spike histogram sensitization',y=1)
 
 i = 0
 column_cnt = 0
@@ -289,7 +289,7 @@ create_arrays_extinction_final(extinction_array)
 #print(extinction_array)
 
 fig, axs = plt.subplots(3, 3, sharey=True, tight_layout=True, sharex=True)
-fig.suptitle('Spike histogram for early extinction ms', y=1)
+fig.suptitle('Spike histogram for early extinction', y=1)
 
 i = 0
 column_cnt = 0
