@@ -3,6 +3,7 @@ import numpy as np
 import sys
 import synapses
 
+
 synapses.load()
 syn = synapses.syn_params_dicts()
 
@@ -356,7 +357,6 @@ from bmtk.utils.sim_setup import build_env_bionet
 build_env_bionet(base_dir='./',
                  network_dir='./network',
                  tstop=t_sim, dt=0.1,
-                 report_vars=['v'],
                  spikes_inputs=[('tone', 'tone_spikes.csv'), ('shock', 'shock_spikes.csv'),
                                 ('mthalamus', 'mthalamus_spikes.h5')],
                  components_dir='biophys_components',

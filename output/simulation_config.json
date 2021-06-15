@@ -38,11 +38,9 @@
     "spikes_file": "/Users/gregglickert/Documents/GitHub/10_cell_model/PlasticityToy/output/spikes.h5"
   },
   "reports": {
-    "v_report": {
-      "variable_name": "v",
-      "cells": "all",
-      "module": "membrane_report",
-      "sections": "soma"
+    "save_synapses_mod": {
+      "module": "save_synapses",
+      "network_dir": "updated_conns"
     }
   },
   "node_sets_file": "/Users/gregglickert/Documents/GitHub/10_cell_model/PlasticityToy/node_sets.json",
