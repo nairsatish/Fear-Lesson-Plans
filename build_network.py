@@ -18,7 +18,7 @@ num_inh = [1]
 num_exc = [1]
 
 ##################################################################################
-###################################Pyr Type C#####################################
+###################################Pyr############################################
 
 net.add_nodes(N=5, pop_name='PyrA',
               mem_potential='e',
@@ -32,6 +32,8 @@ net.add_nodes(N=3, pop_name='PyrC',
               model_template='hoc:feng_typeC',
               morphology=None)
 
+##################################################################################
+###################################Interneurons###################################
 net.add_nodes(N=2, pop_name='Int',
               mem_potential='e',
               model_type='biophysical',
@@ -59,6 +61,7 @@ shock.add_nodes(N=1,
                 pop_name='shock',
                 potential='exc',
                 model_type='virtual')
+                
 # background for Pyr and Basket
 thalamus = NetworkBuilder('mthalamus')
 thalamus.add_nodes(N=5,
@@ -360,5 +363,5 @@ build_env_bionet(base_dir='./',
                  spikes_inputs=[('tone', 'tone_spikes.csv'), ('shock', 'shock_spikes.csv'),
                                 ('mthalamus', 'mthalamus_spikes.h5')],
                  components_dir='biophys_components',
-                 compile_mechanisms=False)
+                 compile_mechanisms=True)
 

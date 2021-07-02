@@ -7,7 +7,6 @@
   "components": {
     "mechanisms_dir": "$COMPONENTS_DIR/mechanisms",
     "morphologies_dir": "$COMPONENTS_DIR/morphologies",
-    "__pycache___dir": "$COMPONENTS_DIR/__pycache__",
     "synaptic_models_dir": "$COMPONENTS_DIR/synaptic_models",
     "biophysical_neuron_models_dir": "$COMPONENTS_DIR/biophysical_neuron_models",
     "templates_dir": "$COMPONENTS_DIR/templates",

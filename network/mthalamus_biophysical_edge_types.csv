@@ -1,4 +1,4 @@
-edge_type_id target_query source_query syn_weight weight_function target_sections dynamics_params distance_range model_template delay
-100 pop_name=='['PyrA']' pop_name=='tON' 0.001 NULL ['somatic'] AMPA_ExcToExc.json "[0.0, 150.0]" exp2syn 2.0
-101 pop_name=='['PyrC']' pop_name=='tON' 0.003 NULL ['somatic'] AMPA_ExcToExc.json "[0.0, 150.0]" exp2syn 2.0
-102 pop_name=='['Int']' pop_name=='tON' 0.002 NULL ['somatic'] AMPA_ExcToExc.json "[0.0, 150.0]" exp2syn 2.0
+edge_type_id target_query source_query delay distance_range dynamics_params syn_weight weight_function target_sections model_template
+100 pop_name=='['PyrA']' pop_name=='tON' 2.0 "[0.0, 150.0]" AMPA_ExcToExc.json 0.001 NULL ['somatic'] exp2syn
+101 pop_name=='['PyrC']' pop_name=='tON' 2.0 "[0.0, 150.0]" AMPA_ExcToExc.json 0.003 NULL ['somatic'] exp2syn
+102 pop_name=='['Int']' pop_name=='tON' 2.0 "[0.0, 150.0]" AMPA_ExcToExc.json 0.002 NULL ['somatic'] exp2syn

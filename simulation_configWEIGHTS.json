@@ -41,7 +41,16 @@
     "output_dir": "$OUTPUT_DIR",
     "spikes_file": "spikes.h5"
   },
-  "reports": {},
+  "reports": {
+    "syn_report": {
+      "cells": [0],
+      "variable_name": "W_nmda",
+      "module": "netcon_report",
+      "sections": "all",
+      "syn_type": "tone2Pyr",
+      "file_name": "syns.h5"      
+    }
+  },
   "node_sets_file": "$BASE_DIR/node_sets.json",
   "network": "$BASE_DIR/circuit_config.json"
 }
