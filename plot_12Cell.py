@@ -167,7 +167,7 @@ def find_bins(array, width):
 create_arrays(node_spike_array)
 
 fig, axs = plt.subplots(4, 3, sharey=True, tight_layout=True, sharex=True)
-fig.suptitle('Spike histogram sensitization',y=1)
+fig.suptitle('Spike histogram sensitization', y=1)
 
 i = 0
 column_cnt = 0
@@ -192,6 +192,7 @@ while(i < 12):
     axs[row_cnt, column_cnt].set_xlim([0,400])
 
 
+
     column_cnt = column_cnt+1
     if(column_cnt > 2):
         column_cnt = 0
@@ -200,8 +201,8 @@ while(i < 12):
 
     i = i+1
 
-for ax in axs.flat:
-    ax.set(xlabel='time(ms)', ylabel='# of spikes')
+plt.setp(axs[-1, :], xlabel='time (ms)')
+plt.setp(axs[:, 0], ylabel='spike count')
 plt.show()
 
 def create_arrays_extinction(node_spike_array):
@@ -334,8 +335,8 @@ while(i < 12):
 
     i = i+1
 
-for ax in axs.flat:
-    ax.set(xlabel='time(ms)', ylabel='# of spikes')
+plt.setp(axs[-1, :], xlabel='time (ms)')
+plt.setp(axs[:, 0], ylabel='spike count')
 plt.show()
 
 

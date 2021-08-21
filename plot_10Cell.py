@@ -194,8 +194,8 @@ while(i < 9):
 
     i = i+1
 
-for ax in axs.flat:
-    ax.set(xlabel='time(ms)', ylabel='# of spikes')
+plt.setp(axs[-1, :], xlabel='time (ms)')
+plt.setp(axs[:, 0], ylabel='spike count')
 plt.show()
 
 def create_arrays_extinction(node_spike_array):
@@ -316,8 +316,8 @@ while(i < 9):
 
     i = i+1
 
-for ax in axs.flat:
-    ax.set(xlabel='time(ms)', ylabel='# of spikes')
+plt.setp(axs[-1, :], xlabel='time (ms)')
+plt.setp(axs[:, 0], ylabel='spike count')
 plt.show()
 
 

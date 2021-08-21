@@ -1,5 +1,6 @@
 from bmtk.builder import NetworkBuilder
 from bmtk.utils.reports.spike_trains import PoissonSpikeGenerator
+from bmtk.utils.sim_setup import build_env_bionet
 import numpy as np
 import sys
 import synapses
@@ -263,7 +264,7 @@ net.add_edges(source=tone.nodes(), target=net.nodes(pop_name='PV'),
 # Create connections between Pyr --> Pyr cells
 net.add_edges(source=net.nodes(pop_name='PyrA'), target=net.nodes(pop_name=['PyrA', 'PyrC']),
               connection_rule=pyr_connection,
-              syn_weight=1.5, # was 1.5
+              syn_weight=1.5,
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[10.0, 11.0],
@@ -272,7 +273,7 @@ net.add_edges(source=net.nodes(pop_name='PyrA'), target=net.nodes(pop_name=['Pyr
 
 net.add_edges(source=net.nodes(pop_name='PyrC'), target=net.nodes(pop_name=['PyrA', 'PyrC']),
               connection_rule=pyr_connection,
-              syn_weight=1.5, # was 1.5
+              syn_weight=1.5,
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[10.0, 11.0],
@@ -282,7 +283,7 @@ net.add_edges(source=net.nodes(pop_name='PyrC'), target=net.nodes(pop_name=['Pyr
 
 net.add_edges(source=net.nodes(pop_name=['PyrA', 'PyrC']), target=net.nodes(pop_name='OLM'),
               connection_rule=PN2OLM,
-              syn_weight=2, # was 1 but forsure needs to be higher
+              syn_weight=1,
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[10.0, 11.0],
@@ -292,7 +293,7 @@ net.add_edges(source=net.nodes(pop_name=['PyrA', 'PyrC']), target=net.nodes(pop_
 # Create connections between Pyr --> PV cells
 net.add_edges(source=net.nodes(pop_name=['PyrA', 'PyrC']), target=net.nodes(pop_name='PV'),
               connection_rule=PN2PV,
-              syn_weight=2, # was 1 but forsure needs to be higher
+              syn_weight=1,
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[10.0, 11.0],
@@ -304,7 +305,7 @@ net.add_edges(source=net.nodes(pop_name=['PyrA', 'PyrC']), target=net.nodes(pop_
 
 net.add_edges(source=net.nodes(pop_name='PV'), target=net.nodes(pop_name='PV'),
               connection_rule=PV2PV,
-              syn_weight=5.0, # was 3
+              syn_weight=3,
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[10.0, 11.0],
@@ -313,7 +314,7 @@ net.add_edges(source=net.nodes(pop_name='PV'), target=net.nodes(pop_name='PV'),
 
 net.add_edges(source=net.nodes(pop_name='PV'), target=net.nodes(pop_name='OLM'),
               connection_rule=PV2OLM,
-              syn_weight=5.0, # was 3
+              syn_weight=3.0,
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[10.0, 11.0],
@@ -323,7 +324,7 @@ net.add_edges(source=net.nodes(pop_name='PV'), target=net.nodes(pop_name='OLM'),
 # Create connections Int --> Pyr cells
 net.add_edges(source=net.nodes(pop_name='PV'), target=net.nodes(pop_name=['PyrA', 'PyrC']),
               connection_rule=PV2PN,
-              syn_weight=4, # was 5
+              syn_weight=5,
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[10.0, 11.0],
@@ -332,7 +333,7 @@ net.add_edges(source=net.nodes(pop_name='PV'), target=net.nodes(pop_name=['PyrA'
 
 net.add_edges(source=net.nodes(pop_name='OLM'), target=net.nodes(pop_name=['PyrA', 'PyrC']),
               connection_rule=OLM2PN,
-              syn_weight=4.0,
+              syn_weight=5.0,
               target_sections=['basal'],
               delay=0.1,
               distance_range=[10.0, 11.0],
@@ -390,12 +391,10 @@ t_sim = 232500 # early extinction time is 232500 sensitization time is 40000
 print("stim time is set to %s" % t_sim)
 
 
-
-from bmtk.utils.sim_setup import build_env_bionet
-
 build_env_bionet(base_dir='./',
                  network_dir='./network',
                  tstop=t_sim, dt=0.1,
+                 report_vars=['v'],
                  spikes_inputs=[('tone', './12_cell_inputs/tone_spikes.csv'),
                                 ('shock', './12_cell_inputs/shock_spikes.csv'),
                                 ('bg_pn', '12_cell_inputs/bg_pn_spikes.h5'),
@@ -424,7 +423,7 @@ print('Number of background spikes for pv: {}'.format(psg.n_spikes()))
 
 psg = PoissonSpikeGenerator(population='bg_olm')
 psg.add(node_ids=range(2),  # need same number as cells
-        firing_rate=2,    # 8 spikes every 1 second Hz
+        firing_rate=8,    # 8 spikes every 1 second Hz
         times=(0.0, t_sim/1000))  # time is in seconds for some reason
 psg.to_sonata('12_cell_inputs/bg_olm_spikes.h5')
 
