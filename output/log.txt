@@ -1,7 +1,0 @@
-2021-06-15 14:12:36,479 [INFO] Created log file
-2021-06-15 14:12:36,686 [INFO] Building cells.
-2021-06-15 14:12:36,720 [INFO] Building recurrent connections
-2021-06-15 14:12:36,876 [INFO] Building virtual cell stimulations for tone_spikes
-2021-06-15 14:12:36,898 [INFO] Building virtual cell stimulations for shock_spikes
-2021-06-15 14:12:36,911 [INFO] Building virtual cell stimulations for mthalamus_spikes
-2021-06-15 14:12:37,205 [INFO] Saving network connections. This may take a while.

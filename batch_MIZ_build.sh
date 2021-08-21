@@ -10,7 +10,7 @@ echo "building 10 cell model at $(date)"
 
 rm -rf network
 
-python3 build_network.py
+python3 build_10Cell.py
 
 echo "Done building 10 cell model at $(date)"
 

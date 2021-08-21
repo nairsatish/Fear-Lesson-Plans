@@ -1,1 +1,0 @@
-../modfiles//shock2pyr.mod
