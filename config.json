@@ -1,4 +1,4 @@
 {
-  "network": "/Users/gregglickert/Documents/GitHub/PlasticityToy/circuit_config.json",
-  "simulation": "/Users/gregglickert/Documents/GitHub/PlasticityToy/simulation_config.json"
+  "network": "circuit_config.json",
+  "simulation": "simulation_config.json"
 }
