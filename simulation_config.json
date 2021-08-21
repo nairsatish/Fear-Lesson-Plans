@@ -54,13 +54,38 @@
     "spikes_file": "spikes.h5"
   },
   "reports": {
-    "v_report": {
-      "variable_name": "v",
+    "syn_report1": {
       "cells": "all",
-      "module": "membrane_report",
-      "sections": "soma"
+      "variable_name": "W",
+      "module": "netcon_report",
+      "sections": "all",
+      "syn_type": "tone2pyr",
+      "file_name": "syns_tone2pyr.h5"
+    },
+    "syn_report2": {
+      "cells": "all",
+      "variable_name": "W_ampa",
+      "module": "netcon_report",
+      "sections": "all",
+      "syn_type": "pyr2pyr",
+      "file_name": "syns_pyr2pyr.h5"
+    },
+    "syn_report3": {
+      "cells": "all",
+      "variable_name": "W",
+      "module": "netcon_report",
+      "sections": "all",
+      "syn_type": "int2pyr",
+      "file_name": "syns_int2pyr.h5"
+    },
+    "syn_report4": {
+      "cells": "all",
+      "variable_name": "W_ampa",
+      "module": "netcon_report",
+      "sections": "all",
+      "syn_type": "pyr2int",
+      "file_name": "syns_pyr2int.h5"
     }
   },
-  "node_sets_file": "$BASE_DIR/node_sets.json",
-  "network": "$BASE_DIR/circuit_config.json"
+  "node_sets_file": "$BASE_DIR/node_sets.json"
 }

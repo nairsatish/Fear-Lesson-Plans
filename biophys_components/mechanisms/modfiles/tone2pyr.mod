@@ -152,6 +152,7 @@ DERIVATIVE release {
 	W = W + dW_ampa*scaleW
 	
 	:printf("%g %g %g %g\n",capoolcon*1e3, threshold1, threshold2, W)
+	:printf("%g\n", W)
 	:Weight value limits
 	if (W > Wmax) { 
 		W = Wmax

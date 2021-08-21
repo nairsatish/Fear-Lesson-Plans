@@ -8,29 +8,6 @@ syn = synapses.syn_params_dicts()
 
 # Initialize our network
 
-
-print("making exc_stim nodes")
-tone = NetworkBuilder('tone')
-tone.add_nodes(N=1,
-               pop_name='tone',
-               potential='exc',
-               model_type='virtual')
-
-thalamus = NetworkBuilder('mthalamus')
-thalamus.add_nodes(N=5,
-                   pop_name='tON',
-                   potential='exc',
-                   model_type='virtual')
-
-print("making {} inh_stim nodes")
-shock = NetworkBuilder('shock')
-shock.add_nodes(N=1,
-                pop_name='shock',
-                potential='exc',
-                model_type='virtual')
-
-##################################################################################
-###################################Pyr Type C#####################################
 net = NetworkBuilder("biophysical")
 
 net.add_nodes(N=5, pop_name='PyrA',
@@ -45,23 +22,44 @@ net.add_nodes(N=3, pop_name='PyrC',
               model_template='hoc:feng_typeC',
               morphology=None)
 
-net.add_nodes(N=2, pop_name='Int',
+net.add_nodes(N=2, pop_name='PV',
               mem_potential='e',
               model_type='biophysical',
               model_template='hoc:basket',
               morphology=None)
 
+
+
 ##################################################################################
 ###################################External Networks##############################
 
-# External inhibitory inputs
+print("making exc_stim nodes")
+tone = NetworkBuilder('tone')
+tone.add_nodes(N=1,
+               pop_name='tone',
+               potential='exc',
+               model_type='virtual')
 
-# background for Pyr and Basket
-thalamus = NetworkBuilder('mthalamus')
-thalamus.add_nodes(N=5,
+
+print("making {} inh_stim nodes")
+shock = NetworkBuilder('shock')
+shock.add_nodes(N=1,
+                pop_name='shock',
+                potential='exc',
+                model_type='virtual')
+
+backgroundPN = NetworkBuilder('bg_pn')
+backgroundPN.add_nodes(N=8,
                    pop_name='tON',
                    potential='exc',
                    model_type='virtual')
+
+backgroundPV = NetworkBuilder('bg_pv')
+backgroundPV.add_nodes(N=2,
+                   pop_name='tON',
+                   potential='exc',
+                   model_type='virtual')
+
 
 ##################################################################################
 ###################################Edges##########################################
@@ -119,7 +117,7 @@ def int_connection(source, target):
     sid = source.node_id
     tid = target.node_id
     if (sid != tid):
-        print("connecting int cell {} to {}".format(sid, tid))
+        print("connecting PV cell {} to {}".format(sid, tid))
         tmp_nsyn = 1
     else:
         return None
@@ -130,10 +128,31 @@ def int_connection(source, target):
 def int_pyr_connection(source, target):
     sid = source.node_id
     tid = target.node_id
-    print("connecting int cells {} to pyra cell {}".format(sid, tid))
+    print("connecting PV cells {} to pyra cell {}".format(sid, tid))
     return 1
 
+def BG_to_PN(source, target):
+    sid = source.node_id
+    tid = target.node_id
+    if sid == tid:
+        print("connecting BG {} to PN{}".format(sid,tid))
+        tmp_nsyn = 1
+    else:
+        return None
 
+    return tmp_nsyn
+
+def BG_to_PV(source, target):
+    sid = source.node_id
+    tid = target.node_id
+    sid = sid + 8
+    if sid == tid:
+        print("connecting BG {} to pv{}".format(sid,tid))
+        tmp_nsyn = 1
+    else:
+        return None
+
+    return tmp_nsyn
 # Create connections between Shock --> Pyr cells
 net.add_edges(source=shock.nodes(), target=net.nodes(pop_name='PyrA'),
               connection_rule=shock_connection,
@@ -153,7 +172,7 @@ net.add_edges(source=shock.nodes(), target=net.nodes(pop_name='PyrC'),
               dynamics_params='shock2PN.json',
               model_template=syn['shock2PN.json']['level_of_detail'])
 
-net.add_edges(source=shock.nodes(), target=net.nodes(pop_name='Int'),
+net.add_edges(source=shock.nodes(), target=net.nodes(pop_name='PV'),
               connection_rule=shock_connection,
               syn_weight=20.0,
               target_sections=['somatic'],
@@ -181,7 +200,7 @@ net.add_edges(source=tone.nodes(), target=net.nodes(pop_name='PyrC'),
               dynamics_params='tone2PN.json',
               model_template=syn['tone2PN.json']['level_of_detail'])
 
-net.add_edges(source=tone.nodes(), target=net.nodes(pop_name='Int'),
+net.add_edges(source=tone.nodes(), target=net.nodes(pop_name='PV'),
               connection_rule=tone_connection,
               syn_weight=3.0,
               target_sections=['somatic'],
@@ -227,48 +246,48 @@ net.add_edges(source=net.nodes(pop_name='PyrC'), target=net.nodes(pop_name='PyrC
               dynamics_params='AMPA_ExcToExc.json',
               model_template=syn['AMPA_ExcToExc.json']['level_of_detail'])
 
-# Create connections between Pyr --> Int cells
-net.add_edges(source=net.nodes(pop_name='PyrA'), target=net.nodes(pop_name='Int'),
+# Create connections between Pyr --> PV cells
+net.add_edges(source=net.nodes(pop_name='PyrA'), target=net.nodes(pop_name='PV'),
               connection_rule=pyr_connection,
-              syn_weight=2, # was 1 but forsure needs to be higher
+              syn_weight=1, # was 1 but forsure needs to be higher
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[10.0, 11.0],
               dynamics_params='AMPA_ExcToInh.json',
               model_template=syn['AMPA_ExcToInh.json']['level_of_detail'])
 
-net.add_edges(source=net.nodes(pop_name='PyrC'), target=net.nodes(pop_name='Int'),
+net.add_edges(source=net.nodes(pop_name='PyrC'), target=net.nodes(pop_name='PV'),
               connection_rule=pyr_connection,
-              syn_weight=2, # best 2.5
+              syn_weight=1, # best 2.5
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[10.0, 11.0],
               dynamics_params='AMPA_ExcToInh.json',
               model_template=syn['AMPA_ExcToInh.json']['level_of_detail'])
-# Create connections Int --> Int cells
+# Create connections PV --> PV cells
 
-net.add_edges(source=net.nodes(pop_name='Int'), target=net.nodes(pop_name='Int'),
+net.add_edges(source=net.nodes(pop_name='PV'), target=net.nodes(pop_name='PV'),
               connection_rule=int_connection,
-              syn_weight=5.0, # was 3
+              syn_weight=3.0, # was 3
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[10.0, 11.0],
               dynamics_params='GABA_InhToInh.json',
               model_template=syn['GABA_InhToInh.json']['level_of_detail'])
 
-# Create connections Int --> Pyr cells
-net.add_edges(source=net.nodes(pop_name='Int'), target=net.nodes(pop_name='PyrA'),
+# Create connections PV --> Pyr cells
+net.add_edges(source=net.nodes(pop_name='PV'), target=net.nodes(pop_name='PyrA'),
               connection_rule=int_pyr_connection,
-              syn_weight=4, # was 5
+              syn_weight=5, # was 5
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[10.0, 11.0],
               dynamics_params='GABA_InhToExc.json',
               model_template=syn['GABA_InhToExc.json']['level_of_detail'])
 
-net.add_edges(source=net.nodes(pop_name='Int'), target=net.nodes(pop_name='PyrC'),
+net.add_edges(source=net.nodes(pop_name='PV'), target=net.nodes(pop_name='PyrC'),
               connection_rule=int_pyr_connection,
-              syn_weight=4.0,
+              syn_weight=5.0,
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[10.0, 11.0],
@@ -277,36 +296,24 @@ net.add_edges(source=net.nodes(pop_name='Int'), target=net.nodes(pop_name='PyrC'
 
 # background connections
 # edge makes around 1 hz
-thalamus.add_edges(source={'pop_name': 'tON'}, target=net.nodes(pop_name=['PyrA']),
-                   connection_rule=4,
-                   syn_weight=0.001,
-                   delay=2.0,
-                   weight_function=None,
-                   target_sections=['somatic'],
-                   distance_range=[0.0, 150.0],
-                   dynamics_params='AMPA_ExcToExc.json',
-                   model_template='exp2syn')
-# edge makes around 1 to 3 hz in C
-thalamus.add_edges(source={'pop_name': 'tON'}, target=net.nodes(pop_name=['PyrC']),
-                   connection_rule=1,
-                   syn_weight=0.003,
-                   delay=2.0,
-                   weight_function=None,
-                   target_sections=['somatic'],
-                   distance_range=[0.0, 150.0],
-                   dynamics_params='AMPA_ExcToExc.json',
-                   model_template='exp2syn')
-# edge makes around 8hz firing in basket
-thalamus.add_edges(source={'pop_name': 'tON'}, target=net.nodes(pop_name=['Int']),
-                   connection_rule=4,
-                   syn_weight=0.002,
-                   delay=2.0,
-                   weight_function=None,
-                   target_sections=['somatic'],
-                   distance_range=[0.0, 150.0],
-                   dynamics_params='AMPA_ExcToExc.json',
-                   model_template='exp2syn')
 
+net.add_edges(source=backgroundPN.nodes(), target=net.nodes(pop_name=['PyrA', 'PyrC']),
+              connection_rule=BG_to_PN,
+              syn_weight=1,
+              target_sections=['somatic'],
+              delay=0.1,
+              distance_range=[0.0, 300.0],
+              dynamics_params='AMPA_ExcToExc.json',
+              model_template='exp2syn')
+
+net.add_edges(source=backgroundPV.nodes(), target=net.nodes(pop_name='PV'),
+              connection_rule=BG_to_PV,
+              syn_weight=1,
+              target_sections=['somatic'],
+              delay=0.1,
+              distance_range=[0.0, 300.0],
+              dynamics_params='AMPA_ExcToInh.json',
+              model_template='exp2syn')
 
 
 # Build and save our networks
@@ -316,13 +323,16 @@ net.save(output_dir='network')
 
 
 tone.build()
-tone.save(output_dir='network')
+tone.save_nodes(output_dir='network')
 
 shock.build()
-shock.save(output_dir='network')
+shock.save_nodes(output_dir='network')
 
-thalamus.build()
-thalamus.save(output_dir='network')
+backgroundPN.build()
+backgroundPN.save_nodes(output_dir='network')
+
+backgroundPV.build()
+backgroundPV.save_nodes(output_dir='network')
 
 
 t_sim = 232500 # early extinction time is 232500 sensitization time is 40000
@@ -341,11 +351,6 @@ from bmtk.utils.reports.spike_trains import PoissonSpikeGenerator
 #exc_psg.to_sonata('tone_poisson_spikes.h5')
 
 
-psg = PoissonSpikeGenerator(population='mthalamus')
-psg.add(node_ids=range(5),  # Have 5 nodes to match mthalamus
-        firing_rate=2,    # 2 Hz
-        times=(0.0, t_sim/1000))  # time is in seconds for some reason
-psg.to_sonata('./10_cell_spikes/mthalamus_spikes.h5')
 
 
 
@@ -356,9 +361,24 @@ build_env_bionet(base_dir='./',
                  tstop=t_sim, dt=0.1,
                  spikes_inputs=[('tone', './10_cell_spikes/tone_spikes.csv'),
                                 ('shock', './10_cell_spikes/shock_spikes.csv'),
-                                ('mthalamus', './10_cell_spikes/mthalamus_spikes.h5')],
+                                ('bg_pn', '10_cell_spikes/bg_pn_spikes.h5'),
+                                ('bg_pv', '10_cell_spikes/bg_pv_spikes.h5')],
                  components_dir='biophys_components',
                  config_file='config.json',
                  compile_mechanisms=False)
 
-#  report_vars=['v','cai'],
+psg = PoissonSpikeGenerator(population='bg_pn')
+psg.add(node_ids=range(8),  # need same number as cells
+        firing_rate=2,    # 1 spike every 1 second Hz
+        times=(0.0, t_sim/1000))  # time is in seconds for some reason
+psg.to_sonata('10_cell_spikes/bg_pn_spikes.h5')
+
+print('Number of background spikes for pn: {}'.format(psg.n_spikes()))
+
+
+psg = PoissonSpikeGenerator(population='bg_pv')
+psg.add(node_ids=range(2),  # need same number as cells
+        firing_rate=8,    # 8 spikes every 1 second Hz
+        times=(0.0, t_sim/1000))  # time is in seconds for some reason
+psg.to_sonata('10_cell_spikes/bg_pv_spikes.h5')
+print('Number of background spikes for pv: {}'.format(psg.n_spikes()))

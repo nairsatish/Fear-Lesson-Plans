@@ -3,9 +3,9 @@ import pandas
 import numpy
 import matplotlib.pyplot as plt
 
-f = h5py.File('output/syns.h5','r')
+f = h5py.File('output/syns_pyr2int.h5', 'r')
 
-temp = f['report']['biophysical']['mapping']
+#temp = f['report']['biophysical']['mapping']
 
 #element_ids = f['report']['biophysical']['mapping']['element_ids'][:]
 #element_pos = f['report']['biophysical']['mapping']['element_pos'][:]
@@ -20,5 +20,12 @@ plt.plot(data)
 plt.xlabel("time")
 plt.ylabel('weight')
 plt.show()
-#numpy.savetxt('syn_report.csv', data, delimiter=",")
 
+
+#code for checking starting weights
+"""
+path = "updated_conns/tone_biophysical_edges.h5"
+f = h5py.File(path, 'r')
+weights = f['edges']['tone_biophysical']['0']['syn_weight'][:]
+print(weights)
+"""

@@ -43,12 +43,36 @@
   },
   "reports": {
     "syn_report": {
-      "cells": [0],
-      "variable_name": "W_nmda",
+      "cells": "all",
+      "variable_name": "W",
       "module": "netcon_report",
       "sections": "all",
-      "syn_type": "tone2Pyr",
-      "file_name": "syns.h5"      
+      "syn_type": "tone2pyr",
+      "file_name": "syns_tone2pyr.h5"
+    },
+    "syn_report": {
+      "cells": "all",
+      "variable_name": "W_ampa",
+      "module": "netcon_report",
+      "sections": "all",
+      "syn_type": "pyr2pyr",
+      "file_name": "syns_pyr2pyr.h5"
+    },
+    "syn_report": {
+      "cells": "all",
+      "variable_name": "W",
+      "module": "netcon_report",
+      "sections": "all",
+      "syn_type": "int2pyr",
+      "file_name": "syns_int2pyr.h5"
+    },
+    "syn_report": {
+      "cells": "all",
+      "variable_name": "W_ampa",
+      "module": "netcon_report",
+      "sections": "all",
+      "syn_type": "pyr2int",
+      "file_name": "syns_pyr2int.h5"
     }
   },
   "node_sets_file": "$BASE_DIR/node_sets.json",
