@@ -202,7 +202,7 @@ DERIVATIVE release {
 	} else if (W_ampa < Wmin) {
  		W_ampa = Wmin
 	}
-
+	printf("%g\n", W_ampa)
 	g_nmda = gbar_nmda*r_nmda * facfactor
 	i_nmda = W_nmda*g_nmda*(v - Erev_nmda)*sfunc(v)
 

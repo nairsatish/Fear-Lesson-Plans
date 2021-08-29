@@ -3,7 +3,7 @@ import pandas
 import numpy
 import matplotlib.pyplot as plt
 
-f = h5py.File('output/syns_pyr2int.h5', 'r')
+f = h5py.File('output/syns_cai.h5', 'r')
 
 #temp = f['report']['biophysical']['mapping']
 

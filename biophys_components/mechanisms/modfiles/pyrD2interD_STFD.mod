@@ -186,7 +186,7 @@ BREAKPOINT {
 	g_nmda = gbar_nmda*r_nmda*facfactor
 	}
 	inmda = W_nmda*g_nmda*(v - Erev_nmda)*sfunc(v)
-
+	printf("%g\n", W)
 	g_ampa = gbar_ampa*r_ampa*facfactor
 	iampa = W*g_ampa*(v - Erev_ampa)
 

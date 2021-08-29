@@ -55,7 +55,6 @@ PARAMETER {
 	fmax = 2 : 4 : 3
 	fmin = .8
 
-
 }
 
 ASSIGNED {
@@ -98,7 +97,7 @@ INITIAL {
 	on_ampa = 0
 	r_ampa = 0
 	W = initW
-
+	:printf("%g\n", initW)
 	t0 = -1
 
 	Wmax = fmax*initW
@@ -152,7 +151,6 @@ DERIVATIVE release {
 	W = W + dW_ampa*scaleW
 	
 	:printf("%g %g %g %g\n",capoolcon*1e3, threshold1, threshold2, W)
-	:printf("%g\n", W)
 	:Weight value limits
 	if (W > Wmax) { 
 		W = Wmax

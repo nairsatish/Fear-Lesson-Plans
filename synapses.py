@@ -36,7 +36,6 @@ def Bg2Pyr(syn_params, sec_x, sec_id):
         lsyn.eampa = float(syn_params['eampa'])
     return lsyn
 
-
 def bg2pyr(syn_params, xs, secs):
     """Create a list of bg2pyr synapses
     :param syn_params: parameters of a synapse
@@ -124,7 +123,6 @@ def Pyr2Int(syn_params, sec_x, sec_id):
     
     return lsyn
 
-
 def pyr2int(syn_params, xs, secs):
     """Create a list of pyr2int synapses
     :param syn_params: parameters of a synapse
@@ -203,7 +201,6 @@ def Int2Pyr(syn_params, sec_x, sec_id):
 
     
     return lsyn
-
 
 def int2pyr(syn_params, xs, secs):
     """Create a list of int2pyr synapses
@@ -292,7 +289,6 @@ def Shock2Pyr(syn_params, sec_x, sec_id):
     
     return lsyn
 
-
 def shock2pyr(syn_params, xs, secs):
     """Create a list of pyr2pyr synapses
     :param syn_params: parameters of a synapse
@@ -380,7 +376,6 @@ def Tone2Pyr(syn_params, sec_x, sec_id):
     
     return lsyn
 
-
 def tone2pyr(syn_params, xs, secs):
     """Create a list of pyr2pyr synapses
     :param syn_params: parameters of a synapse
@@ -400,6 +395,7 @@ def load():
     add_synapse_model(Tone2Pyr, overwrite=False)
     add_synapse_model(Shock2Pyr, 'shock2pyr', overwrite=False)
     add_synapse_model(Shock2Pyr, overwrite=False)
+    #add_synapse_model(Pyr2Int, 'pyr2int', overwrite=False)
     return
 
 def syn_params_dicts(syn_dir='biophys_components/synaptic_models'):

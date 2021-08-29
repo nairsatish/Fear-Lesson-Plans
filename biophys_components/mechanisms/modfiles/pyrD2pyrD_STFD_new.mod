@@ -199,7 +199,7 @@ if ((eta(capoolcon)*(lambda1*omega(capoolcon, threshold1, threshold2)-lambda2*W)
 	iampa = W*g_ampa*(v - Erev_ampa)
 
 	ICa = P0*g_nmda*(v - eca)*sfunc(v)
-	
+	printf("%g\n", W)
 }
 
 DERIVATIVE release {

@@ -63,7 +63,7 @@ shock.add_nodes(N=1,
                 pop_name='shock',
                 potential='exc',
                 model_type='virtual')
-
+#backgrounds
 backgroundPN = NetworkBuilder('bg_pn')
 backgroundPN.add_nodes(N=8,
                    pop_name='tON',
@@ -243,14 +243,14 @@ net.add_edges(source=tone.nodes(), target=net.nodes(pop_name=['PyrA', 'PyrC']),
               dynamics_params='tone2PN.json',
               model_template=syn['tone2PN.json']['level_of_detail'])
 
-net.add_edges(source=tone.nodes(), target=net.nodes(pop_name='OLM'),
-              connection_rule=tone2OLM,
-              syn_weight=3.0,
-              target_sections=['somatic'],
-              delay=0.1,
-              distance_range=[10.0, 11.0],
-              dynamics_params='tone2INT.json',
-              model_template=syn['tone2INT.json']['level_of_detail'])
+#net.add_edges(source=tone.nodes(), target=net.nodes(pop_name='OLM'),
+#              connection_rule=tone2OLM,
+#              syn_weight=3.0,
+#              target_sections=['somatic'],
+#              delay=0.1,
+#              distance_range=[10.0, 11.0],
+#              dynamics_params='tone2INT.json',
+#              model_template=syn['tone2INT.json']['level_of_detail'])
 
 net.add_edges(source=tone.nodes(), target=net.nodes(pop_name='PV'),
               connection_rule=tone2PV,
@@ -299,6 +299,7 @@ net.add_edges(source=net.nodes(pop_name=['PyrA', 'PyrC']), target=net.nodes(pop_
               distance_range=[10.0, 11.0],
               dynamics_params='AMPA_ExcToInh.json',
               model_template=syn['AMPA_ExcToInh.json']['level_of_detail'])
+              #model_template=syn['AMPA_ExcToInh.json']['level_of_detail'])
 
 
 # Create connections Int --> Int cells
@@ -387,22 +388,22 @@ backgroundPV.save_nodes(output_dir='network')
 backgroundOLM.build()
 backgroundOLM.save_nodes(output_dir='network')
 
-t_sim = 232500 # early extinction time is 232500 sensitization time is 40000
+t_sim = 232500  # early extinction time is 232500 sensitization time is 40000
 print("stim time is set to %s" % t_sim)
 
 
-build_env_bionet(base_dir='./',
-                 network_dir='./network',
-                 tstop=t_sim, dt=0.1,
-                 report_vars=['v'],
-                 spikes_inputs=[('tone', './12_cell_inputs/tone_spikes.csv'),
-                                ('shock', './12_cell_inputs/shock_spikes.csv'),
-                                ('bg_pn', '12_cell_inputs/bg_pn_spikes.h5'),
-                                ('bg_pv', '12_cell_inputs/bg_pv_spikes.h5'),
-                                ('bg_olm', '12_cell_inputs/bg_olm_spikes.h5')],
-                 components_dir='biophys_components',
-                 config_file='config.json',
-                 compile_mechanisms=False)
+#build_env_bionet(base_dir='./',
+#                 network_dir='./network',
+#                 tstop=t_sim, dt=0.1,
+#                 report_vars=['v'],
+#                 spikes_inputs=[('tone', './12_cell_inputs/tone_spikes.csv'),
+#                                ('shock', './12_cell_inputs/shock_spikes.csv'),
+#                                ('bg_pn', '12_cell_inputs/bg_pn_spikes.h5'),
+#                                ('bg_pv', '12_cell_inputs/bg_pv_spikes.h5'),
+#                                ('bg_olm', '12_cell_inputs/bg_olm_spikes.h5')],
+#                 components_dir='biophys_components',
+#                 config_file='config.json',
+#                 compile_mechanisms=False)
 
 psg = PoissonSpikeGenerator(population='bg_pn')
 psg.add(node_ids=range(8),  # need same number as cells
@@ -423,7 +424,7 @@ print('Number of background spikes for pv: {}'.format(psg.n_spikes()))
 
 psg = PoissonSpikeGenerator(population='bg_olm')
 psg.add(node_ids=range(2),  # need same number as cells
-        firing_rate=8,    # 8 spikes every 1 second Hz
+        firing_rate=2,    # 8 spikes every 1 second Hz
         times=(0.0, t_sim/1000))  # time is in seconds for some reason
 psg.to_sonata('12_cell_inputs/bg_olm_spikes.h5')
 
