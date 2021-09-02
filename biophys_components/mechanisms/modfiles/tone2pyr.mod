@@ -97,7 +97,7 @@ INITIAL {
 	on_ampa = 0
 	r_ampa = 0
 	W = initW
-	:printf("%g\n", initW)
+	:printf("%g\n", W)
 	t0 = -1
 
 	Wmax = fmax*initW

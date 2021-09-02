@@ -41,7 +41,7 @@ backgroundPN.add_nodes(N=1,
 # Create connections between Tone --> Pyr cells
 net.add_edges(source=tone.nodes(), target=net.nodes(pop_name='PyrC'),
               connection_rule=1,
-              syn_weight=10.0,
+              syn_weight=1.0,
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[10.0, 11.0],
@@ -50,7 +50,7 @@ net.add_edges(source=tone.nodes(), target=net.nodes(pop_name='PyrC'),
 
 net.add_edges(source=shock.nodes(), target=net.nodes(pop_name='PyrC'),
               connection_rule=1,
-              syn_weight=20.0,
+              syn_weight=1.0,
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[10.0, 11.0],
@@ -78,17 +78,17 @@ shock.save_nodes(output_dir='network')
 backgroundPN.build()
 backgroundPN.save_nodes(output_dir='network')
 
-t_sim = 232500 # early extinction time is 232500 sensitization time is 40000
+t_sim = 40000 # early extinction time is 232500 sensitization time is 40000
 print("stim time is set to %s" % t_sim)
 
-build_env_bionet(base_dir='./',
+build_env_bionet(base_dir='../',
                  network_dir='./network',
                  tstop=t_sim, dt=0.1,
-                 #report_vars=['v', 'cai'],
+                 report_vars=['v'],
                  spikes_inputs=[('tone', './12_cell_inputs/tone_spikes.csv'),
                                 ('shock', './12_cell_inputs/shock_spikes.csv'),
                                 ('bg_pn', '12_cell_inputs/bg_pn_spikes.h5')],
-                 components_dir='biophys_components',
+                 components_dir='../biophys_components',
                  config_file='config.json',
                  compile_mechanisms=False)
 

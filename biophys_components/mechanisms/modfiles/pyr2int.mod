@@ -1,19 +1,21 @@
+:Pyramidal Cells to Interneuron Cells AMPA+NMDA with local Ca2+ pool
+:pyrD2interD_STFD file from Kim's papers
+
 NEURON {
 	POINT_PROCESS pyr2int
-	NONSPECIFIC_CURRENT i_nmda, i_ampa
+	USEION ca READ eca
+	NONSPECIFIC_CURRENT inmda, iampa
 	RANGE initW
 	RANGE Cdur_nmda, AlphaTmax_nmda, Beta_nmda, Erev_nmda, gbar_nmda, W_nmda, on_nmda, g_nmda
-	RANGE Cdur_ampa, AlphaTmax_ampa, Beta_ampa, Erev_ampa, gbar_ampa, W_ampa, on_ampa, g_ampa
-	RANGE ECa, ICa, P0, fCa, tauCa, iCatotal
+	RANGE Cdur_ampa, AlphaTmax_ampa, Beta_ampa, Erev_ampa, gbar_ampa, W, on_ampa, g_ampa
+	RANGE eca, ICan, P0n, fCan, tauCa, Icatotal
+	RANGE ICaa, P0a, fCaa
 	RANGE Cainf, pooldiam, z
 	RANGE lambda1, lambda2, threshold1, threshold2
-	RANGE fmax, fmin, Wmax, Wmin, maxChange, normW, scaleW
-	RANGE pregid,postgid
-	
-	:Added by Ali
+	RANGE fmax, fmin, Wmax, Wmin, maxChange, normW, scaleW, srcid, destid
+	RANGE pregid,postgid, thr_rp
 	RANGE F, f, tauF, D1, d1, tauD1, D2, d2, tauD2
 	RANGE facfactor
-	RANGE aACH, bACH, aDA, bDA, wACH, wDA, calcium
 }
 
 UNITS {
@@ -25,81 +27,77 @@ UNITS {
 }
 
 PARAMETER {
-: parameters are vars assigned by user or changed by hoc. THey appear in nrnpointmenu
-	initW = 5
 
-	Cdur_nmda = 17.58 (ms)
-	AlphaTmax_nmda = .08 (/ms)
+	srcid = -1 (1)
+	destid = -1 (1)
+
+	Cdur_nmda = 16.7650 (ms)
+	AlphaTmax_nmda = .2659 (/ms)
 	Beta_nmda = 0.008 (/ms)
 	Erev_nmda = 0 (mV)
-	gbar_nmda = .6e-3 (uS)
+	gbar_nmda = .5e-3 (uS)
 
-	Cdur_ampa = 5.31 (ms)
-	AlphaTmax_ampa = 0.117 (/ms)
-	Beta_ampa = 0.090 (/ms)
+	Cdur_ampa = 0.713 (ms)
+	AlphaTmax_ampa = 10.1571 (/ms)
+	Beta_ampa = 0.4167 (/ms)
 	Erev_ampa = 0 (mV)
-	gbar_ampa = 1.7e-3 (uS)
+	gbar_ampa = 1e-3 (uS)
 
-	ECa = 120
+	eca = 120
 
 	Cainf = 50e-6 (mM)
 	pooldiam =  1.8172 (micrometer)
 	z = 2
 
 	tauCa = 50 (ms)
-	P0 = .015
-	fCa = .024
+	P0n = .015
+	fCan = .024
 
-	lambda1 = 2.5
+	P0a = .001
+	fCaa = .024
+
+	lambda1 = 8 : 3 : 10 :6 : 4 :2
 	lambda2 = .01
-	threshold1 = 0.2 (uM)
-	threshold2 = 0.4 (uM)
+	threshold1 = 0.35 : 0.4 :  0.45 :0.5 (uM)
+	threshold2 = 0.4 : 0.45 :  0.5 :0.6 (uM)
 
-	fmax = 3
+	:AMPA Weight
+	initW = 1.5 : 1.5 : 2 : 0.1:3 : 2 :3
+	fmax = 4 : 8 : 5: 4 :3
 	fmin = .8
 
-	:Added by Ali
-	ACH = 1
-	DA = 1
-	LearningShutDown = 1
+	thr_rp = 1 : .7
 
 	facfactor = 1
 	: the (1) is needed for the range limits to be effective
-        f = 1 (1) < 0, 1e9 >    : facilitation
-        tauF = 1 (ms) < 1e-9, 1e9 >
-        d1 = 1 (1) < 0, 1 >     : fast depression
-        tauD1 = 1 (ms) < 1e-9, 1e9 >
-        d2 = 1 (1) < 0, 1 >     : slow depression
-        tauD2 = 1 (ms) < 1e-9, 1e9 >
-		
-	aACH = 1
-	bACH = 0
-	wACH = 0
-	aDA = 1
-	bDA = 0
-	wDA = 0
+        f = 1 (1) < 0, 1e9 >    : facilitation  : 1.3 (1) < 0, 1e9 >    : facilitation
+        tauF = 45 (ms) < 1e-9, 1e9 >
+        d1 = 0.95 (1) < 0, 1 >: 0.95 (1) < 0, 1 >     : fast depression
+        tauD1 = 40 (ms) < 1e-9, 1e9 >
+        d2 = 0.9 (1) < 0, 1 > : 0.9 (1) < 0, 1 >     : slow depression
+        tauD2 = 70 (ms) < 1e-9, 1e9 >
 
 }
 
 ASSIGNED {
-: These are vars calculated by Neuron hoc or by the mechanism mod itself
 	v (mV)
 
-	i_nmda (nA)
+	inmda (nA)
 	g_nmda (uS)
 	on_nmda
 	W_nmda
 
-	i_ampa (nA)
+	iampa (nA)
 	g_ampa (uS)
 	on_ampa
-	W_ampa
+	W
 
 	t0 (ms)
 
-	ICa (mA)
+	ICan (mA)
+	ICaa (mA)
 	Afactor	(mM/ms/nA)
-	iCatotal (mA)
+	Icatotal (mA)
 
 	dW_ampa
 	Wmax
@@ -107,23 +105,20 @@ ASSIGNED {
 	maxChange
 	normW
 	scaleW
-	
+
 	pregid
 	postgid
-	
-	:Added by Ali
-		calcium
 
-		tsyn
-	
-		fa
-		F
-		D1
-		D2
-		
+	rp
+	tsyn
+
+	fa
+	F
+	D1
+	D2
 }
 
-STATE { r_nmda r_ampa Capoolcon }
+STATE { r_nmda r_ampa capoolcon }
 
 INITIAL {
 	on_nmda = 0
@@ -132,27 +127,22 @@ INITIAL {
 
 	on_ampa = 0
 	r_ampa = 0
-	W_ampa = initW
+	W = initW
 
 	t0 = -1
 
-	:Wmax = 2*initW
-	:Wmin = 0.25*initW
+	Wmax = fmax*initW
+	Wmin = fmin*initW
 	maxChange = (Wmax-Wmin)/10
 	dW_ampa = 0
 
-	Capoolcon = Cainf
+	capoolcon = Cainf
 	Afactor	= 1/(z*FARADAY*4/3*pi*(pooldiam/2)^3)*(1e6)
-	
-	:Added by Ali
-
-		tsyn = -1e30
 
 	fa =0
 	F = 1
 	D1 = 1
 	D2 = 1
-
 }
 
 BREAKPOINT {
@@ -161,21 +151,28 @@ BREAKPOINT {
 
 DERIVATIVE release {
 	if (t0>0) {
-		if (t-t0 < Cdur_nmda) {
-			on_nmda = 1
+		if (rp < thr_rp) {
+			if (t-t0 < Cdur_nmda) {
+				on_nmda = 1
+			} else {
+				on_nmda = 0
+			}
+			if (t-t0 < Cdur_ampa) {
+				on_ampa = 1
+			} else {
+				on_ampa = 0
+			}
 		} else {
 			on_nmda = 0
-		}
-		if (t-t0 < Cdur_ampa) {
-			on_ampa = 1
-		} else {
 			on_ampa = 0
 		}
 	}
-	r_nmda' = AlphaTmax_nmda*on_nmda*(1-r_nmda) -Beta_nmda*r_nmda
-	r_ampa' = AlphaTmax_ampa*on_ampa*(1-r_ampa) -Beta_ampa*r_ampa
+	r_nmda' = AlphaTmax_nmda*on_nmda*(1-r_nmda)-Beta_nmda*r_nmda
+	r_ampa' = AlphaTmax_ampa*on_ampa*(1-r_ampa)-Beta_ampa*r_ampa
 
-	dW_ampa = eta(Capoolcon)*(lambda1*omega(Capoolcon, threshold1, threshold2)-lambda2*W_ampa)*dt
+	dW_ampa = eta(capoolcon)*(lambda1*omega(capoolcon, threshold1, threshold2)-lambda2*W)*dt
+
+    :printf("%g\t", initW)
 
 	: Limit for extreme large weight changes
 	if (fabs(dW_ampa) > maxChange) {
@@ -187,55 +184,61 @@ DERIVATIVE release {
 	}
 
 	:Normalize the weight change
-	normW = (W_ampa-Wmin)/(Wmax-Wmin)
+	normW = (W-Wmin)/(Wmax-Wmin)
 	if (dW_ampa < 0) {
 		scaleW = sqrt(fabs(normW))
 	} else {
 		scaleW = sqrt(fabs(1.0-normW))
 	}
 
-	W_ampa = W_ampa + dW_ampa*scaleW *(1+ (wACH * (ACH - 1))) * LearningShutDown
-	
+	W = W + dW_ampa*scaleW
+
 	:Weight value limits
-	if (W_ampa > Wmax) { 
-		W_ampa = Wmax
-	} else if (W_ampa < Wmin) {
- 		W_ampa = Wmin
+	if (W > Wmax) {
+		W = Wmax
+	} else if (W < Wmin) {
+ 		W = Wmin
 	}
-	printf("%g\n", W_ampa)
-	g_nmda = gbar_nmda*r_nmda * facfactor
-	i_nmda = W_nmda*g_nmda*(v - Erev_nmda)*sfunc(v)
 
-	g_ampa = gbar_ampa*r_ampa * facfactor
-	i_ampa = W_ampa*g_ampa*(v - Erev_ampa)  * (1 + (bACH * (ACH-1)))*(aDA + (bDA * (DA-1))) 
+	g_nmda = gbar_nmda*r_nmda*facfactor
+	inmda = W_nmda*g_nmda*(v - Erev_nmda)*sfunc(v)
 
-	ICa = P0*g_nmda*(v - ECa)*sfunc(v)
-	Capoolcon'= -fCa*Afactor*ICa + (Cainf-Capoolcon)/tauCa
+	g_ampa = gbar_ampa*r_ampa*facfactor
+	iampa = W*g_ampa*(v - Erev_ampa)
+
+	ICan = P0n*g_nmda*(v - eca)*sfunc(v)
+	ICaa = P0a*W*g_ampa*(v-eca)/initW
+	Icatotal = ICan + ICaa
+	capoolcon'= -fCan*Afactor*Icatotal + (Cainf-capoolcon)/tauCa
 }
 
 NET_RECEIVE(dummy_weight) {
-	t0 = t :spike time for conductance opening
-	
-	:Added by Ali, Synaptic facilitation
-	F  = 1 + (F-1)* exp(-(t - tsyn)/tauF)
+	t0 = t
+	rp = unirand()
+
+	:F  = 1 + (F-1)* exp(-(t - tsyn)/tauF)
 	D1 = 1 - (1-D1)*exp(-(t - tsyn)/tauD1)
 	D2 = 1 - (1-D2)*exp(-(t - tsyn)/tauD2)
  :printf("%g\t%g\t%g\t%g\t%g\t%g\n", t, t-tsyn, F, D1, D2, facfactor)
+	::printf("%g\t%g\t%g\t%g\n", F, D1, D2, facfactor)
 	tsyn = t
-	
+
 	facfactor = F * D1 * D2
 
 	F = F * f
-	
-	if (F > 30) { 
-	F=30
+
+	if (F > 2) {
+	F=2
+	}
+	if (facfactor < 0.7) {
+	facfactor=0.7
+	}
+	if (F < 0.8) {
+	F=0.8
 	}
 	D1 = D1 * d1
 	D2 = D2 * d2
 :printf("\t%g\t%g\t%g\n", F, D1, D2)
-	
-
-
 }
 
 :::::::::::: FUNCTIONs and PROCEDUREs ::::::::::::
@@ -264,4 +267,7 @@ FUNCTION omega(Cani (mM), threshold1 (uM), threshold2 (uM)) {
 	if (Cacon <= threshold1) { omega = 0}
 	else if (Cacon >= threshold2) {	omega = 1/(1+50*exp(-50*(Cacon-threshold2)))}
 	else {omega = -sqrt(r*r-(Cacon-mid)*(Cacon-mid))}
+}
+FUNCTION unirand() {    : uniform random numbers between 0 and 1
+        unirand = scop_random()
 }

@@ -6,7 +6,7 @@
   "target_simulator": "NEURON",
   "run": {
     "tstart": 0.0,
-    "tstop": 232500,
+    "tstop": 40000,
     "dt": 0.1,
     "dL": 20.0,
     "spike_threshold": -15.0,
@@ -14,7 +14,7 @@
   },
   "conditions": {
     "celsius": 34.0,
-    "v_init": -70.0
+    "v_init": -80.0
   },
   "inputs": {
     "tone_spikes": {
@@ -53,44 +53,7 @@
     "output_dir": "$OUTPUT_DIR",
     "spikes_file": "spikes.h5"
   },
-  "output": {
-    "log_file": "log.txt",
-    "output_dir": "$OUTPUT_DIR",
-    "spikes_file": "spikes.h5"
-  },
   "reports": {
-    "syn_report": {
-      "cells": "all",
-      "variable_name": "W",
-      "module": "netcon_report",
-      "sections": "all",
-      "syn_type": "tone2pyr",
-      "file_name": "syns_tone2pyr.h5"
-    },
-    "syn_report1": {
-      "cells": "all",
-      "variable_name": "W",
-      "module": "netcon_report",
-      "sections": "all",
-      "syn_type": "pyrD2pyrD_STFD",
-      "file_name": "syns_pyr2pyr.h5"
-    },
-    "syn_report2": {
-      "cells": "all",
-      "variable_name": "W",
-      "module": "netcon_report",
-      "sections": "all",
-      "syn_type": "interD2pyrD_STFD",
-      "file_name": "syns_int2pyr.h5"
-    },
-    "syn_report3": {
-      "cells": "all",
-      "variable_name": "W",
-      "module": "netcon_report",
-      "sections": "all",
-      "syn_type": "pyrD2interD_STFD",
-      "file_name": "syns_pyr2int.h5"
-    },
     "v_report": {
       "variable_name": "v",
       "cells": "all",
@@ -98,6 +61,5 @@
       "sections": "soma"
     }
   },
-  "node_sets_file": "$BASE_DIR/node_sets.json",
-  "network": "$BASE_DIR/circuit_config.json"
+  "node_sets_file": "$BASE_DIR/node_sets.json"
 }

@@ -67,17 +67,17 @@ psg.to_sonata('virtual_spikes.h5')
 print('Number of background spikes: {}'.format(psg.n_spikes()))
 
 from bmtk.utils.sim_setup import build_env_bionet
-build_env_bionet(base_dir='./',
-                network_dir='./network',
-                tstop=1000.0, dt = 0.1,
-                report_vars=['v'],
-                spikes_inputs=[('mthalamus', 'virtual_spikes.h5')],
-                #current_clamp={
-                #    'amp': -0.100,
-                #    'delay': 250.0,
-                #    'duration': 200 #200 for bask 600 for pyr
-                #},
-                components_dir='biophys_components',
-                config_file='simulation_config.json',
-                compile_mechanisms=False)
+build_env_bionet(base_dir='../',
+                 network_dir='./network',
+                 tstop=1000.0, dt = 0.1,
+                 report_vars=['v'],
+                 spikes_inputs=[('mthalamus', 'virtual_spikes.h5')],
+                 #current_clamp={
+                 #    'amp': -0.100,
+                 #    'delay': 250.0,
+                 #    'duration': 200 #200 for bask 600 for pyr
+                 #},
+                 components_dir='../biophys_components',
+                 config_file='../simulation_config.json',
+                 compile_mechanisms=False)
 

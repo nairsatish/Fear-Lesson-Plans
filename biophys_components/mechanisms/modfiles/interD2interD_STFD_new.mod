@@ -155,6 +155,7 @@ INITIAL {
 	capoolcon = Cainf
 	Afactor	= 1/(z*FARADAY*4/3*pi*(pooldiam/2)^3)*(1e6)
 
+    tsyn=0      
 	fa =0
 	F = 1
 	D1 = 1

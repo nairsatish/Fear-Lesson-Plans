@@ -14,7 +14,7 @@
   },
   "conditions": {
     "celsius": 34.0,
-    "v_init": -80.0
+    "v_init": -70.0
   },
   "inputs": {
     "tone_spikes": {
@@ -60,7 +60,7 @@
       "module": "netcon_report",
       "sections": "all",
       "syn_type": "tone2pyr",
-      "file_name": "syns_W.h5"
+      "file_name": "syns_tone2pyr.h5"
     },
     "syn_report2": {
       "cells": "all",
@@ -69,6 +69,60 @@
       "sections": "all",
       "syn_type": "tone2pyr",
       "file_name": "syns_cai.h5"
+    },
+    "syn_report3": {
+      "cells": "all",
+      "variable_name": "W",
+      "module": "netcon_report",
+      "sections": "all",
+      "syn_type": "pyrD2pyrD_STFD",
+      "file_name": "syns_pyr2pyr.h5"
+    },
+    "syn_report3.5": {
+      "cells": "all",
+      "variable_name": "capoolcon",
+      "module": "netcon_report",
+      "sections": "all",
+      "syn_type": "pyrD2pyrD_STFD",
+      "file_name": "syns_pyr2pyr_cai.h5"
+    },
+    "syn_report4": {
+      "cells": "all",
+      "variable_name": "W",
+      "module": "netcon_report",
+      "sections": "all",
+      "syn_type": "interD2pyrD_STFD",
+      "file_name": "syns_int2pyr.h5"
+    },
+    "syn_report4.5": {
+      "cells": "all",
+      "variable_name": "capoolcon",
+      "module": "netcon_report",
+      "sections": "all",
+      "syn_type": "interD2pyrD_STFD",
+      "file_name": "syns_int2pyr_cai.h5"
+    },
+    "syn_report5": {
+      "cells": "all",
+      "variable_name": "W",
+      "module": "netcon_report",
+      "sections": "all",
+      "syn_type": "pyrD2interD_STFD",
+      "file_name": "syns_pyr2int.h5"
+    },
+    "syn_report5.5": {
+      "cells": "all",
+      "variable_name": "capoolcon",
+      "module": "netcon_report",
+      "sections": "all",
+      "syn_type": "pyrD2interD_STFD",
+      "file_name": "syns_pyr2int_cai.h5"
+    },
+    "v_report": {
+      "variable_name": "v",
+      "cells": "all",
+      "module": "membrane_report",
+      "sections": "soma"
     }
   },
   "node_sets_file": "$BASE_DIR/node_sets.json",

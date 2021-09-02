@@ -356,14 +356,14 @@ from bmtk.utils.reports.spike_trains import PoissonSpikeGenerator
 
 from bmtk.utils.sim_setup import build_env_bionet
 
-build_env_bionet(base_dir='./',
+build_env_bionet(base_dir='../',
                  network_dir='./network',
                  tstop=t_sim, dt=0.1,
                  spikes_inputs=[('tone', './10_cell_spikes/tone_spikes.csv'),
                                 ('shock', './10_cell_spikes/shock_spikes.csv'),
                                 ('bg_pn', '10_cell_spikes/bg_pn_spikes.h5'),
                                 ('bg_pv', '10_cell_spikes/bg_pv_spikes.h5')],
-                 components_dir='biophys_components',
+                 components_dir='../biophys_components',
                  config_file='config.json',
                  compile_mechanisms=False)
 

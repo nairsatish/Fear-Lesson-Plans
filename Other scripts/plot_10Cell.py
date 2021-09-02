@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import math
 
-df = to_dataframe(config_file='simulation_config.json')
+df = to_dataframe(config_file='../simulation_config.json')
 
 #df.to_csv('spikedata.csv')
 

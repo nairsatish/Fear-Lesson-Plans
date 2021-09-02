@@ -106,7 +106,8 @@ def tone2PN(source, target):
         print("connecting tone cell {} to PN {}".format(sid, tid))
         tmp_nsyn = 1
     else:
-        return None
+        print("not connecting{}".format(tid))
+        tmp_nsyn = 0
     return tmp_nsyn
 
 def tone2PV(source, target):
@@ -216,7 +217,7 @@ def BG_to_OLM(source, target):
 
 net.add_edges(source=shock.nodes(), target=net.nodes(pop_name='OLM'),
               connection_rule=one_to_all_shock2OLM,
-              syn_weight=20.0,
+              syn_weight=1.0,
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[10.0, 11.0],
@@ -225,7 +226,7 @@ net.add_edges(source=shock.nodes(), target=net.nodes(pop_name='OLM'),
 
 net.add_edges(source=shock.nodes(), target=net.nodes(pop_name='PV'),
               connection_rule=one_to_all_shock2PV,
-              syn_weight=20.0,
+              syn_weight=1.0,
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[10.0, 11.0],
@@ -236,7 +237,7 @@ net.add_edges(source=shock.nodes(), target=net.nodes(pop_name='PV'),
 # Create connections between Tone --> Pyr cells
 net.add_edges(source=tone.nodes(), target=net.nodes(pop_name=['PyrA', 'PyrC']),
               connection_rule=tone2PN,
-              syn_weight=10.0,
+              syn_weight=1.0,
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[10.0, 11.0],
@@ -254,7 +255,7 @@ net.add_edges(source=tone.nodes(), target=net.nodes(pop_name=['PyrA', 'PyrC']),
 
 net.add_edges(source=tone.nodes(), target=net.nodes(pop_name='PV'),
               connection_rule=tone2PV,
-              syn_weight=3.0,
+              syn_weight=1.0,
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[10.0, 11.0],
@@ -264,21 +265,21 @@ net.add_edges(source=tone.nodes(), target=net.nodes(pop_name='PV'),
 # Create connections between Pyr --> Pyr cells
 net.add_edges(source=net.nodes(pop_name='PyrA'), target=net.nodes(pop_name=['PyrA', 'PyrC']),
               connection_rule=pyr_connection,
-              syn_weight=1.5,
+              syn_weight=1.0,
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[10.0, 11.0],
-              dynamics_params='AMPA_ExcToExc.json',
-              model_template=syn['AMPA_ExcToExc.json']['level_of_detail'])
+              dynamics_params='PN2PN.json',
+              model_template=syn['PN2PN.json']['level_of_detail'])
 
 net.add_edges(source=net.nodes(pop_name='PyrC'), target=net.nodes(pop_name=['PyrA', 'PyrC']),
               connection_rule=pyr_connection,
-              syn_weight=1.5,
+              syn_weight=1.0,
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[10.0, 11.0],
-              dynamics_params='AMPA_ExcToExc.json',
-              model_template=syn['AMPA_ExcToExc.json']['level_of_detail'])
+              dynamics_params='PN2PN.json',
+              model_template=syn['PN2PN.json']['level_of_detail'])
 
 
 net.add_edges(source=net.nodes(pop_name=['PyrA', 'PyrC']), target=net.nodes(pop_name='OLM'),
@@ -287,18 +288,18 @@ net.add_edges(source=net.nodes(pop_name=['PyrA', 'PyrC']), target=net.nodes(pop_
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[10.0, 11.0],
-              dynamics_params='AMPA_ExcToInh.json',
-              model_template=syn['AMPA_ExcToInh.json']['level_of_detail'])
+              dynamics_params='PN2SOM.json',
+              model_template=syn['PN2SOM.json']['level_of_detail'])
 
 # Create connections between Pyr --> PV cells
 net.add_edges(source=net.nodes(pop_name=['PyrA', 'PyrC']), target=net.nodes(pop_name='PV'),
               connection_rule=PN2PV,
-              syn_weight=1,
+              syn_weight=1.0,
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[10.0, 11.0],
-              dynamics_params='AMPA_ExcToInh.json',
-              model_template=syn['AMPA_ExcToInh.json']['level_of_detail'])
+              dynamics_params='PN2PV.json',
+              model_template=syn['PN2PV.json']['level_of_detail'])
               #model_template=syn['AMPA_ExcToInh.json']['level_of_detail'])
 
 
@@ -306,44 +307,44 @@ net.add_edges(source=net.nodes(pop_name=['PyrA', 'PyrC']), target=net.nodes(pop_
 
 net.add_edges(source=net.nodes(pop_name='PV'), target=net.nodes(pop_name='PV'),
               connection_rule=PV2PV,
-              syn_weight=3,
+              syn_weight=1.0,
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[10.0, 11.0],
-              dynamics_params='GABA_InhToInh.json',
-              model_template=syn['GABA_InhToInh.json']['level_of_detail'])
+              dynamics_params='PV2PV.json',
+              model_template=syn['PV2PV.json']['level_of_detail'])
 
 net.add_edges(source=net.nodes(pop_name='PV'), target=net.nodes(pop_name='OLM'),
               connection_rule=PV2OLM,
-              syn_weight=3.0,
+              syn_weight=1.0,
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[10.0, 11.0],
-              dynamics_params='GABA_InhToInh.json',
-              model_template=syn['GABA_InhToInh.json']['level_of_detail'])
+              dynamics_params='PV2SOM.json',
+              model_template=syn['PV2SOM.json']['level_of_detail'])
 
 # Create connections Int --> Pyr cells
 net.add_edges(source=net.nodes(pop_name='PV'), target=net.nodes(pop_name=['PyrA', 'PyrC']),
               connection_rule=PV2PN,
-              syn_weight=5,
+              syn_weight=1.0,
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[10.0, 11.0],
-              dynamics_params='GABA_InhToExc.json',
-              model_template=syn['GABA_InhToExc.json']['level_of_detail'])
+              dynamics_params='PV2PN.json',
+              model_template=syn['PV2PN.json']['level_of_detail'])
 
 net.add_edges(source=net.nodes(pop_name='OLM'), target=net.nodes(pop_name=['PyrA', 'PyrC']),
               connection_rule=OLM2PN,
-              syn_weight=5.0,
+              syn_weight=1.0,
               target_sections=['basal'],
               delay=0.1,
               distance_range=[10.0, 11.0],
-              dynamics_params='GABA_InhToExc.json',
-              model_template=syn['GABA_InhToExc.json']['level_of_detail'])
+              dynamics_params='SOM2PN.json',
+              model_template=syn['SOM2PN.json']['level_of_detail'])
 
 net.add_edges(source=backgroundPN.nodes(), target=net.nodes(pop_name=['PyrA', 'PyrC']),
               connection_rule=BG_to_PN,
-              syn_weight=1,
+              syn_weight=1.0,
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[0.0, 300.0],
@@ -352,7 +353,7 @@ net.add_edges(source=backgroundPN.nodes(), target=net.nodes(pop_name=['PyrA', 'P
 
 net.add_edges(source=backgroundOLM.nodes(), target=net.nodes(pop_name='OLM'),
               connection_rule=BG_to_OLM,
-              syn_weight=1,
+              syn_weight=1.0,
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[0.0, 300.0],
@@ -361,7 +362,7 @@ net.add_edges(source=backgroundOLM.nodes(), target=net.nodes(pop_name='OLM'),
 
 net.add_edges(source=backgroundPV.nodes(), target=net.nodes(pop_name='PV'),
               connection_rule=BG_to_PV,
-              syn_weight=1,
+              syn_weight=1.0,
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[0.0, 300.0],
@@ -388,7 +389,7 @@ backgroundPV.save_nodes(output_dir='network')
 backgroundOLM.build()
 backgroundOLM.save_nodes(output_dir='network')
 
-t_sim = 232500  # early extinction time is 232500 sensitization time is 40000
+t_sim = 40000  # early extinction time is 232500 sensitization time is 40000
 print("stim time is set to %s" % t_sim)
 
 
@@ -424,7 +425,7 @@ print('Number of background spikes for pv: {}'.format(psg.n_spikes()))
 
 psg = PoissonSpikeGenerator(population='bg_olm')
 psg.add(node_ids=range(2),  # need same number as cells
-        firing_rate=2,    # 8 spikes every 1 second Hz
+        firing_rate=8,    # 8 spikes every 1 second Hz
         times=(0.0, t_sim/1000))  # time is in seconds for some reason
 psg.to_sonata('12_cell_inputs/bg_olm_spikes.h5')
 

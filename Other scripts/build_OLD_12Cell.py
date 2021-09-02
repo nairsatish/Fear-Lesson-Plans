@@ -16,29 +16,6 @@ num_inh = [1]
 
 num_exc = [1]
 
-print("making {} exc_stim nodes".format(np.sum(num_exc)))
-
-# External excitatory inputs
-tone = NetworkBuilder('tone')
-tone.add_nodes(N=1,
-               pop_name='tone',
-               potential='exc',
-               model_type='virtual')
-
-print("making {} inh_stim nodes".format(np.sum(num_inh)))
-# External inhibitory inputs
-shock = NetworkBuilder('shock')
-shock.add_nodes(N=1,
-                pop_name='shock',
-                potential='exc',
-                model_type='virtual')
-
-backgroundPN = NetworkBuilder('bg_pn')
-backgroundPN.add_nodes(N=8,
-                   pop_name='tON',
-                   potential='exc',
-                   model_type='virtual')
-
 ##################################################################################
 ###################################BIOPHY#########################################
 
@@ -69,6 +46,29 @@ net.add_nodes(N=2, pop_name='PV',
 ###################################External Networks##############################
 
 # print("Internal nodes built")
+
+print("making {} exc_stim nodes".format(np.sum(num_exc)))
+
+# External excitatory inputs
+tone = NetworkBuilder('tone')
+tone.add_nodes(N=1,
+               pop_name='tone',
+               potential='exc',
+               model_type='virtual')
+
+print("making {} inh_stim nodes".format(np.sum(num_inh)))
+# External inhibitory inputs
+shock = NetworkBuilder('shock')
+shock.add_nodes(N=1,
+                pop_name='shock',
+                potential='exc',
+                model_type='virtual')
+#backgrounds
+backgroundPN = NetworkBuilder('bg_pn')
+backgroundPN.add_nodes(N=8,
+                   pop_name='tON',
+                   potential='exc',
+                   model_type='virtual')
 
 backgroundPV = NetworkBuilder('bg_pv')
 backgroundPV.add_nodes(N=2,
@@ -216,7 +216,7 @@ def BG_to_OLM(source, target):
 
 net.add_edges(source=shock.nodes(), target=net.nodes(pop_name='OLM'),
               connection_rule=one_to_all_shock2OLM,
-              syn_weight=20.0,
+              syn_weight=1.0,
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[10.0, 11.0],
@@ -225,18 +225,17 @@ net.add_edges(source=shock.nodes(), target=net.nodes(pop_name='OLM'),
 
 net.add_edges(source=shock.nodes(), target=net.nodes(pop_name='PV'),
               connection_rule=one_to_all_shock2PV,
-              syn_weight=20.0,
+              syn_weight=1.0,
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[10.0, 11.0],
               dynamics_params='shock2INT12.json',
               model_template=syn['shock2INT12.json']['level_of_detail'])
 
-
 # Create connections between Tone --> Pyr cells
 net.add_edges(source=tone.nodes(), target=net.nodes(pop_name=['PyrA', 'PyrC']),
               connection_rule=tone2PN,
-              syn_weight=10.0,
+              syn_weight=1.0,
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[10.0, 11.0],
@@ -254,7 +253,7 @@ net.add_edges(source=tone.nodes(), target=net.nodes(pop_name=['PyrA', 'PyrC']),
 
 net.add_edges(source=tone.nodes(), target=net.nodes(pop_name='PV'),
               connection_rule=tone2PV,
-              syn_weight=3.0,
+              syn_weight=1.0,
               target_sections=['somatic'],
               delay=0.1,
               distance_range=[10.0, 11.0],
@@ -388,22 +387,22 @@ backgroundPV.save_nodes(output_dir='network')
 backgroundOLM.build()
 backgroundOLM.save_nodes(output_dir='network')
 
-t_sim = 232500 # early extinction time is 232500 sensitization time is 40000
+t_sim = 40000  # early extinction time is 232500 sensitization time is 40000
 print("stim time is set to %s" % t_sim)
 
 
-build_env_bionet(base_dir='./',
-                 network_dir='./network',
-                 tstop=t_sim, dt=0.1,
-                 report_vars=['v'],
-                 spikes_inputs=[('tone', './12_cell_inputs/tone_spikes.csv'),
-                                ('shock', './12_cell_inputs/shock_spikes.csv'),
-                                ('bg_pn', '12_cell_inputs/bg_pn_spikes.h5'),
-                                ('bg_pv', '12_cell_inputs/bg_pv_spikes.h5'),
-                                ('bg_olm', '12_cell_inputs/bg_olm_spikes.h5')],
-                 components_dir='biophys_components',
-                 config_file='config.json',
-                 compile_mechanisms=False)
+#build_env_bionet(base_dir='./',
+#                 network_dir='./network',
+#                 tstop=t_sim, dt=0.1,
+#                 report_vars=['v'],
+#                 spikes_inputs=[('tone', './12_cell_inputs/tone_spikes.csv'),
+#                                ('shock', './12_cell_inputs/shock_spikes.csv'),
+#                                ('bg_pn', '12_cell_inputs/bg_pn_spikes.h5'),
+#                                ('bg_pv', '12_cell_inputs/bg_pv_spikes.h5'),
+#                                ('bg_olm', '12_cell_inputs/bg_olm_spikes.h5')],
+#                 components_dir='biophys_components',
+#                 config_file='config.json',
+#                 compile_mechanisms=False)
 
 psg = PoissonSpikeGenerator(population='bg_pn')
 psg.add(node_ids=range(8),  # need same number as cells

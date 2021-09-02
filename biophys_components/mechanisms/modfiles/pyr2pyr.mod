@@ -129,7 +129,7 @@ INITIAL {
 	on_nmda = 0
 	r_nmda = 0
 	W_nmda = initW
-
+	printf("%g\n", initW)
 	on_ampa = 0
 	r_ampa = 0
 	W_ampa = initW
@@ -202,7 +202,7 @@ DERIVATIVE release {
 	} else if (W_ampa < Wmin) {
  		W_ampa = Wmin
 	}
-	printf("%g\n", W_ampa)
+	:printf("%g\n", initW)
 	g_nmda = gbar_nmda*r_nmda * facfactor
 	i_nmda = W_nmda*g_nmda*(v - Erev_nmda)*sfunc(v)
 
