@@ -1,0 +1,161 @@
+building 10 cell model at Thu Sep  9 11:56:21 CDT 2021
+numprocs=1
+making 1 exc_stim nodes
+making 1 inh_stim nodes
+connecting shock cell 0 to OLM cell 8
+connecting shock cell 0 to OLM cell 9
+connecting shock cell 0 to PV cell 10
+connecting shock cell 0 to PV cell 11
+not connecting0
+not connecting1
+connecting tone cell 0 to PN 2
+not connecting3
+connecting tone cell 0 to PN 4
+not connecting5
+connecting tone cell 0 to PN 6
+connecting tone cell 0 to PN 7
+connecting tone cell 0 to PV cell 10
+connecting tone cell 0 to PV cell 11
+connecting PN cells 0 and 1
+connecting PN cells 0 and 2
+connecting PN cells 0 and 3
+connecting PN cells 0 and 4
+connecting PN cells 0 and 5
+connecting PN cells 0 and 6
+connecting PN cells 0 and 7
+connecting PN cells 1 and 0
+connecting PN cells 1 and 2
+connecting PN cells 1 and 3
+connecting PN cells 1 and 4
+connecting PN cells 1 and 5
+connecting PN cells 1 and 6
+connecting PN cells 1 and 7
+connecting PN cells 2 and 0
+connecting PN cells 2 and 1
+connecting PN cells 2 and 3
+connecting PN cells 2 and 4
+connecting PN cells 2 and 5
+connecting PN cells 2 and 6
+connecting PN cells 2 and 7
+connecting PN cells 3 and 0
+connecting PN cells 3 and 1
+connecting PN cells 3 and 2
+connecting PN cells 3 and 4
+connecting PN cells 3 and 5
+connecting PN cells 3 and 6
+connecting PN cells 3 and 7
+connecting PN cells 4 and 0
+connecting PN cells 4 and 1
+connecting PN cells 4 and 2
+connecting PN cells 4 and 3
+connecting PN cells 4 and 5
+connecting PN cells 4 and 6
+connecting PN cells 4 and 7
+connecting PN cells 5 and 0
+connecting PN cells 5 and 1
+connecting PN cells 5 and 2
+connecting PN cells 5 and 3
+connecting PN cells 5 and 4
+connecting PN cells 5 and 6
+connecting PN cells 5 and 7
+connecting PN cells 6 and 0
+connecting PN cells 6 and 1
+connecting PN cells 6 and 2
+connecting PN cells 6 and 3
+connecting PN cells 6 and 4
+connecting PN cells 6 and 5
+connecting PN cells 6 and 7
+connecting PN cells 7 and 0
+connecting PN cells 7 and 1
+connecting PN cells 7 and 2
+connecting PN cells 7 and 3
+connecting PN cells 7 and 4
+connecting PN cells 7 and 5
+connecting PN cells 7 and 6
+connecting PN cell 0 to OLM cell 8
+connecting PN cell 0 to OLM cell 9
+connecting PN cell 1 to OLM cell 8
+connecting PN cell 1 to OLM cell 9
+connecting PN cell 2 to OLM cell 8
+connecting PN cell 2 to OLM cell 9
+connecting PN cell 3 to OLM cell 8
+connecting PN cell 3 to OLM cell 9
+connecting PN cell 4 to OLM cell 8
+connecting PN cell 4 to OLM cell 9
+connecting PN cell 5 to OLM cell 8
+connecting PN cell 5 to OLM cell 9
+connecting PN cell 6 to OLM cell 8
+connecting PN cell 6 to OLM cell 9
+connecting PN cell 7 to OLM cell 8
+connecting PN cell 7 to OLM cell 9
+connecting PN cell 0 to PV cell 10
+connecting PN cell 0 to PV cell 11
+connecting PN cell 1 to PV cell 10
+connecting PN cell 1 to PV cell 11
+connecting PN cell 2 to PV cell 10
+connecting PN cell 2 to PV cell 11
+connecting PN cell 3 to PV cell 10
+connecting PN cell 3 to PV cell 11
+connecting PN cell 4 to PV cell 10
+connecting PN cell 4 to PV cell 11
+connecting PN cell 5 to PV cell 10
+connecting PN cell 5 to PV cell 11
+connecting PN cell 6 to PV cell 10
+connecting PN cell 6 to PV cell 11
+connecting PN cell 7 to PV cell 10
+connecting PN cell 7 to PV cell 11
+connecting PV cell 10 to PV 11
+connecting PV cell 11 to PV 10
+connecting PV cell 10 to OLM cell 8
+connecting PV cell 10 to OLM cell 9
+connecting PV cell 11 to OLM cell 8
+connecting PV cell 11 to OLM cell 9
+connecting PV cells 10 to PN cell 0
+connecting PV cells 10 to PN cell 1
+connecting PV cells 10 to PN cell 2
+connecting PV cells 10 to PN cell 3
+connecting PV cells 10 to PN cell 4
+connecting PV cells 10 to PN cell 5
+connecting PV cells 10 to PN cell 6
+connecting PV cells 10 to PN cell 7
+connecting PV cells 11 to PN cell 0
+connecting PV cells 11 to PN cell 1
+connecting PV cells 11 to PN cell 2
+connecting PV cells 11 to PN cell 3
+connecting PV cells 11 to PN cell 4
+connecting PV cells 11 to PN cell 5
+connecting PV cells 11 to PN cell 6
+connecting PV cells 11 to PN cell 7
+connecting OLM cells 8 to PN cell 0
+connecting OLM cells 8 to PN cell 1
+connecting OLM cells 8 to PN cell 2
+connecting OLM cells 8 to PN cell 3
+connecting OLM cells 8 to PN cell 4
+connecting OLM cells 8 to PN cell 5
+connecting OLM cells 8 to PN cell 6
+connecting OLM cells 8 to PN cell 7
+connecting OLM cells 9 to PN cell 0
+connecting OLM cells 9 to PN cell 1
+connecting OLM cells 9 to PN cell 2
+connecting OLM cells 9 to PN cell 3
+connecting OLM cells 9 to PN cell 4
+connecting OLM cells 9 to PN cell 5
+connecting OLM cells 9 to PN cell 6
+connecting OLM cells 9 to PN cell 7
+connecting BG 0 to PN0
+connecting BG 1 to PN1
+connecting BG 2 to PN2
+connecting BG 3 to PN3
+connecting BG 4 to PN4
+connecting BG 5 to PN5
+connecting BG 6 to PN6
+connecting BG 7 to PN7
+connecting BG 8 to olm8
+connecting BG 9 to olm9
+connecting BG 10 to pv10
+connecting BG 11 to pv11
+stim time is set to 40000
+Number of background spikes for pn: 319
+Number of background spikes for pv: 654
+Number of background spikes for olm: 640
+Done building 10 cell model at Thu Sep  9 11:56:22 CDT 2021
