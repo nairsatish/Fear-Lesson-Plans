@@ -220,7 +220,7 @@ net.add_edges(source=shock.nodes(), target=net.nodes(pop_name='OLM'),
               syn_weight=1.0,
               target_sections=['somatic'],
               delay=0.1,
-              distance_range=[10.0, 11.0],
+              distance_range=[-10000, 10000],
               dynamics_params='shock2INT12.json',
               model_template=syn['shock2INT12.json']['level_of_detail'])
 
@@ -229,7 +229,7 @@ net.add_edges(source=shock.nodes(), target=net.nodes(pop_name='PV'),
               syn_weight=1.0,
               target_sections=['somatic'],
               delay=0.1,
-              distance_range=[10.0, 11.0],
+              distance_range=[-10000, 10000],
               dynamics_params='shock2INT12.json',
               model_template=syn['shock2INT12.json']['level_of_detail'])
 
@@ -238,9 +238,10 @@ net.add_edges(source=shock.nodes(), target=net.nodes(pop_name='PV'),
 net.add_edges(source=tone.nodes(), target=net.nodes(pop_name=['PyrA', 'PyrC']),
               connection_rule=tone2PN,
               syn_weight=1.0,
-              target_sections=['somatic'],
+              target_sections=['apical'],
+              sec_x=0.9,
               delay=0.1,
-              distance_range=[10.0, 11.0],
+              distance_range=[-10000, 10000],
               dynamics_params='tone2PN.json',
               model_template=syn['tone2PN.json']['level_of_detail'])
 
@@ -258,7 +259,7 @@ net.add_edges(source=tone.nodes(), target=net.nodes(pop_name='PV'),
               syn_weight=1.0,
               target_sections=['somatic'],
               delay=0.1,
-              distance_range=[10.0, 11.0],
+              distance_range=[-10000, 10000],
               dynamics_params='tone2INT.json',
               model_template=syn['tone2INT.json']['level_of_detail'])
 
@@ -266,18 +267,20 @@ net.add_edges(source=tone.nodes(), target=net.nodes(pop_name='PV'),
 net.add_edges(source=net.nodes(pop_name='PyrA'), target=net.nodes(pop_name=['PyrA', 'PyrC']),
               connection_rule=pyr_connection,
               syn_weight=1.0,
-              target_sections=['somatic'],
+              target_sections=['apical'],
+              sec_x=0.9,
               delay=0.1,
-              distance_range=[10.0, 11.0],
+              distance_range=[-10000, 10000],
               dynamics_params='PN2PN.json',
               model_template=syn['PN2PN.json']['level_of_detail'])
 
 net.add_edges(source=net.nodes(pop_name='PyrC'), target=net.nodes(pop_name=['PyrA', 'PyrC']),
               connection_rule=pyr_connection,
               syn_weight=1.0,
-              target_sections=['somatic'],
+              target_sections=['apical'],
+              sec_x=0.9,
               delay=0.1,
-              distance_range=[10.0, 11.0],
+              distance_range=[-10000, 10000],
               dynamics_params='PN2PN.json',
               model_template=syn['PN2PN.json']['level_of_detail'])
 
@@ -287,7 +290,7 @@ net.add_edges(source=net.nodes(pop_name=['PyrA', 'PyrC']), target=net.nodes(pop_
               syn_weight=1,
               target_sections=['somatic'],
               delay=0.1,
-              distance_range=[10.0, 11.0],
+              distance_range=[-10000, 10000],
               dynamics_params='PN2SOM.json',
               model_template=syn['PN2SOM.json']['level_of_detail'])
 
@@ -297,7 +300,7 @@ net.add_edges(source=net.nodes(pop_name=['PyrA', 'PyrC']), target=net.nodes(pop_
               syn_weight=1.0,
               target_sections=['somatic'],
               delay=0.1,
-              distance_range=[10.0, 11.0],
+              distance_range=[-10000, 10000],
               dynamics_params='PN2PV.json',
               model_template=syn['PN2PV.json']['level_of_detail'])
               #model_template=syn['AMPA_ExcToInh.json']['level_of_detail'])
@@ -310,7 +313,7 @@ net.add_edges(source=net.nodes(pop_name='PV'), target=net.nodes(pop_name='PV'),
               syn_weight=1.0,
               target_sections=['somatic'],
               delay=0.1,
-              distance_range=[10.0, 11.0],
+              distance_range=[-10000, 10000],
               dynamics_params='PV2PV.json',
               model_template=syn['PV2PV.json']['level_of_detail'])
 
@@ -319,7 +322,7 @@ net.add_edges(source=net.nodes(pop_name='PV'), target=net.nodes(pop_name='OLM'),
               syn_weight=1.0,
               target_sections=['somatic'],
               delay=0.1,
-              distance_range=[10.0, 11.0],
+              distance_range=[-10000, 10000],
               dynamics_params='PV2SOM.json',
               model_template=syn['PV2SOM.json']['level_of_detail'])
 
@@ -329,16 +332,17 @@ net.add_edges(source=net.nodes(pop_name='PV'), target=net.nodes(pop_name=['PyrA'
               syn_weight=1.0,
               target_sections=['somatic'],
               delay=0.1,
-              distance_range=[10.0, 11.0],
+              distance_range=[-10000, 10000],
               dynamics_params='PV2PN.json',
               model_template=syn['PV2PN.json']['level_of_detail'])
 
 net.add_edges(source=net.nodes(pop_name='OLM'), target=net.nodes(pop_name=['PyrA', 'PyrC']),
               connection_rule=OLM2PN,
               syn_weight=1.0,
-              target_sections=['basal'],
+              target_sections=['apical'],
+              sec_x=0.3,
               delay=0.1,
-              distance_range=[10.0, 11.0],
+              distance_range=[-10000, 10000],
               dynamics_params='SOM2PN.json',
               model_template=syn['SOM2PN.json']['level_of_detail'])
 
@@ -347,7 +351,7 @@ net.add_edges(source=backgroundPN.nodes(), target=net.nodes(pop_name=['PyrA', 'P
               syn_weight=1.0,
               target_sections=['somatic'],
               delay=0.1,
-              distance_range=[0.0, 300.0],
+              distance_range=[-10000, 10000],
               dynamics_params='AMPA_ExcToExc.json',
               model_template='exp2syn')
 
@@ -356,7 +360,7 @@ net.add_edges(source=backgroundOLM.nodes(), target=net.nodes(pop_name='OLM'),
               syn_weight=1.0,
               target_sections=['somatic'],
               delay=0.1,
-              distance_range=[0.0, 300.0],
+              distance_range=[-10000, 10000],
               dynamics_params='AMPA_ExcToInh.json',
               model_template='exp2syn')
 
@@ -365,7 +369,7 @@ net.add_edges(source=backgroundPV.nodes(), target=net.nodes(pop_name='PV'),
               syn_weight=1.0,
               target_sections=['somatic'],
               delay=0.1,
-              distance_range=[0.0, 300.0],
+              distance_range=[-10000, 10000],
               dynamics_params='AMPA_ExcToInh.json',
               model_template='exp2syn')
 
