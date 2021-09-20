@@ -14,8 +14,8 @@
     "delay": "0.1",
     "lambda1": "15",
     "lambda2": "0.01",
-    "threshold1": "0.55",
-    "threshold2": "0.55",
+    "threshold1": "0.50",
+    "threshold2": "0.50",
 	"fmax": "3",
 	"tauCa": "25"
 }

@@ -1,8 +1,0 @@
-2021-09-16 10:38:21,290 [INFO] Created log file
-2021-09-16 10:38:21,510 [INFO] Building cells.
-2021-09-16 10:38:21,535 [INFO] Building recurrent connections
-2021-09-16 10:38:21,767 [INFO] Building virtual cell stimulations for tone_spikes
-2021-09-16 10:38:21,787 [INFO] Building virtual cell stimulations for shock_spikes
-2021-09-16 10:38:21,800 [INFO] Building virtual cell stimulations for bg_pn_spikes
-2021-09-16 10:38:21,856 [INFO] Building virtual cell stimulations for bg_pv_spikes
-2021-09-16 10:38:21,940 [INFO] Building virtual cell stimulations for bg_olm_spikes
