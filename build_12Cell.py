@@ -393,7 +393,7 @@ backgroundPV.save_nodes(output_dir='network')
 backgroundOLM.build()
 backgroundOLM.save_nodes(output_dir='network')
 
-t_sim = 40000  # early extinction time is 232500 sensitization time is 40000
+t_sim = 232500  # early extinction time is 232500 sensitization time is 40000
 print("stim time is set to %s" % t_sim)
 
 
