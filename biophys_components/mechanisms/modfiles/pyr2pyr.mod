@@ -129,7 +129,7 @@ INITIAL {
 	on_nmda = 0
 	r_nmda = 0
 	W_nmda = initW
-	printf("%g\n", initW)
+	:printf("%g\n", initW)
 	on_ampa = 0
 	r_ampa = 0
 	W_ampa = initW

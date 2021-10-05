@@ -6,7 +6,7 @@
   "target_simulator": "NEURON",
   "run": {
     "tstart": 0.0,
-    "tstop": 232500,
+    "tstop": 40000,
     "dt": 0.1,
     "dL": 20.0,
     "spike_threshold": -15.0,
@@ -17,18 +17,6 @@
     "v_init": -70.0
   },
   "inputs": {
-    "tone_spikes": {
-      "input_type": "spikes",
-      "module": "csv",
-      "input_file": "$BASE_DIR/12_cell_inputs/tone_spikes.csv",
-      "node_set": "tone"
-    },
-    "shock_spikes": {
-      "input_type": "spikes",
-      "module": "csv",
-      "input_file": "$BASE_DIR/12_cell_inputs/shock_spikes.csv",
-      "node_set": "shock"
-    },
     "bg_pn_spikes": {
       "input_type": "spikes",
       "module": "sonata",
