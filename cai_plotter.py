@@ -17,7 +17,7 @@ plt.plot(int2pyr)
 plt.title("int2pyr cai")
 plt.xlabel('time')
 plt.ylabel('cai')
-
+"""
 pyr2pyr = get_array('output/syns_pyr2pyr_cai.h5')
 plot2 = plt.figure(2)
 plt.plot(pyr2pyr)
@@ -31,6 +31,6 @@ plt.plot(pyr2int)
 plt.title("pyr2int cai")
 plt.xlabel('time')
 plt.ylabel('cai')
-
+"""
 
 plt.show()
