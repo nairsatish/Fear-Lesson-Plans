@@ -1,6 +1,6 @@
 {
     "level_of_detail": "interD2pyrD_STFD",
-    "initW": "5",
-    "threshold1": "0.55",
-    "threshold2": "0.7"
+    "initW": "6",
+    "threshold1": "0.05",
+    "threshold2": "0.75"
 }
