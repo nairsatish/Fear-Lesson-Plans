@@ -1,8 +1,36 @@
 from bmtk.analyzer.compartment import plot_traces
 import matplotlib.pyplot as plt
+import h5py
 
-#_ = plot_traces(config_file='simulation_configWEIGHTS.json', report_path='output/syns_cai.h5', title='tone2pyr')
-_ = plot_traces(config_file='simulation_configWEIGHTS.json', report_path='output/syns_pyr2int_cai.h5', title='pyr2int',show=False)
-_ = plot_traces(config_file='simulation_configWEIGHTS.json', report_path='output/syns_pyr2pyr_cai.h5', title='pyr2pyr',show=False)
-_ = plot_traces(config_file='simulation_configWEIGHTS.json', report_path='output/syns_int2pyr_cai.h5', title='int2pyr',show=False)
+def get_array(path):
+    try:
+        array = h5py.File(path,'r')
+        array = (array['report']['biophysical']['data'][:])
+    except:
+        pass
+    return array
+
+
+int2pyr = get_array('output/syns_int2pyr_cai.h5')
+plot2 = plt.figure(2)
+plt.plot(int2pyr)
+plt.title("int2pyr cai")
+plt.xlabel('time')
+plt.ylabel('cai')
+
+pyr2pyr = get_array('output/syns_pyr2pyr_cai.h5')
+plot2 = plt.figure(2)
+plt.plot(pyr2pyr)
+plt.title("pyr2pyr cai")
+plt.xlabel('time')
+plt.ylabel('cai')
+
+pyr2int = get_array('output/syns_pyr2int_cai.h5')
+plot2 = plt.figure(2)
+plt.plot(pyr2int)
+plt.title("pyr2int cai")
+plt.xlabel('time')
+plt.ylabel('cai')
+
+
 plt.show()

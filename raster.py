@@ -3,6 +3,7 @@ from bmtk.analyzer.spike_trains import plot_raster, plot_rates_boxplot
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy
+import h5py
 
 
 #_ = plot_raster(config_file='simulation_config_W+Cai.json', group_by='pop_name', title='raster')
