@@ -10,7 +10,7 @@
     "Cdur_nmda": "16.7650",
     "gbar_nmda": "0.0005",
     "Erev_nmda": "0",
-    "initW": "13",
+    "initW": "10",
     "delay": "0.1",
     "lambda1": "15",
     "lambda2": "0.01",

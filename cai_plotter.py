@@ -12,25 +12,37 @@ def get_array(path):
 
 
 int2pyr = get_array('output/syns_int2pyr_cai.h5')
-plot2 = plt.figure(2)
+int2pyr[:] = [x * 1000 for x in int2pyr]
+plot1 = plt.figure(1)
 plt.plot(int2pyr)
 plt.title("int2pyr cai")
 plt.xlabel('time')
-plt.ylabel('cai')
-"""
+plt.ylabel('cai (uM)')
+
 pyr2pyr = get_array('output/syns_pyr2pyr_cai.h5')
+pyr2pyr[:] = [x * 1000 for x in pyr2pyr]
 plot2 = plt.figure(2)
 plt.plot(pyr2pyr)
 plt.title("pyr2pyr cai")
 plt.xlabel('time')
-plt.ylabel('cai')
+plt.ylabel('cai (uM)')
 
 pyr2int = get_array('output/syns_pyr2int_cai.h5')
-plot2 = plt.figure(2)
+pyr2int[:] = [x * 1000 for x in pyr2int]
+plot3 = plt.figure(3)
 plt.plot(pyr2int)
 plt.title("pyr2int cai")
 plt.xlabel('time')
-plt.ylabel('cai')
+plt.ylabel('cai (uM)')
 """
+int2int = get_array('output/syns_int2int_cai.h5')
+int2int[:] = [x * 1000 for x in int2int]
+plot4 = plt.figure(4)
+plt.plot(int2int)
+plt.title("int2int cai")
+plt.xlabel('time')
+plt.ylabel('cai (uM)')
+"""
+_=plot_traces(report_path='output/syns_int2int_cai.h5', show=False)
 
 plt.show()
