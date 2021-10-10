@@ -4,6 +4,11 @@ from bmtk.utils.sim_setup import build_env_bionet
 import numpy as np
 import sys
 import synapses
+import random
+
+seed = 967
+random.seed(seed)
+np.random.seed(seed)
 
 synapses.load()
 syn = synapses.syn_params_dicts()
@@ -98,6 +103,15 @@ def one_to_all_shock2PV(source, target):
     tid = target.node_id
     print("connecting shock cell {} to PV cell {}".format(sid, tid))
     return 1
+
+def shock2PN(source, target):
+    sid = source.node_id
+    tid = target.node_id
+    if (tid == 0 or tid == 3 or tid == 4 or tid == 6 or tid==7):
+        print("connecting shock cell {} to PN {}".format(sid, tid))
+        return 1
+    else:
+        return 0
 
 def tone2PN(source, target):
     sid = source.node_id
@@ -349,7 +363,8 @@ net.add_edges(source=net.nodes(pop_name='OLM'), target=net.nodes(pop_name=['PyrA
 net.add_edges(source=backgroundPN.nodes(), target=net.nodes(pop_name=['PyrA', 'PyrC']),
               connection_rule=BG_to_PN,
               syn_weight=1.0,
-              target_sections=['somatic'],
+              target_sections=['apical'],
+              sec_x=0.9,
               delay=0.1,
               distance_range=[-10000, 10000],
               dynamics_params='AMPA_ExcToExc.json',
@@ -421,7 +436,7 @@ print('Number of background spikes for pn: {}'.format(psg.n_spikes()))
 
 psg = PoissonSpikeGenerator(population='bg_pv')
 psg.add(node_ids=range(2),  # need same number as cells
-        firing_rate=8,    # 8 spikes every 1 second Hz
+        firing_rate=4,    # 8 spikes every 1 second Hz
         times=(0.0, t_sim/1000))  # time is in seconds for some reason
 psg.to_sonata('12_cell_inputs/bg_pv_spikes.h5')
 
@@ -429,7 +444,7 @@ print('Number of background spikes for pv: {}'.format(psg.n_spikes()))
 
 psg = PoissonSpikeGenerator(population='bg_olm')
 psg.add(node_ids=range(2),  # need same number as cells
-        firing_rate=8,    # 8 spikes every 1 second Hz
+        firing_rate=4,    # 8 spikes every 1 second Hz
         times=(0.0, t_sim/1000))  # time is in seconds for some reason
 psg.to_sonata('12_cell_inputs/bg_olm_spikes.h5')
 
