@@ -6,7 +6,7 @@ from bmtk.simulator.bionet.pyfunction_cache import add_synapse_model
 from neuron import h
 import random
 
-def pyrD2interD_STFD(syn_params, sec_x, sec_id):
+def pyr2int(syn_params, sec_x, sec_id):
     """Create a pyr2int synapse
     :param syn_params: parameters of a synapse
     :param sec_x: normalized distance along the section
@@ -81,7 +81,7 @@ def pyrD2interD_STFD(syn_params, sec_x, sec_id):
     
     return lsyn
 
-def interD2pyrD_STFD(syn_params, sec_x, sec_id):
+def int2pyr(syn_params, sec_x, sec_id):
     """Create a int2pyr synapse
     :param syn_params: parameters of a synapse
     :param sec_x: normalized distance along the section
@@ -89,7 +89,7 @@ def interD2pyrD_STFD(syn_params, sec_x, sec_id):
     :return: NEURON synapse object
     """
 
-    lsyn = h.int2pyrKIM(sec_x, sec=sec_id)
+    lsyn = h.int2pyrFENG(sec_x, sec=sec_id)
 
     if syn_params.get('AlphaTmax_ampa'):
         lsyn.AlphaTmax_ampa = float(syn_params['AlphaTmax_ampa']) # par.x(21)
@@ -359,7 +359,7 @@ def Shock2Int(syn_params, sec_x, sec_id):
 
     return lsyn
 
-def pyrD2pyrD_STFD(syn_params, sec_x, sec_id):
+def pyr2pyr(syn_params, sec_x, sec_id):
     lsyn = h.pyr2pyrKIM(sec_x, sec=sec_id)
 
     if syn_params.get('initW'):
@@ -371,7 +371,7 @@ def pyrD2pyrD_STFD(syn_params, sec_x, sec_id):
 
     return lsyn
 
-def interD2interD_STFD(syn_params, sec_x, sec_id):
+def int2int(syn_params, sec_x, sec_id):
     """Create a pyr2int synapse
     :param syn_params: parameters of a synapse
     :param sec_x: normalized distance along the section
@@ -456,17 +456,17 @@ def load():
     add_synapse_model(Shock2Int, 'shock2int', overwrite=False)
     add_synapse_model(Shock2Int, overwrite=False)
 
-    add_synapse_model(pyrD2pyrD_STFD, 'pyrD2pyrD_STFD', overwrite=False)
-    add_synapse_model(pyrD2pyrD_STFD, overwrite=False)
+    add_synapse_model(pyr2pyr, 'pyr2pyr', overwrite=False)
+    add_synapse_model(pyr2pyr, overwrite=False)
 
-    add_synapse_model(pyrD2interD_STFD, 'pyrD2interD_STFD', overwrite=False)
-    add_synapse_model(pyrD2interD_STFD, overwrite=False)
+    add_synapse_model(pyr2int, 'pyr2int', overwrite=False)
+    add_synapse_model(pyr2int, overwrite=False)
 
-    add_synapse_model(interD2interD_STFD, 'interD2interD_STFD', overwrite=False)
-    add_synapse_model(interD2interD_STFD, overwrite=False)
+    add_synapse_model(int2int, 'int2int', overwrite=False)
+    add_synapse_model(int2int, overwrite=False)
 
-    add_synapse_model(interD2pyrD_STFD, 'interD2pyrD_STFD', overwrite=False)
-    add_synapse_model(interD2pyrD_STFD, overwrite=False)
+    add_synapse_model(int2pyr, 'int2pyr', overwrite=False)
+    add_synapse_model(int2pyr, overwrite=False)
     return
 
 def syn_params_dicts(syn_dir='biophys_components/synaptic_models'):

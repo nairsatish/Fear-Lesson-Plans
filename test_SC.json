@@ -22,12 +22,6 @@
       "module": "sonata",
       "input_file": "$BASE_DIR/12_cell_inputs/bg_pn_spikes.h5",
       "node_set": "bg_pn"
-    },
-    "bg_olm_spikes": {
-      "input_type": "spikes",
-      "module": "sonata",
-      "input_file": "$BASE_DIR/12_cell_inputs/bg_olm_spikes.h5",
-      "node_set": "bg_olm"
     }
   },
   "output": {
@@ -41,7 +35,7 @@
       "variable_name": "W",
       "module": "netcon_report",
       "sections": "all",
-      "syn_type": "int2pyrKIM",
+      "syn_type": "int2pyrFENG",
       "file_name": "syns_int2pyr.h5"
     },
     "syn_report4.5": {
@@ -49,8 +43,24 @@
       "variable_name": "capoolcon",
       "module": "netcon_report",
       "sections": "all",
-      "syn_type": "int2pyrKIM",
+      "syn_type": "int2pyrFENG",
       "file_name": "syns_int2pyr_cai.h5"
+    },
+    "syn_report5": {
+      "cells": "all",
+      "variable_name": "W",
+      "module": "netcon_report",
+      "sections": "all",
+      "syn_type": "pyr2intKIM",
+      "file_name": "syns_pyr2int.h5"
+    },
+    "syn_report5.5": {
+      "cells": "all",
+      "variable_name": "capoolcon",
+      "module": "netcon_report",
+      "sections": "all",
+      "syn_type": "pyr2intKIM",
+      "file_name": "syns_pyr2int_cai.h5"
     },
     "v_report": {
       "variable_name": "v",
