@@ -1,3 +1,0 @@
-edge_type_id target_query source_query distance_range syn_weight model_template delay dynamics_params target_sections
-100 pop_name=='OLM' * "[-10000, 10000]" 1.0 shock2int 0.1 shock2INT12.json ['somatic']
-101 pop_name=='PV' * "[-10000, 10000]" 1.0 shock2int 0.1 shock2INT12.json ['somatic']

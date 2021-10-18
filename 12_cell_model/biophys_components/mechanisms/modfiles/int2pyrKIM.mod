@@ -160,10 +160,6 @@ DERIVATIVE release {
 			on_gaba = 0
 		}
 	}
-	if(on_gaba > 0 )
-		{
-			printf("SYN IS ON, ON_GABA is 1")
-		}
 	r_gaba' = AlphaTmax_gaba*on_gaba*(1-r_gaba)-Beta_gaba*r_gaba
 
 	dW_gaba = eta(capoolcon)*(lambda1*omega(capoolcon, threshold1, threshold2)-lambda2*GAP1(GAPstart1, GAPstop1)*W)*dt

@@ -1,2 +1,0 @@
-edge_type_id target_query source_query distance_range syn_weight model_template delay dynamics_params target_sections
-113 pop_name=='OLM' * "[-10000, 10000]" 1.0 exp2syn 0.1 AMPA_ExcToInh.json ['somatic']

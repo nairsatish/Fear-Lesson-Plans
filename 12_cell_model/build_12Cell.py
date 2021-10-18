@@ -425,6 +425,14 @@ print("stim time is set to %s" % t_sim)
 #                 config_file='config.json',
 #                 compile_mechanisms=False)
 
+psg = PoissonSpikeGenerator(population='tone')
+psg.add(node_ids=range(1),  # need same number as cells
+        firing_rate=2,    # 1 spike every 1 second Hz
+        times=(0.0, t_sim/1000))  # time is in seconds for some reason
+psg.to_sonata('12_cell_inputs/tone_background.h5')
+
+print('Number of background spikes for tone: {}'.format(psg.n_spikes()))
+
 psg = PoissonSpikeGenerator(population='bg_pn')
 psg.add(node_ids=range(8),  # need same number as cells
         firing_rate=1,    # 1 spike every 1 second Hz

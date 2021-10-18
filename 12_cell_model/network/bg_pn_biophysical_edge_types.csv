@@ -1,2 +1,0 @@
-edge_type_id target_query source_query distance_range syn_weight model_template delay sec_x dynamics_params target_sections
-112 "pop_name=='['PyrA', 'PyrC']'" * "[-10000, 10000]" 1.0 exp2syn 0.1 0.9 AMPA_ExcToExc.json ['apical']
