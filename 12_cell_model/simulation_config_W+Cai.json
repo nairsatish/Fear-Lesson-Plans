@@ -1,0 +1,154 @@
+{
+  "manifest": {
+    "$BASE_DIR": "${configdir}",
+    "$OUTPUT_DIR": "$BASE_DIR/output"
+  },
+  "target_simulator": "NEURON",
+  "run": {
+    "tstart": 0.0,
+    "tstop": 232500,
+    "dt": 0.1,
+    "dL": 20.0,
+    "spike_threshold": -15.0,
+    "nsteps_block": 5000
+  },
+  "conditions": {
+    "celsius": 34.0,
+    "v_init": -70.0
+  },
+  "inputs": {
+    "tone_spikes": {
+      "input_type": "spikes",
+      "module": "csv",
+      "input_file": "$BASE_DIR/12_cell_inputs/tone_spikes.csv",
+      "node_set": "tone"
+    },
+    "shock_spikes": {
+      "input_type": "spikes",
+      "module": "csv",
+      "input_file": "$BASE_DIR/12_cell_inputs/shock_spikes.csv",
+      "node_set": "shock"
+    },
+    "bg_pn_spikes": {
+      "input_type": "spikes",
+      "module": "sonata",
+      "input_file": "$BASE_DIR/12_cell_inputs/bg_pn_spikes.h5",
+      "node_set": "bg_pn"
+    },
+    "bg_pv_spikes": {
+      "input_type": "spikes",
+      "module": "sonata",
+      "input_file": "$BASE_DIR/12_cell_inputs/bg_pv_spikes.h5",
+      "node_set": "bg_pv"
+    },
+    "bg_olm_spikes": {
+      "input_type": "spikes",
+      "module": "sonata",
+      "input_file": "$BASE_DIR/12_cell_inputs/bg_olm_spikes.h5",
+      "node_set": "bg_olm"
+    }
+  },
+  "output": {
+    "log_file": "log.txt",
+    "output_dir": "$OUTPUT_DIR",
+    "spikes_file": "spikes.h5"
+  },
+  "reports": {
+    "syn_report1": {
+      "cells": "all",
+      "variable_name": "W",
+      "module": "netcon_report",
+      "sections": "all",
+      "syn_type": "tone2pyr",
+      "file_name": "syns_tone2pyr.h5"
+    },
+    "syn_report2": {
+      "cells": "all",
+      "variable_name": "capoolcon",
+      "module": "netcon_report",
+      "sections": "all",
+      "syn_type": "tone2pyr",
+      "file_name": "syns_cai.h5"
+    },
+    "syn_report3": {
+      "cells": "all",
+      "variable_name": "W",
+      "module": "netcon_report",
+      "sections": "all",
+      "syn_type": "pyr2pyrKIM",
+      "file_name": "syns_pyr2pyr.h5"
+    },
+    "syn_report3.5": {
+      "cells": "all",
+      "variable_name": "capoolcon",
+      "module": "netcon_report",
+      "sections": "all",
+      "syn_type": "pyr2pyrKIM",
+      "file_name": "syns_pyr2pyr_cai.h5"
+    },
+    "syn_report4": {
+      "cells": "all",
+      "variable_name": "W",
+      "module": "netcon_report",
+      "sections": "all",
+      "syn_type": "int2pyrKIM",
+      "file_name": "syns_int2pyr.h5"
+    },
+    "syn_report4.5": {
+      "cells": "all",
+      "variable_name": "capoolcon",
+      "module": "netcon_report",
+      "sections": "all",
+      "syn_type": "int2pyrKIM",
+      "file_name": "syns_int2pyr_cai.h5"
+    },
+    "syn_report5": {
+      "cells": "all",
+      "variable_name": "W",
+      "module": "netcon_report",
+      "sections": "all",
+      "syn_type": "pyr2intKIM",
+      "file_name": "syns_pyr2int.h5"
+    },
+    "syn_report5.5": {
+      "cells": "all",
+      "variable_name": "capoolcon",
+      "module": "netcon_report",
+      "sections": "all",
+      "syn_type": "pyr2intKIM",
+      "file_name": "syns_pyr2int_cai.h5"
+    },
+    "syn_report9": {
+      "cells": "all",
+      "variable_name": "W",
+      "module": "netcon_report",
+      "sections": "all",
+      "syn_type": "int2intFENG",
+      "file_name": "syns_int2int.h5"
+    },
+    "syn_report9.5": {
+      "cells": "all",
+      "variable_name": "capoolcon",
+      "module": "netcon_report",
+      "sections": "all",
+      "syn_type": "int2intFENG",
+      "file_name": "syns_int2int_cai.h5"
+    },
+    "syn_report6": {
+      "cells": "all",
+      "variable_name": "W",
+      "module": "netcon_report",
+      "sections": "all",
+      "syn_type": "shock2int",
+      "file_name": "syns_shock2int.h5"
+    },
+    "v_report": {
+      "variable_name": "v",
+      "cells": "all",
+      "module": "membrane_report",
+      "sections": "soma"
+    }
+  },
+  "node_sets_file": "$BASE_DIR/node_sets.json",
+  "network": "$BASE_DIR/circuit_config.json"
+}

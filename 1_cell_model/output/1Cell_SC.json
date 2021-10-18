@@ -1,0 +1,72 @@
+{
+  "target_simulator": "NEURON",
+  "run": {
+    "tstart": 0.0,
+    "tstop": 5000,
+    "dt": 0.1,
+    "dL": 20.0,
+    "spike_threshold": -15.0,
+    "nsteps_block": 5000
+  },
+  "conditions": {
+    "celsius": 34.0,
+    "v_init": -70.0
+  },
+  "inputs": {
+    "current_clamp": {
+      "input_type": "current_clamp",
+      "module": "IClamp",
+      "node_set": "all",
+      "gids": [
+        0
+      ],
+      "amp": 0.5,
+      "delay": 200.0,
+      "duration": 200.0
+    }
+  },
+  "output": {
+    "log_file": "/Users/gregglickert/Documents/GitHub/PlasticityToy/1_cell_model/output/log.txt",
+    "output_dir": "/Users/gregglickert/Documents/GitHub/PlasticityToy/1_cell_model/output",
+    "spikes_file": "/Users/gregglickert/Documents/GitHub/PlasticityToy/1_cell_model/output/spikes.h5"
+  },
+  "reports": {
+    "v_report": {
+      "variable_name": "v",
+      "cells": "all",
+      "module": "membrane_report",
+      "sections": "soma"
+    }
+  },
+  "node_sets_file": "/Users/gregglickert/Documents/GitHub/PlasticityToy/1_cell_model/node_sets.json",
+  "network": "/Users/gregglickert/Documents/GitHub/PlasticityToy/1_cell_model/1Cell_CC.json",
+  "config_path": "/Users/gregglickert/Documents/GitHub/PlasticityToy/1_cell_model/1Cell_SC.json",
+  "config_dir": "/Users/gregglickert/Documents/GitHub/PlasticityToy/1_cell_model",
+  "components": {
+    "mechanisms_dir": "/Users/gregglickert/Documents/GitHub/PlasticityToy/1_cell_model/biophys_components/mechanisms",
+    "morphologies_dir": "/Users/gregglickert/Documents/GitHub/PlasticityToy/1_cell_model/biophys_components/morphologies",
+    "__pycache___dir": "/Users/gregglickert/Documents/GitHub/PlasticityToy/1_cell_model/biophys_components/__pycache__",
+    "synaptic_models_dir": "/Users/gregglickert/Documents/GitHub/PlasticityToy/1_cell_model/biophys_components/synaptic_models",
+    "biophysical_neuron_models_dir": "/Users/gregglickert/Documents/GitHub/PlasticityToy/1_cell_model/biophys_components/biophysical_neuron_models",
+    "templates_dir": "/Users/gregglickert/Documents/GitHub/PlasticityToy/1_cell_model/biophys_components/templates",
+    "point_neuron_models_dir": "/Users/gregglickert/Documents/GitHub/PlasticityToy/1_cell_model/biophys_components/point_neuron_models"
+  },
+  "networks": {
+    "nodes": [
+      {
+        "node_types_file": "/Users/gregglickert/Documents/GitHub/PlasticityToy/1_cell_model/network/biophysical_node_types.csv",
+        "nodes_file": "/Users/gregglickert/Documents/GitHub/PlasticityToy/1_cell_model/network/biophysical_nodes.h5"
+      }
+    ],
+    "edges": [],
+    "gap_juncs": []
+  },
+  "node_sets": {
+    "biophysical_nodes": {
+      "model_type": "biophysical"
+    },
+    "point_nodes": {
+      "model_type": "point_process"
+    }
+  }
+}

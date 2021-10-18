@@ -1,0 +1,2 @@
+edge_type_id target_query source_query distance_range dynamics_params target_sections model_template syn_weight delay
+102 pop_name=='PV' * "[-10000, 10000]" AMPA_ExcToInh.json ['somatic'] exp2syn 1.0 0.1

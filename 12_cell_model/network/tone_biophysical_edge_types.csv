@@ -1,0 +1,3 @@
+edge_type_id target_query source_query distance_range syn_weight model_template delay sec_x dynamics_params target_sections
+102 "pop_name=='['PyrA', 'PyrC']'" * "[-10000, 10000]" 1.0 tone2pyr 0.1 0.9 tone2PN.json ['apical']
+103 pop_name=='PV' * "[-10000, 10000]" 1.0 tone2pyr 0.1 NULL tone2INT.json ['somatic']

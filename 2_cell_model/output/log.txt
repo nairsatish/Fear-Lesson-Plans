@@ -1,0 +1,18 @@
+2021-10-15 18:32:11,358 [INFO] Created log file
+2021-10-15 18:32:11,792 [INFO] Building cells.
+2021-10-15 18:32:11,810 [INFO] Building recurrent connections
+2021-10-15 18:32:11,824 [INFO] Building virtual cell stimulations for bg_pn_spikes
+2021-10-15 18:32:11,893 [INFO] Running simulation for 5000.000 ms with the time step 0.100 ms
+2021-10-15 18:32:11,894 [INFO] Starting timestep: 0 at t_sim: 0.000 ms
+2021-10-15 18:32:11,894 [INFO] Block save every 5000 steps
+2021-10-15 18:32:13,137 [INFO]     step:5000 t_sim:500.00 ms
+2021-10-15 18:32:14,346 [INFO]     step:10000 t_sim:1000.00 ms
+2021-10-15 18:32:15,502 [INFO]     step:15000 t_sim:1500.00 ms
+2021-10-15 18:32:16,651 [INFO]     step:20000 t_sim:2000.00 ms
+2021-10-15 18:32:17,795 [INFO]     step:25000 t_sim:2500.00 ms
+2021-10-15 18:32:18,927 [INFO]     step:30000 t_sim:3000.00 ms
+2021-10-15 18:32:20,071 [INFO]     step:35000 t_sim:3500.00 ms
+2021-10-15 18:32:21,200 [INFO]     step:40000 t_sim:4000.00 ms
+2021-10-15 18:32:22,359 [INFO]     step:45000 t_sim:4500.00 ms
+2021-10-15 18:32:23,501 [INFO]     step:50000 t_sim:5000.00 ms
+2021-10-15 18:32:23,522 [INFO] Simulation completed in 11.63 seconds 

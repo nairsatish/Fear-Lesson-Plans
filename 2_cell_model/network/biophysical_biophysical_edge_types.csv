@@ -1,0 +1,3 @@
+edge_type_id target_query source_query distance_range dynamics_params target_sections model_template syn_weight sec_x delay
+100 pop_name=='PV' pop_name=='PyrC' "[-10000, 10000]" PN2PV.json ['basal'] pyr2int 1 NULL 0.1
+101 pop_name=='PyrC' pop_name=='PV' "[-10000, 10000]" PV2PN.json ['apical'] int2pyr 1.0 0.3 0.1
