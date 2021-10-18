@@ -55,6 +55,7 @@ PARAMETER {
 	fmax = 2 : 4 : 3
 	fmin = .8
 
+
 }
 
 ASSIGNED {
@@ -97,7 +98,7 @@ INITIAL {
 	on_ampa = 0
 	r_ampa = 0
 	W = initW
-	:printf("%g\n", W)
+
 	t0 = -1
 
 	Wmax = fmax*initW
@@ -168,19 +169,15 @@ DERIVATIVE release {
 	ICa = P0*g_nmda*(v - eca)*sfunc(v)
 	capoolcon'= -fCa*Afactor*ICa + (Cainf-capoolcon)/tauCa
 }
-
 NET_RECEIVE(dummy_weight) {
 	t0 = t
 }
-
 :::::::::::: FUNCTIONs and PROCEDUREs ::::::::::::
-
 FUNCTION sfunc (v (mV)) {
 	UNITSOFF
 	sfunc = 1/(1+0.33*exp(-0.06*v))
 	UNITSON
 }
-
 FUNCTION eta(Cani (mM)) {
 	LOCAL taulearn, P1, P2, P4, Cacon
 	P1 = 0.1
@@ -190,7 +187,6 @@ FUNCTION eta(Cani (mM)) {
 	taulearn = P1/(P2+Cacon*Cacon*Cacon)+P4
 	eta = 1/taulearn*0.001
 }
-
 FUNCTION omega(Cani (mM), threshold1 (uM), threshold2 (uM)) {
 	LOCAL r, mid, Cacon
 	Cacon = Cani*1e3
