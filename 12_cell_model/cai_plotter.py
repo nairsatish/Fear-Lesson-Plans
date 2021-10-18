@@ -34,15 +34,14 @@ plt.plot(pyr2int)
 plt.title("pyr2int cai")
 plt.xlabel('time')
 plt.ylabel('cai (uM)')
-"""
-int2int = get_array('output/syns_int2int_cai.h5')
-int2int[:] = [x * 1000 for x in int2int]
-plot4 = plt.figure(4)
-plt.plot(int2int)
-plt.title("int2int cai")
+
+tone2pyr = get_array('output/syns_tone2pyr_cai.h5')
+pyr2int[:] = [x * 1000 for x in pyr2int]
+plot3 = plt.figure(4)
+plt.plot(tone2pyr)
+plt.title("tone2pyr cai")
 plt.xlabel('time')
 plt.ylabel('cai (uM)')
-"""
-_=plot_traces(report_path='output/syns_int2int_cai.h5', show=False)
+
 
 plt.show()

@@ -41,13 +41,12 @@ plt.title("pyr2int weight")
 plt.xlabel('time')
 plt.ylabel('Weight')
 
-
-int2pyr = get_array('output/syns_int2pyr_cai.h5')
-plot2 = plt.figure(1)
-plt.plot(int2pyr)
-plt.title("int2pyr cai")
+tone2pyr = get_array('output/syns_tone2pyr.h5')
+plot4 = plt.figure(5)
+plt.plot(tone2pyr)
+plt.title("tone2pyr weight")
 plt.xlabel('time')
-plt.ylabel('cai')
+plt.ylabel('Weight')
 
 plt.show()
 
