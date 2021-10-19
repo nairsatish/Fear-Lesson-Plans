@@ -17,12 +17,6 @@
     "v_init": -70.0
   },
   "inputs": {
-    "bg_pn_spikes": {
-      "input_type": "spikes",
-      "module": "sonata",
-      "input_file": "$BASE_DIR/2_cell_inputs/bg_pn_spikes.h5",
-      "node_set": "bg_pn"
-    }
   },
   "output": {
     "log_file": "log.txt",

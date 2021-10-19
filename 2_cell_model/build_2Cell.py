@@ -71,40 +71,40 @@ net.add_edges(source=net.nodes(pop_name='PyrC'), target=net.nodes(pop_name='PV')
               dynamics_params='PN2PV.json',
               model_template=syn['PN2PV.json']['level_of_detail'])
 
-net.add_edges(source=net.nodes(pop_name='PV'), target=net.nodes(pop_name='PyrC'),
+conn = net.add_edges(source=net.nodes(pop_name='PV'), target=net.nodes(pop_name='PyrC'),
               connection_rule=pv2pn,
               syn_weight=1.0,
-              target_sections=['apical'],
-              sec_x=0.3,
               delay=0.1,
               distance_range=[-10000, 10000],
               dynamics_params='PV2PN.json',
               model_template=syn['PV2PN.json']['level_of_detail'])
 
-net.add_edges(source=backgroundPV.nodes(), target=net.nodes(pop_name='PV'),
-              connection_rule=1,
-              syn_weight=1.0,
-              target_sections=['somatic'],
-              delay=0.1,
-              distance_range=[-10000, 10000],
-              dynamics_params='AMPA_ExcToInh.json',
-              model_template='exp2syn')
+conn.add_properties(['sec_id', 'sec_x'], rule=(2, 0.9), dtypes=[np.int32, np.float]) # places syn on apic at 0.9
 
-net.add_edges(source=backgroundPN.nodes(), target=net.nodes(pop_name='PyrC'),
-              connection_rule=bg2pn,
-              syn_weight=1.0,
-              target_sections=['apical'],
-              sec_x=0.9,
-              delay=0.1,
-              distance_range=[-10000, 10000],
-              dynamics_params='AMPA_ExcToExc.json',
-              model_template='exp2syn')
+#net.add_edges(source=backgroundPV.nodes(), target=net.nodes(pop_name='PV'),
+#              connection_rule=1,
+#              syn_weight=1.0,
+#              target_sections=['somatic'],
+#              delay=0.1,
+#              distance_range=[-10000, 10000],
+#              dynamics_params='AMPA_ExcToInh.json',
+#              model_template='exp2syn')
+
+#net.add_edges(source=backgroundPN.nodes(), target=net.nodes(pop_name='PyrC'),
+#              connection_rule=bg2pn,
+#              syn_weight=1.0,
+#              target_sections=['apical'],
+#              sec_x=0.9,
+#              delay=0.1,
+#              distance_range=[-10000, 10000],
+#              dynamics_params='AMPA_ExcToExc.json',
+#              model_template='exp2syn')
 
 net.build()
 net.save(output_dir='network')
 
-backgroundPN.build()
-backgroundPN.save_nodes(output_dir='network')
+#backgroundPN.build()
+#backgroundPN.save_nodes(output_dir='network')
 
 backgroundPV.build()
 backgroundPV.save_nodes(output_dir='network')

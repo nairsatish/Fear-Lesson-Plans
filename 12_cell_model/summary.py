@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 from bmtk.analyzer.spike_trains import plot_raster, plot_rates_boxplot
+from bmtk.analyzer.compartment import plot_traces
 import h5py
 
 def get_array(path):
@@ -38,7 +39,7 @@ def plot_cai():
     pyr2int = get_array('output/syns_pyr2int_cai.h5')
     pyr2int[:] = [x * 1000 for x in pyr2int]
     tone2pyr = get_array('output/syns_cai.h5')
-    tone2pyr[:] = [x * 1000 for x in tone2pyr]
+    #tone2pyr[:] = [x * 1000 for x in tone2pyr]
 
 
     fig, axs = plt.subplots(2,2, sharex=True, tight_layout=True)
@@ -55,9 +56,10 @@ def plot_cai():
     plt.show()
 
 
-#plot_syn_weight()
-#plot_cai()
+plot_syn_weight()
+plot_cai()
 
-time = (0, 40000) # full time is 232500 sense period is 40000
+time = (0, 80000)  # full time is 232500 sense period is 40000
 plot_raster = plot_raster(config_file='simulation_config_W+Cai.json', group_by='pop_name', title='raster', times=time)
 plot_boxplot = plot_rates_boxplot(config_file='simulation_config_W+Cai.json', group_by='pop_name', title='boxplot',times=time)
+v_report = plot_traces(config_file='simulation_config_W+Cai.json', node_ids=[9], title='voltage report', times=time)

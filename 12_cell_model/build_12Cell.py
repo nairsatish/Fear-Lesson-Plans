@@ -249,15 +249,14 @@ net.add_edges(source=shock.nodes(), target=net.nodes(pop_name='PV'),
 
 
 # Create connections between Tone --> Pyr cells
-net.add_edges(source=tone.nodes(), target=net.nodes(pop_name=['PyrA', 'PyrC']),
+conn = net.add_edges(source=tone.nodes(), target=net.nodes(pop_name=['PyrA', 'PyrC']),
               connection_rule=tone2PN,
               syn_weight=1.0,
-              target_sections=['apical'],
-              sec_x=0.9,
               delay=0.1,
               distance_range=[-10000, 10000],
               dynamics_params='tone2PN.json',
               model_template=syn['tone2PN.json']['level_of_detail'])
+conn.add_properties(['sec_id', 'sec_x'], rule=(2, 0.9), dtypes=[np.int32, np.float]) # places syn on apic at 0.9
 
 #net.add_edges(source=tone.nodes(), target=net.nodes(pop_name='OLM'),
 #              connection_rule=tone2OLM,
@@ -278,25 +277,23 @@ net.add_edges(source=tone.nodes(), target=net.nodes(pop_name='PV'),
               model_template=syn['tone2INT.json']['level_of_detail'])
 
 # Create connections between Pyr --> Pyr cells
-net.add_edges(source=net.nodes(pop_name='PyrA'), target=net.nodes(pop_name=['PyrA', 'PyrC']),
+conn = net.add_edges(source=net.nodes(pop_name='PyrA'), target=net.nodes(pop_name=['PyrA', 'PyrC']),
               connection_rule=pyr_connection,
               syn_weight=1.0,
-              target_sections=['apical'],
-              sec_x=0.9,
               delay=0.1,
               distance_range=[-10000, 10000],
               dynamics_params='PN2PN.json',
               model_template=syn['PN2PN.json']['level_of_detail'])
+conn.add_properties(['sec_id', 'sec_x'], rule=(2, 0.9), dtypes=[np.int32, np.float]) # places syn on apic at 0.9
 
-net.add_edges(source=net.nodes(pop_name='PyrC'), target=net.nodes(pop_name=['PyrA', 'PyrC']),
+conn = net.add_edges(source=net.nodes(pop_name='PyrC'), target=net.nodes(pop_name=['PyrA', 'PyrC']),
               connection_rule=pyr_connection,
               syn_weight=1.0,
-              target_sections=['apical'],
-              sec_x=0.9,
               delay=0.1,
               distance_range=[-10000, 10000],
               dynamics_params='PN2PN.json',
               model_template=syn['PN2PN.json']['level_of_detail'])
+conn.add_properties(['sec_id', 'sec_x'], rule=(2, 0.9), dtypes=[np.int32, np.float]) # places syn on apic at 0.9
 
 
 net.add_edges(source=net.nodes(pop_name=['PyrA', 'PyrC']), target=net.nodes(pop_name='OLM'),
@@ -350,25 +347,23 @@ net.add_edges(source=net.nodes(pop_name='PV'), target=net.nodes(pop_name=['PyrA'
               dynamics_params='PV2PN.json',
               model_template=syn['PV2PN.json']['level_of_detail'])
 
-net.add_edges(source=net.nodes(pop_name='OLM'), target=net.nodes(pop_name=['PyrA', 'PyrC']),
+conn = net.add_edges(source=net.nodes(pop_name='OLM'), target=net.nodes(pop_name=['PyrA', 'PyrC']),
               connection_rule=OLM2PN,
               syn_weight=1.0,
-              target_sections=['apical'],
-              sec_x=0.3,
               delay=0.1,
               distance_range=[-10000, 10000],
               dynamics_params='SOM2PN.json',
               model_template=syn['SOM2PN.json']['level_of_detail'])
+conn.add_properties(['sec_id', 'sec_x'], rule=(2, 0.6), dtypes=[np.int32, np.float]) # places syn on apic at 0.9
 
-net.add_edges(source=backgroundPN.nodes(), target=net.nodes(pop_name=['PyrA', 'PyrC']),
+conn = net.add_edges(source=backgroundPN.nodes(), target=net.nodes(pop_name=['PyrA', 'PyrC']),
               connection_rule=BG_to_PN,
               syn_weight=1.0,
-              target_sections=['apical'],
-              sec_x=0.9,
               delay=0.1,
               distance_range=[-10000, 10000],
               dynamics_params='AMPA_ExcToExc.json',
               model_template='exp2syn')
+conn.add_properties(['sec_id', 'sec_x'], rule=(2, 0.9), dtypes=[np.int32, np.float]) # places syn on apic at 0.9
 
 net.add_edges(source=backgroundOLM.nodes(), target=net.nodes(pop_name='OLM'),
               connection_rule=BG_to_OLM,
@@ -452,7 +447,7 @@ print('Number of background spikes for pv: {}'.format(psg.n_spikes()))
 
 psg = PoissonSpikeGenerator(population='bg_olm')
 psg.add(node_ids=range(2),  # need same number as cells
-        firing_rate=4,    # 8 spikes every 1 second Hz
+        firing_rate=6,    # 8 spikes every 1 second Hz
         times=(0.0, t_sim/1000))  # time is in seconds for some reason
 psg.to_sonata('12_cell_inputs/bg_olm_spikes.h5')
 
