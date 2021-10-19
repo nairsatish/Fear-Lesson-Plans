@@ -354,7 +354,7 @@ conn = net.add_edges(source=net.nodes(pop_name='OLM'), target=net.nodes(pop_name
               distance_range=[-10000, 10000],
               dynamics_params='SOM2PN.json',
               model_template=syn['SOM2PN.json']['level_of_detail'])
-conn.add_properties(['sec_id', 'sec_x'], rule=(2, 0.6), dtypes=[np.int32, np.float]) # places syn on apic at 0.9
+conn.add_properties(['sec_id', 'sec_x'], rule=(2, 0.6), dtypes=[np.int32, np.float]) # places syn on apic at 0.6
 
 conn = net.add_edges(source=backgroundPN.nodes(), target=net.nodes(pop_name=['PyrA', 'PyrC']),
               connection_rule=BG_to_PN,

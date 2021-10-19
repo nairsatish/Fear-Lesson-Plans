@@ -56,10 +56,10 @@ def plot_cai():
     plt.show()
 
 
-plot_syn_weight()
-plot_cai()
+#plot_syn_weight()
+#plot_cai()
 
-time = (0, 80000)  # full time is 232500 sense period is 40000
+time = (52000, 53000)  # full time is 232500 sense period is 40000
 plot_raster = plot_raster(config_file='simulation_config_W+Cai.json', group_by='pop_name', title='raster', times=time)
 plot_boxplot = plot_rates_boxplot(config_file='simulation_config_W+Cai.json', group_by='pop_name', title='boxplot',times=time)
-v_report = plot_traces(config_file='simulation_config_W+Cai.json', node_ids=[9], title='voltage report', times=time)
+v_report = plot_traces(config_file='simulation_config_W+Cai.json', node_ids=[10], title='voltage report', times=time)
