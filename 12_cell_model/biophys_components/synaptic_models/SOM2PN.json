@@ -1,6 +1,6 @@
 {
     "level_of_detail": "int2pyr",
     "initW": "8",
-    "threshold1": "0.47",
-    "threshold2": "0.53"
+    "threshold1": "1.47",
+    "threshold2": "1.53"
 }

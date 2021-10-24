@@ -439,7 +439,7 @@ print('Number of background spikes for pn: {}'.format(psg.n_spikes()))
 
 psg = PoissonSpikeGenerator(population='bg_pv')
 psg.add(node_ids=range(2),  # need same number as cells
-        firing_rate=4,    # 8 spikes every 1 second Hz
+        firing_rate=8,    # 8 spikes every 1 second Hz
         times=(0.0, t_sim/1000))  # time is in seconds for some reason
 psg.to_sonata('12_cell_inputs/bg_pv_spikes.h5')
 
@@ -447,7 +447,7 @@ print('Number of background spikes for pv: {}'.format(psg.n_spikes()))
 
 psg = PoissonSpikeGenerator(population='bg_olm')
 psg.add(node_ids=range(2),  # need same number as cells
-        firing_rate=6,    # 8 spikes every 1 second Hz
+        firing_rate=8,    # 8 spikes every 1 second Hz
         times=(0.0, t_sim/1000))  # time is in seconds for some reason
 psg.to_sonata('12_cell_inputs/bg_olm_spikes.h5')
 

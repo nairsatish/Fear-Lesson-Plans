@@ -137,7 +137,7 @@ def create_arrays_extinction_final(node_spike_array):
         x0 = df0['timestamps'].tolist()
         trial_spikes = []
         i = 0
-        while(i < 30):
+        while(i < 10):
             for j in range(len(x0)):
                 if(x0[j] >= timestamp+(i*4000) and x0[j] <= timestamp+(i*4000+400)):
                     value = (x0[j]-(i*4000) - timestamp)
