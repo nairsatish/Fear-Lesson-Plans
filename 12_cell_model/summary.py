@@ -102,28 +102,39 @@ def spike_frequency_bar_graph(spikes_df, node_set, ms, start=0, end=80000, ax=No
     if ax:
         ax.legend()
 
+
+
+def sense_vs_cond_tone():
+    f = h5py.File('output/spikes.h5','r')
+    spikes_df = pd.DataFrame({'node_ids':f['spikes']['biophysical']['node_ids'],'timestamps':f['spikes']['biophysical']['timestamps']})
+    node_set = [
+        {"name": "PN_A", "start": 0, "end": 4, "color": "blue"},
+        {"name": "PN_C", "start": 5, "end": 7, "color": "pink"},
+        {"name": "SOM", "start": 8, "end": 9, "color": "red"},
+        {"name": "PV", "start": 10, "end": 11, "color": "orange"}
+    ]
+    fig, axs = plt.subplots(2,2,figsize=(12,6))#6.4,4.8 default
+    axs[0,0].set_title("sen period")
+    axs[0,1].set_title('condition period')
+    start1 = 4000
+    end1 = 5000
+    start2 = 52000
+    end2 = 53000
+    raster(spikes_df, node_set, start=start1, end=end1, ax=axs[0,0])
+    raster(spikes_df, node_set, start=start2, end=end2, ax=axs[0,1])
+    spike_frequency_bar_graph(spikes_df,node_set,start=start1,end=end1,ax=axs[1,0],ms=(end1-start1))
+    spike_frequency_bar_graph(spikes_df,node_set,start=start2,end=end2,ax=axs[1,1],ms=(end2-start2))
+
+
+
+
 #plot_syn_weight()
 #plot_cai()
-
-f = h5py.File('output/spikes.h5','r')
-spikes_df = pd.DataFrame({'node_ids':f['spikes']['biophysical']['node_ids'],'timestamps':f['spikes']['biophysical']['timestamps']})
-node_set = [
-    {"name": "PN_A", "start": 0, "end": 4, "color": "blue"},
-    {"name": "PN_C", "start": 5, "end": 7, "color": "pink"},
-    {"name": "SOM", "start": 8, "end": 9, "color": "red"},
-    {"name": "PV", "start": 10, "end": 11, "color": "orange"}
-]
-fig, axs = plt.subplots(2,2,figsize=(12,4.8))#6.4,4.8 default
-axs[0,0].set_title("sen period")
-axs[0,1].set_title('condition period')
-start1 = 4000
-end1 = 5000
-start2 = 52000
-end2 = 53000
-raster(spikes_df, node_set, start=start1, end=end1, ax=axs[0,0])
-raster(spikes_df, node_set, start=start2, end=end2, ax=axs[0,1])
-spike_frequency_bar_graph(spikes_df,node_set,start=start1,end=end1,ax=axs[1,0],ms=(end1-start1))
-spike_frequency_bar_graph(spikes_df,node_set,start=start2,end=end2,ax=axs[1,1],ms=(end2-start2))
+sense_vs_cond_tone()
+node = 7
+plot_traces(config_file='simulation_config_W+Cai.json',node_ids=node,times=(4000,5100),show=False,title='sense period')
+plot_traces(config_file='simulation_config_W+Cai.json',node_ids=node,times=(52000,53000),show=False, title='cond period')
 
 plt.show()
+
 
