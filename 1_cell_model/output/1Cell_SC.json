@@ -2,7 +2,7 @@
   "target_simulator": "NEURON",
   "run": {
     "tstart": 0.0,
-    "tstop": 5000,
+    "tstop": 1000,
     "dt": 0.1,
     "dL": 20.0,
     "spike_threshold": -15.0,
@@ -20,9 +20,15 @@
       "gids": [
         0
       ],
-      "amp": 0.5,
+      "amp": 0.2,
       "delay": 200.0,
       "duration": 200.0
+    },
+    "shock_spikes": {
+      "input_type": "spikes",
+      "module": "sonata",
+      "input_file": "/Users/gregglickert/Documents/GitHub/PlasticityToy/1_cell_model/1_cell_inputs/shock.h5",
+      "node_set": "shock"
     }
   },
   "output": {
@@ -56,9 +62,18 @@
       {
         "node_types_file": "/Users/gregglickert/Documents/GitHub/PlasticityToy/1_cell_model/network/biophysical_node_types.csv",
         "nodes_file": "/Users/gregglickert/Documents/GitHub/PlasticityToy/1_cell_model/network/biophysical_nodes.h5"
+      },
+      {
+        "node_types_file": "/Users/gregglickert/Documents/GitHub/PlasticityToy/1_cell_model/network/shock_node_types.csv",
+        "nodes_file": "/Users/gregglickert/Documents/GitHub/PlasticityToy/1_cell_model/network/shock_nodes.h5"
       }
     ],
-    "edges": [],
+    "edges": [
+      {
+        "edge_types_file": "/Users/gregglickert/Documents/GitHub/PlasticityToy/1_cell_model/network/shock_biophysical_edge_types.csv",
+        "edges_file": "/Users/gregglickert/Documents/GitHub/PlasticityToy/1_cell_model/network/shock_biophysical_edges.h5"
+      }
+    ],
     "gap_juncs": []
   },
   "node_sets": {

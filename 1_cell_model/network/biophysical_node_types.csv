@@ -1,2 +1,2 @@
-node_type_id mem_potential model_template model_type pop_name morphology
-100 e hoc:basket biophysical PV 
+node_type_id model_type model_template pop_name mem_potential morphology
+100 biophysical hoc:basket PV e 
