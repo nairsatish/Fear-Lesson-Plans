@@ -142,6 +142,7 @@ static void nrn_state(_NrnThread*, _Memb_list*, int);
  static void _hoc_destroy_pnt(_vptr) void* _vptr; {
    destroy_point_process(_vptr);
 }
+ static void _destructor(Prop*);
  /* connect range variables in _p that hoc is supposed to know about */
  static const char *_mechanism[] = {
  "7.7.0",
@@ -190,6 +191,7 @@ extern void _cvode_abstol( Symbol**, double*, int);
 	 nrn_alloc,(void*)0, (void*)0, (void*)0, nrn_init,
 	 hoc_nrnpointerindex, 0,
 	 _hoc_create_pnt, _hoc_destroy_pnt, _member_func);
+ 	register_destructor(_destructor);
  _mechtype = nrn_get_mechtype(_mechanism[1]);
      _nrn_setdata_reg(_mechtype, _setdata);
  #if NMODL_TEXT
@@ -237,6 +239,9 @@ static void _net_receive (_pnt, _args, _lflag) Point_process* _pnt; double* _arg
 extern double* vector_vec();
 extern int vector_capacity();
 extern void* vector_arg();
+//extern void hoc_obj_ref(void*);
+//extern void hoc_obj_unref(void*);
+//extern void** vector_pobj(void*);
  
 static int  element (  ) {
    
@@ -278,6 +283,7 @@ static int  play (  ) {
 	*vv = (void*)0;
 	if (ifarg(1)) {
 		*vv = vector_arg(1);
+	hoc_obj_ref(*vector_pobj(*vv));
 	}
   return 0; }
  
@@ -287,6 +293,30 @@ static double _hoc_play(void* _vptr) {
  _r = 1.;
  play (  );
  return(_r);
+}
+ 
+static void _destructor(Prop* _prop) {
+	_p = _prop->param; _ppvar = _prop->dparam;
+{
+ {
+   
+/*VERBATIM*/
+{
+  void** vv;
+  void* vtmp;
+  if (ifarg(1)) {
+    vtmp = vector_arg(1);
+    hoc_obj_ref(*vector_pobj(vtmp));
+  }
+  vv = (void**)(&space);
+  if (*vv) {
+    hoc_obj_unref(*vector_pobj(*vv));
+  }
+if (vtmp) { *vv = vtmp; }  
+}
+ }
+ 
+}
 }
 
 static void initmodel() {
@@ -379,7 +409,27 @@ static const char* nmodl_file_text =
   "extern double* vector_vec();\n"
   "extern int vector_capacity();\n"
   "extern void* vector_arg();\n"
+  "//extern void hoc_obj_ref(void*);\n"
+  "//extern void hoc_obj_unref(void*);\n"
+  "//extern void** vector_pobj(void*);\n"
   "ENDVERBATIM\n"
+  "\n"
+  "DESTRUCTOR {\n"
+  "VERBATIM {\n"
+  "  void** vv;\n"
+  "  void* vtmp;\n"
+  "  if (ifarg(1)) {\n"
+  "    vtmp = vector_arg(1);\n"
+  "    hoc_obj_ref(*vector_pobj(vtmp));\n"
+  "  }\n"
+  "  vv = (void**)(&space);\n"
+  "  if (*vv) {\n"
+  "    hoc_obj_unref(*vector_pobj(*vv));\n"
+  "  }\n"
+  "if (vtmp) { *vv = vtmp; }  \n"
+  "}\n"
+  "ENDVERBATIM\n"
+  "}\n"
   "\n"
   "PROCEDURE element() {\n"
   "VERBATIM	\n"
@@ -411,6 +461,7 @@ static const char* nmodl_file_text =
   "	*vv = (void*)0;\n"
   "	if (ifarg(1)) {\n"
   "		*vv = vector_arg(1);\n"
+  "	hoc_obj_ref(*vector_pobj(*vv));\n"
   "	}\n"
   "ENDVERBATIM\n"
   "}\n"

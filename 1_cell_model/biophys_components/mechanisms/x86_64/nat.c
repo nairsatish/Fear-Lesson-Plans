@@ -22,15 +22,15 @@ extern int _method3;
 extern double hoc_Exp(double);
 #endif
  
-#define nrn_init _nrn_init__natOLM
-#define _nrn_initial _nrn_initial__natOLM
-#define nrn_cur _nrn_cur__natOLM
-#define _nrn_current _nrn_current__natOLM
-#define nrn_jacob _nrn_jacob__natOLM
-#define nrn_state _nrn_state__natOLM
-#define _net_receive _net_receive__natOLM 
-#define states states__natOLM 
-#define trates trates__natOLM 
+#define nrn_init _nrn_init__nat
+#define _nrn_initial _nrn_initial__nat
+#define nrn_cur _nrn_cur__nat
+#define _nrn_current _nrn_current__nat
+#define nrn_jacob _nrn_jacob__nat
+#define nrn_state _nrn_state__nat
+#define _net_receive _net_receive__nat 
+#define states states__nat 
+#define trates trates__nat 
  
 #define _threadargscomma_ _p, _ppvar, _thread, _nt,
 #define _threadargsprotocomma_ double* _p, Datum* _ppvar, Datum* _thread, _NrnThread* _nt,
@@ -113,77 +113,77 @@ extern void hoc_reg_nmodl_filename(int, const char*);
 }
  /* connect user functions to hoc names */
  static VoidFunc hoc_intfunc[] = {
- "setdata_natOLM", _hoc_setdata,
- "trap0_natOLM", _hoc_trap0,
- "trates_natOLM", _hoc_trates,
+ "setdata_nat", _hoc_setdata,
+ "trap0_nat", _hoc_trap0,
+ "trates_nat", _hoc_trates,
  0, 0
 };
-#define trap0 trap0_natOLM
+#define trap0 trap0_nat
  extern double trap0( _threadargsprotocomma_ double , double , double , double );
  #define _zmexp _thread[0]._pval[0]
  #define _zhexp _thread[0]._pval[1]
  /* declare global and static user variables */
-#define Rd Rd_natOLM
+#define Rd Rd_nat
  double Rd = 0.03;
-#define Rg Rg_natOLM
+#define Rg Rg_nat
  double Rg = 0.01;
-#define Rb Rb_natOLM
+#define Rb Rb_nat
  double Rb = 0.124;
-#define Ra Ra_natOLM
+#define Ra Ra_nat
  double Ra = 0.4;
-#define ar2 ar2_natOLM
+#define ar2 ar2_nat
  double ar2 = 1;
-#define hmin hmin_natOLM
+#define hmin hmin_nat
  double hmin = 0.5;
-#define mmin mmin_natOLM
+#define mmin mmin_nat
  double mmin = 0.02;
-#define qinf qinf_natOLM
+#define qinf qinf_nat
  double qinf = 4;
-#define qq qq_natOLM
+#define qq qq_nat
  double qq = 10;
-#define q10 q10_natOLM
+#define q10 q10_nat
  double q10 = 2;
-#define qg qg_natOLM
+#define qg qg_nat
  double qg = 1.5;
-#define qd qd_natOLM
+#define qd qd_nat
  double qd = 1.5;
-#define qa qa_natOLM
+#define qa qa_nat
  double qa = 7.2;
-#define thinf thinf_natOLM
+#define thinf thinf_nat
  double thinf = -50;
-#define tq tq_natOLM
+#define tq tq_nat
  double tq = -55;
-#define thi2 thi2_natOLM
+#define thi2 thi2_nat
  double thi2 = -45;
-#define thi1 thi1_natOLM
+#define thi1 thi1_nat
  double thi1 = -45;
-#define tha tha_natOLM
+#define tha tha_nat
  double tha = -30;
  /* some parameters have upper and lower limits */
  static HocParmLimits _hoc_parm_limits[] = {
  0,0,0
 };
  static HocParmUnits _hoc_parm_units[] = {
- "tha_natOLM", "mV",
- "qa_natOLM", "mV",
- "Ra_natOLM", "/ms",
- "Rb_natOLM", "/ms",
- "thi1_natOLM", "mV",
- "thi2_natOLM", "mV",
- "qd_natOLM", "mV",
- "qg_natOLM", "mV",
- "Rg_natOLM", "/ms",
- "Rd_natOLM", "/ms",
- "qq_natOLM", "mV",
- "tq_natOLM", "mV",
- "thinf_natOLM", "mV",
- "qinf_natOLM", "mV",
- "ar2_natOLM", "1",
- "gbar_natOLM", "mho/cm2",
- "i_natOLM", "mA/cm2",
- "gna_natOLM", "mho/cm2",
- "mtau_natOLM", "ms",
- "htau_natOLM", "ms",
+ "tha_nat", "mV",
+ "qa_nat", "mV",
+ "Ra_nat", "/ms",
+ "Rb_nat", "/ms",
+ "thi1_nat", "mV",
+ "thi2_nat", "mV",
+ "qd_nat", "mV",
+ "qg_nat", "mV",
+ "Rg_nat", "/ms",
+ "Rd_nat", "/ms",
+ "qq_nat", "mV",
+ "tq_nat", "mV",
+ "thinf_nat", "mV",
+ "qinf_nat", "mV",
+ "ar2_nat", "1",
+ "gbar_nat", "mho/cm2",
+ "i_nat", "mA/cm2",
+ "gna_nat", "mho/cm2",
+ "mtau_nat", "ms",
+ "htau_nat", "ms",
  0,0
 };
  static double delta_t = 0.01;
@@ -191,24 +191,24 @@ extern void hoc_reg_nmodl_filename(int, const char*);
  static double m0 = 0;
  /* connect global user variables to hoc */
  static DoubScal hoc_scdoub[] = {
- "tha_natOLM", &tha_natOLM,
- "qa_natOLM", &qa_natOLM,
- "Ra_natOLM", &Ra_natOLM,
- "Rb_natOLM", &Rb_natOLM,
- "thi1_natOLM", &thi1_natOLM,
- "thi2_natOLM", &thi2_natOLM,
- "qd_natOLM", &qd_natOLM,
- "qg_natOLM", &qg_natOLM,
- "mmin_natOLM", &mmin_natOLM,
- "hmin_natOLM", &hmin_natOLM,
- "q10_natOLM", &q10_natOLM,
- "Rg_natOLM", &Rg_natOLM,
- "Rd_natOLM", &Rd_natOLM,
- "qq_natOLM", &qq_natOLM,
- "tq_natOLM", &tq_natOLM,
- "thinf_natOLM", &thinf_natOLM,
- "qinf_natOLM", &qinf_natOLM,
- "ar2_natOLM", &ar2_natOLM,
+ "tha_nat", &tha_nat,
+ "qa_nat", &qa_nat,
+ "Ra_nat", &Ra_nat,
+ "Rb_nat", &Rb_nat,
+ "thi1_nat", &thi1_nat,
+ "thi2_nat", &thi2_nat,
+ "qd_nat", &qd_nat,
+ "qg_nat", &qg_nat,
+ "mmin_nat", &mmin_nat,
+ "hmin_nat", &hmin_nat,
+ "q10_nat", &q10_nat,
+ "Rg_nat", &Rg_nat,
+ "Rd_nat", &Rd_nat,
+ "qq_nat", &qq_nat,
+ "tq_nat", &tq_nat,
+ "thinf_nat", &thinf_nat,
+ "qinf_nat", &qinf_nat,
+ "ar2_nat", &ar2_nat,
  0,0
 };
  static DoubVec hoc_vdoub[] = {
@@ -231,18 +231,18 @@ static void _ode_matsol(_NrnThread*, _Memb_list*, int);
  /* connect range variables in _p that hoc is supposed to know about */
  static const char *_mechanism[] = {
  "7.7.0",
-"natOLM",
- "gbar_natOLM",
+"nat",
+ "gbar_nat",
  0,
- "i_natOLM",
- "gna_natOLM",
- "minf_natOLM",
- "hinf_natOLM",
- "mtau_natOLM",
- "htau_natOLM",
+ "i_nat",
+ "gna_nat",
+ "minf_nat",
+ "hinf_nat",
+ "mtau_nat",
+ "htau_nat",
  0,
- "m_natOLM",
- "h_natOLM",
+ "m_nat",
+ "h_nat",
  0,
  0};
  static Symbol* _na_sym;
@@ -307,7 +307,7 @@ extern void _cvode_abstol( Symbol**, double*, int);
  	hoc_register_cvode(_mechtype, _ode_count, _ode_map, _ode_spec, _ode_matsol);
  	hoc_register_tolerance(_mechtype, _hoc_state_tol, &_atollist);
  	hoc_register_var(hoc_scdoub, hoc_vdoub, hoc_intfunc);
- 	ivoc_help("help ?1 natOLM /Users/gregglickert/Documents/GitHub/PlasticityToy/1_cell_model/biophys_components/mechanisms/x86_64/nat.mod\n");
+ 	ivoc_help("help ?1 nat /Users/gregglickert/Documents/GitHub/PlasticityToy/1_cell_model/biophys_components/mechanisms/x86_64/nat.mod\n");
  hoc_register_limits(_mechtype, _hoc_parm_limits);
  hoc_register_units(_mechtype, _hoc_parm_units);
  }
@@ -371,7 +371,7 @@ static int  trates ( _threadargsprotocomma_ double _lvm , double _la2 ) {
    if ( htau < hmin ) {
      htau = hmin ;
      }
-   hinf = 1.0 / ( 1.0 + exp ( ( v + 50.0 ) / 10.0 ) ) ;
+   hinf = 1.0 / ( 1.0 + exp ( ( v + 50.0 ) / 4.0 ) ) ;
     return 0; }
  
 static void _hoc_trates(void) {
@@ -628,7 +628,7 @@ static const char* nmodl_file_text =
   ":  ---------- modified -------M.Migliore may97\n"
   "\n"
   "NEURON {\n"
-  "	SUFFIX natOLM\n"
+  "	SUFFIX nat\n"
   "	USEION na READ ena WRITE ina\n"
   "	:RANGE  , i :, ar2\n"
   "	RANGE gbar, gna, i, minf, hinf, mtau, htau : , qinf, thinf\n"
@@ -717,13 +717,13 @@ static const char* nmodl_file_text =
   "	if (v < -57.5 ) {\n"
   "	minf = 0\n"
   "	} else{\n"
-  "	minf  = 1 / ( 1 + exp( ( - v - 38.43 ) / 7.2 ) ) :7.2\n"
+  "	minf  = 1 / ( 1 + exp( ( - v - 38.43 ) / 7.2 ) )\n"
   "	}\n"
   "	a = trap0(vm,thi1,Rd,qd)\n"
   "	b = trap0(-vm,-thi2,Rg,qg)\n"
   "	htau =  1/(a+b)/qt\n"
   "        if (htau<hmin) {htau=hmin}\n"
-  "	hinf  = 1 / ( 1 + exp( ( v + 50 ) / 10 ) ) :4\n"
+  "	hinf  = 1 / ( 1 + exp( ( v + 50 ) / 4 ) )\n"
   "}\n"
   "\n"
   "FUNCTION trap0(v,th,a,q) {\n"

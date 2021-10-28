@@ -6,7 +6,7 @@
   "target_simulator": "NEURON",
   "run": {
     "tstart": 0.0,
-    "tstop": 80000,
+    "tstop": 40000,
     "dt": 0.1,
     "dL": 20.0,
     "spike_threshold": -15.0,
@@ -24,23 +24,23 @@
       "input_file": "$BASE_DIR/12_cell_inputs/tone_spikes.csv",
       "node_set": "tone"
     },
-    "tone_background": {
-      "input_type": "spikes",
-      "module": "sonata",
-      "input_file": "$BASE_DIR/12_cell_inputs/tone_background.h5",
-      "node_set": "tone"
-    },
     "shock_spikes": {
       "input_type": "spikes",
       "module": "csv",
       "input_file": "$BASE_DIR/12_cell_inputs/shock_spikes.csv",
       "node_set": "shock"
     },
-    "bg_pn_spikes": {
+    "bg_pn_a_spikes": {
       "input_type": "spikes",
       "module": "sonata",
-      "input_file": "$BASE_DIR/12_cell_inputs/bg_pn_spikes.h5",
-      "node_set": "bg_pn"
+      "input_file": "$BASE_DIR/12_cell_inputs/bg_pn_a_spikes.h5",
+      "node_set": "bg_pn_a"
+    },
+    "bg_pn_c_spikes": {
+      "input_type": "spikes",
+      "module": "sonata",
+      "input_file": "$BASE_DIR/12_cell_inputs/bg_pn_c_spikes.h5",
+      "node_set": "bg_pn_c"
     },
     "bg_pv_spikes": {
       "input_type": "spikes",

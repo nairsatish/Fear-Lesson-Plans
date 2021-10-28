@@ -195,7 +195,7 @@ extern void hoc_reg_nmodl_filename(int, const char*);
 #define GAPstart1 GAPstart1_int2pyrKIM
  double GAPstart1 = 96000;
 #define k k_int2pyrKIM
- double k = 0.01;
+ double k = 0.001;
  /* some parameters have upper and lower limits */
  static HocParmLimits _hoc_parm_limits[] = {
  "d2", 0, 1,
@@ -912,7 +912,7 @@ for (_iml = 0; _iml < _cntml; ++_iml) {
   eca = _ion_eca;
   ica = _ion_ica;
  { error =  release();
- if(error){fprintf(stderr,"at line 137 in file int2pyrKIM.mod:\n	SOLVE release METHOD cnexp\n"); nrn_complain(_p); abort_run(error);}
+ if(error){fprintf(stderr,"at line 136 in file int2pyrKIM.mod:\n	SOLVE release METHOD cnexp\n"); nrn_complain(_p); abort_run(error);}
  }}}
 
 }
@@ -972,7 +972,7 @@ static const char* nmodl_file_text =
   "	pooldiam =  1.8172 (micrometer)\n"
   "	z = 2\n"
   "\n"
-  "	k = 0.01	\n"
+  "	k = 0.001 :change this to be lower\n"
   "	\n"
   "	tauCa = 50 (ms)\n"
   "	\n"
@@ -1044,7 +1044,6 @@ static const char* nmodl_file_text =
   "STATE { r_nmda r_gaba capoolcon }\n"
   "\n"
   "INITIAL {\n"
-  "\n"
   "	on_gaba = 0\n"
   "	r_gaba = 0\n"
   "	W = initW\n"
@@ -1135,7 +1134,6 @@ static const char* nmodl_file_text =
   "	ICag = P0g*g_gaba*(v - eca)\n"
   "	Icatotal = ICag + k*ica*4*pi*((15/2)^2)*(0.01)    :  icag+k*ica*Area of soma*unit change\n"
   "	capoolcon'= -fCag*Afactor*Icatotal + (Cainf-capoolcon)/tauCa\n"
-  "	:capoolcon'=0\n"
   "	:printf(\"%g\",capoolcon)\n"
   "	:Afactor is a constant ICag = -0 , tauCA is a contant, Cainf is a constant\n"
   "	:if(Icatotal > 0.000001){\n"

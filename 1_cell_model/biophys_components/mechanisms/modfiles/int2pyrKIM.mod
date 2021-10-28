@@ -40,7 +40,7 @@ PARAMETER {
 	pooldiam =  1.8172 (micrometer)
 	z = 2
 
-	k = 0.01	
+	k = 0.001 :change this to be lower
 	
 	tauCa = 50 (ms)
 	
@@ -112,7 +112,6 @@ ASSIGNED {
 STATE { r_nmda r_gaba capoolcon }
 
 INITIAL {
-
 	on_gaba = 0
 	r_gaba = 0
 	W = initW
@@ -203,7 +202,6 @@ DERIVATIVE release {
 	ICag = P0g*g_gaba*(v - eca)
 	Icatotal = ICag + k*ica*4*pi*((15/2)^2)*(0.01)    :  icag+k*ica*Area of soma*unit change
 	capoolcon'= -fCag*Afactor*Icatotal + (Cainf-capoolcon)/tauCa
-	:capoolcon'=0
 	:printf("%g",capoolcon)
 	:Afactor is a constant ICag = -0 , tauCA is a contant, Cainf is a constant
 	:if(Icatotal > 0.000001){

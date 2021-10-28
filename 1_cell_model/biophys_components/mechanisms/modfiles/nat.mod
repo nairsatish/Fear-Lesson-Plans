@@ -4,7 +4,7 @@ TITLE nat
 :  ---------- modified -------M.Migliore may97
 
 NEURON {
-	SUFFIX natOLM
+	SUFFIX nat
 	USEION na READ ena WRITE ina
 	:RANGE  , i :, ar2
 	RANGE gbar, gna, i, minf, hinf, mtau, htau : , qinf, thinf
@@ -93,13 +93,13 @@ PROCEDURE trates(vm,a2) {
 	if (v < -57.5 ) {
 	minf = 0
 	} else{
-	minf  = 1 / ( 1 + exp( ( - v - 38.43 ) / 7.2 ) ) :7.2
+	minf  = 1 / ( 1 + exp( ( - v - 38.43 ) / 7.2 ) )
 	}
 	a = trap0(vm,thi1,Rd,qd)
 	b = trap0(-vm,-thi2,Rg,qg)
 	htau =  1/(a+b)/qt
         if (htau<hmin) {htau=hmin}
-	hinf  = 1 / ( 1 + exp( ( v + 50 ) / 10 ) ) :4
+	hinf  = 1 / ( 1 + exp( ( v + 50 ) / 4 ) )
 }
 
 FUNCTION trap0(v,th,a,q) {

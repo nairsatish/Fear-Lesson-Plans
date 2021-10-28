@@ -17,6 +17,18 @@
     "v_init": -70.0
   },
   "inputs": {
+    "bg_pn_spikes": {
+      "input_type": "spikes",
+      "module": "csv",
+      "input_file": "$BASE_DIR/2_cell_inputs/tone_spikes.csv",
+      "node_set": "bg_pn"
+    },
+    "bg_olm_spikes": {
+      "input_type": "spikes",
+      "module": "sonata",
+      "input_file": "$BASE_DIR/2_cell_inputs/bg_olm_spikes.h5",
+      "node_set": "bg_olm"
+    }
   },
   "output": {
     "log_file": "log.txt",
@@ -24,30 +36,6 @@
     "spikes_file": "spikes.h5"
   },
   "reports": {
-    "syn_report4": {
-      "cells": "all",
-      "variable_name": "W",
-      "module": "netcon_report",
-      "sections": "all",
-      "syn_type": "int2pyrKIM",
-      "file_name": "syns_int2pyr.h5"
-    },
-    "syn_report7": {
-      "cells": "all",
-      "variable_name": "g_gaba",
-      "module": "netcon_report",
-      "sections": "all",
-      "syn_type": "int2pyrKIM",
-      "file_name": "g_gaba.h5"
-    },
-    "syn_report4.5": {
-      "cells": "all",
-      "variable_name": "capoolcon",
-      "module": "netcon_report",
-      "sections": "all",
-      "syn_type": "int2pyrKIM",
-      "file_name": "syns_int2pyr_cai.h5"
-    },
     "v_report": {
       "variable_name": "v",
       "cells": "all",

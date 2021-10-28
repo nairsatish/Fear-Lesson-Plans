@@ -6,6 +6,13 @@ from bmtk.simulator.bionet.pyfunction_cache import add_synapse_model
 from neuron import h
 import random
 
+def bg2PN(syn_params, sec_x, sec_id):
+    lsyn = h.bg2pyr(sec_x, sec=sec_id)
+
+    if syn_params.get('initW'):
+        lsyn.initW = float(syn_params['initW'])
+    return lsyn
+
 def pyr2int(syn_params, sec_x, sec_id):
     """Create a pyr2int synapse
     :param syn_params: parameters of a synapse
@@ -447,6 +454,9 @@ def int2int(syn_params, sec_x, sec_id):
     return lsyn
 
 def load():
+    add_synapse_model(bg2PN, 'bg2pn', overwrite=False)
+    add_synapse_model(bg2PN, overwrite=False)
+
     add_synapse_model(Tone2Pyr, 'tone2pyr', overwrite=False)
     add_synapse_model(Tone2Pyr, overwrite=False)
 

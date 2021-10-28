@@ -416,7 +416,7 @@ static void nrn_alloc(Prop* _prop) {
  	Cdur_gaba = 0.7254;
  	AlphaTmax_gaba = 1.52;
  	Beta_gaba = 0.14;
- 	Erev_gaba = -75;
+ 	Erev_gaba = -70;
  	gbar_gaba = 0.0006;
  	Cainf = 5e-05;
  	pooldiam = 1.8172;
@@ -1707,7 +1707,7 @@ static const char* nmodl_file_text =
   "	Cdur_gaba = 0.7254 (ms)\n"
   "	AlphaTmax_gaba = 1.52 (/ms):7.2609 (/ms): 2.2609 (/ms): 3.2609 (/ms)   : 7.2609 as original\n"
   "	Beta_gaba = 0.14(/ms) : 0.147 (/ms) : 0.2667 (/ms):         : 0.2667 as original\n"
-  "	Erev_gaba = -75 (mV) : -75 as original\n"
+  "	Erev_gaba = -70 (mV) : -75 as original\n"
   "	gbar_gaba = 0.6e-3 (uS)\n"
   "\n"
   "	Cainf = 50e-6 (mM)\n"

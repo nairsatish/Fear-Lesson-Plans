@@ -769,10 +769,5 @@ static const char* nmodl_file_text =
   "   }\n"
   "ENDVERBATIM\n"
   "}\n"
-  "\n"
-  "\n"
-  "\n"
-  "\n"
-  "\n"
   ;
 #endif

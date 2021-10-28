@@ -3,7 +3,7 @@ import pandas
 import numpy
 import matplotlib.pyplot as plt
 from bmtk.analyzer.compartment import plot_traces
-from bmtk.analyzer.spike_trains import plot_raster
+from bmtk.analyzer.spike_trains import plot_raster, plot_rates
 
 def get_array(path):
     try:
@@ -20,11 +20,14 @@ def get_array(path):
 #plt.xlabel('time')
 #plt.ylabel('Weight')
 
-_ = plot_traces(config_file='2Cell_SC.json', node_ids=[0], report_name='v_report', title='PN0 cell')
-_ = plot_traces(config_file='2Cell_SC.json', node_ids=[1], report_name='v_report',show=False, title='PN1 cell')
-_ = plot_traces(config_file='2Cell_SC.json', node_ids=[2], report_name='v_report',show=False, title='PV cell')
+_ = plot_traces(config_file='2Cell_SC.json', node_ids=[0], report_name='v_report',show=False, title='PN0 cell', times=(0,500))
+_ = plot_traces(config_file='2Cell_SC.json', node_ids=[1], report_name='v_report',show=False, title='SOM cell', times=(0,500))
+_ = plot_rates(config_file='2Cell_SC.json', show=False, times=(0,500))
+
+plt.show()
 
 
+"""
 int2pyr = get_array('output/syns_int2pyr_cai.h5')
 int2pyr[:] = [x * 1000 for x in int2pyr]
 plot2 = plt.figure(5)
@@ -56,3 +59,4 @@ plt.ylabel('cai (uM)')
 #plt.title("g_gaba")
 #plt.xlabel("time")
 plt.show()
+"""

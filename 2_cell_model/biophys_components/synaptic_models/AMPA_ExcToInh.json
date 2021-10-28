@@ -1,7 +1,7 @@
 {
   "level_of_detail": "exp2syn",
   "tau1": 0.3,
-  "tau2": 2.4,
+  "tau2": 0.8,
   "erev": 0.0,
   "gbar_nmda": 0.0005,
   "gbar_ampa": 0.001,

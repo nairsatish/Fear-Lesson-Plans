@@ -282,7 +282,7 @@ static int  states (  ) {
    h = h + _zhexp * ( hinf - h ) ;
    
 /*VERBATIM*/
-	//return 0;
+	return 0;
   return 0; }
  
 static void _hoc_states(void) {
@@ -650,7 +650,7 @@ static const char* nmodl_file_text =
   "        m = m + mexp*(minf-m)\n"
   "        h = h + hexp*(hinf-h)\n"
   "	VERBATIM\n"
-  "	//return 0;\n"
+  "	return 0;\n"
   "	ENDVERBATIM\n"
   "}\n"
   "\n"

@@ -1,0 +1,94 @@
+{
+  "target_simulator": "NEURON",
+  "run": {
+    "tstart": 0.0,
+    "tstop": 5000,
+    "dt": 0.1,
+    "dL": 20.0,
+    "spike_threshold": -15.0,
+    "nsteps_block": 5000
+  },
+  "conditions": {
+    "celsius": 34.0,
+    "v_init": -70.0
+  },
+  "inputs": {
+    "bg_pn_spikes": {
+      "input_type": "spikes",
+      "module": "csv",
+      "input_file": "/Users/gregglickert/Documents/GitHub/PlasticityToy/2_cell_model/2_cell_inputs/tone_spikes.csv",
+      "node_set": "bg_pn"
+    },
+    "bg_olm_spikes": {
+      "input_type": "spikes",
+      "module": "sonata",
+      "input_file": "/Users/gregglickert/Documents/GitHub/PlasticityToy/2_cell_model/2_cell_inputs/bg_olm_spikes.h5",
+      "node_set": "bg_olm"
+    }
+  },
+  "output": {
+    "log_file": "/Users/gregglickert/Documents/GitHub/PlasticityToy/2_cell_model/output/log.txt",
+    "output_dir": "/Users/gregglickert/Documents/GitHub/PlasticityToy/2_cell_model/output",
+    "spikes_file": "/Users/gregglickert/Documents/GitHub/PlasticityToy/2_cell_model/output/spikes.h5"
+  },
+  "reports": {
+    "v_report": {
+      "variable_name": "v",
+      "cells": "all",
+      "module": "membrane_report",
+      "sections": "soma"
+    }
+  },
+  "node_sets_file": "/Users/gregglickert/Documents/GitHub/PlasticityToy/2_cell_model/node_sets.json",
+  "network": "/Users/gregglickert/Documents/GitHub/PlasticityToy/2_cell_model/2Cell_CC.json",
+  "config_path": "/Users/gregglickert/Documents/GitHub/PlasticityToy/2_cell_model/2Cell_SC.json",
+  "config_dir": "/Users/gregglickert/Documents/GitHub/PlasticityToy/2_cell_model",
+  "components": {
+    "mechanisms_dir": "/Users/gregglickert/Documents/GitHub/PlasticityToy/2_cell_model/biophys_components/mechanisms",
+    "morphologies_dir": "/Users/gregglickert/Documents/GitHub/PlasticityToy/2_cell_model/biophys_components/morphologies",
+    "__pycache___dir": "/Users/gregglickert/Documents/GitHub/PlasticityToy/2_cell_model/biophys_components/__pycache__",
+    "synaptic_models_dir": "/Users/gregglickert/Documents/GitHub/PlasticityToy/2_cell_model/biophys_components/synaptic_models",
+    "biophysical_neuron_models_dir": "/Users/gregglickert/Documents/GitHub/PlasticityToy/2_cell_model/biophys_components/biophysical_neuron_models",
+    "templates_dir": "/Users/gregglickert/Documents/GitHub/PlasticityToy/2_cell_model/biophys_components/templates",
+    "point_neuron_models_dir": "/Users/gregglickert/Documents/GitHub/PlasticityToy/2_cell_model/biophys_components/point_neuron_models"
+  },
+  "networks": {
+    "nodes": [
+      {
+        "node_types_file": "/Users/gregglickert/Documents/GitHub/PlasticityToy/2_cell_model/network/biophysical_node_types.csv",
+        "nodes_file": "/Users/gregglickert/Documents/GitHub/PlasticityToy/2_cell_model/network/biophysical_nodes.h5"
+      },
+      {
+        "node_types_file": "/Users/gregglickert/Documents/GitHub/PlasticityToy/2_cell_model/network/bg_pn_node_types.csv",
+        "nodes_file": "/Users/gregglickert/Documents/GitHub/PlasticityToy/2_cell_model/network/bg_pn_nodes.h5"
+      },
+      {
+        "node_types_file": "/Users/gregglickert/Documents/GitHub/PlasticityToy/2_cell_model/network/bg_olm_node_types.csv",
+        "nodes_file": "/Users/gregglickert/Documents/GitHub/PlasticityToy/2_cell_model/network/bg_olm_nodes.h5"
+      }
+    ],
+    "edges": [
+      {
+        "edges_file": "/Users/gregglickert/Documents/GitHub/PlasticityToy/2_cell_model/network/biophysical_biophysical_edges.h5",
+        "edge_types_file": "/Users/gregglickert/Documents/GitHub/PlasticityToy/2_cell_model/network/biophysical_biophysical_edge_types.csv"
+      },
+      {
+        "edges_file": "/Users/gregglickert/Documents/GitHub/PlasticityToy/2_cell_model/network/bg_pn_biophysical_edges.h5",
+        "edge_types_file": "/Users/gregglickert/Documents/GitHub/PlasticityToy/2_cell_model/network/bg_pn_biophysical_edge_types.csv"
+      },
+      {
+        "edges_file": "/Users/gregglickert/Documents/GitHub/PlasticityToy/2_cell_model/network/bg_olm_biophysical_edges.h5",
+        "edge_types_file": "/Users/gregglickert/Documents/GitHub/PlasticityToy/2_cell_model/network/bg_olm_biophysical_edge_types.csv"
+      }
+    ],
+    "gap_juncs": []
+  },
+  "node_sets": {
+    "biophysical_nodes": {
+      "model_type": "biophysical"
+    },
+    "point_nodes": {
+      "model_type": "point_process"
+    }
+  }
+}

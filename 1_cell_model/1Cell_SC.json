@@ -24,15 +24,9 @@
       "gids": [
         0
       ],
-      "amp": 0.2,
+      "amp": 0.4,
       "delay": 200.0,
-      "duration": 200.0
-    },
-    "shock_spikes": {
-      "input_type": "spikes",
-      "module": "sonata",
-      "input_file": "$BASE_DIR/1_cell_inputs/shock.h5",
-      "node_set": "shock"
+      "duration": 600.0
     }
   },
   "output": {

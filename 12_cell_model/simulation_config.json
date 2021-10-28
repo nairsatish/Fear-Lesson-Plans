@@ -6,11 +6,12 @@
   "target_simulator": "NEURON",
   "run": {
     "tstart": 0.0,
-    "tstop": 232500,
+    "tstop": 40000,
     "dt": 0.1,
     "dL": 20.0,
     "spike_threshold": -15.0,
-    "nsteps_block": 5000
+    "nsteps_block": 5000,
+    "overwrite_output_dir": true
   },
   "conditions": {
     "celsius": 34.0,
@@ -29,11 +30,17 @@
       "input_file": "$BASE_DIR/12_cell_inputs/shock_spikes.csv",
       "node_set": "shock"
     },
-    "bg_pn_spikes": {
+    "bg_pn_a_spikes": {
       "input_type": "spikes",
       "module": "sonata",
-      "input_file": "$BASE_DIR/12_cell_inputs/bg_pn_spikes.h5",
-      "node_set": "bg_pn"
+      "input_file": "$BASE_DIR/12_cell_inputs/bg_pn_a_spikes.h5",
+      "node_set": "bg_pn_a"
+    },
+    "bg_pn_c_spikes": {
+      "input_type": "spikes",
+      "module": "sonata",
+      "input_file": "$BASE_DIR/12_cell_inputs/bg_pn_c_spikes.h5",
+      "node_set": "bg_pn_c"
     },
     "bg_pv_spikes": {
       "input_type": "spikes",
@@ -53,7 +60,14 @@
     "output_dir": "$OUTPUT_DIR",
     "spikes_file": "spikes.h5"
   },
-  "reports": {},
+  "reports": {
+    "v_report": {
+      "variable_name": "v",
+      "cells": "all",
+      "module": "membrane_report",
+      "sections": "soma"
+    }
+  },
   "node_sets_file": "$BASE_DIR/node_sets.json",
   "network": "$BASE_DIR/circuit_config.json"
 }

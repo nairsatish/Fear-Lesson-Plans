@@ -1,114 +1,60 @@
-
-COMMENT
-
-kca.mod
-
-Calcium-dependent potassium channel
-Based on
-Pennefather (1990) -- sympathetic ganglion cells
-taken from
-Reuveni et al (1993) -- neocortical cells
-
-Author: Zach Mainen, Salk Institute, 1995, zach@salk.edu
-	
-ENDCOMMENT
-
-INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
+:  ca-dependent potassium current
 
 NEURON {
 	SUFFIX kca
 	USEION k READ ek WRITE ik
-	USEION ca READ cai
-	RANGE n, gk, gbar
-	RANGE ninf, ntau
-	GLOBAL Ra, Rb, caix
-	GLOBAL q10, temp, tadj, vmin, vmax
+	USEION ca READ ica
+        RANGE g, gbar, ik
 }
 
 UNITS {
+        (mM) = (milli/liter)
 	(mA) = (milliamp)
 	(mV) = (millivolt)
-	(pS) = (picosiemens)
-	(um) = (micron)
-} 
+}
 
 PARAMETER {
-	gbar = 10   	(pS/um2)	: 0.03 mho/cm2
-	v 		(mV)
-	cai  		(mM)
-	caix = 1	
-									
-	Ra   = 0.01	(/ms)		: max act rate  
-	Rb   = 0.02	(/ms)		: max deact rate 
-
-	dt		(ms)
-	celsius		(degC)
-	temp = 23	(degC)		: original temp 	
-	q10  = 2.3			: temperature sensitivity
-
-	vmin = -120	(mV)
-	vmax = 100	(mV)
-} 
-
+	gbar (siemens/cm2)
+}
 
 ASSIGNED {
-	a		(/ms)
-	b		(/ms)
-	ik 		(mA/cm2)
-	gk		(pS/um2)
-	ek		(mV)
-	ninf
-	ntau 		(ms)	
-	tadj
+	v (mV)
+	ek (mV)
+	ik (mA/cm2)
+	cinf 
+	ctau (ms)
+	g (siemens/cm2)
+	ica (mM)
 }
- 
 
-STATE { n }
-
-INITIAL { 
-	rates(cai)
-	n = ninf
+STATE {
+	c
 }
+
 
 BREAKPOINT {
-        SOLVE states
-	gk = tadj*gbar*n
-	ik = (1e-4) * gk * (v - ek)
-} 
-
-LOCAL nexp
-
-PROCEDURE states() {   :Computes state variable n 
-        rates(cai)      :             at the current v and dt.
-        n = n + nexp*(ninf-n)
-
-        VERBATIM
-        //return 0;
-        ENDVERBATIM
-}
-
-PROCEDURE rates(cai(mM)) {  
-
-        LOCAL tinc
-
-        a = Ra * cai^caix
-        b = Rb
-        ntau = 1/(a+b)
-	ninf = a*ntau
-
-        tadj = q10^((celsius - temp)/10)
-
-        tinc = -dt * tadj
-        nexp = 1 - exp(tinc/ntau)
+	SOLVE states METHOD cnexp
+	g = gbar*c*c*c*c       
+	ik = g*(v-ek)
 }
 
 
+INITIAL {
+	rate(v,ica)
+	c = cinf
+}
 
+DERIVATIVE states {
+        rate(v,ica)
+	c' = (cinf-c)/ctau
+}
 
-
-
-
-
-
+PROCEDURE rate(v (mV), ica (mM)) {
+	UNITSOFF
+	:activation based on internal concentration of capool
+	cinf = ((ica)/(ica + 0.003))*((1.0)/(1+ (exp (-(v+28.3)/(12.6)))))       :/(ica + 0.003)) 
+	ctau = ((180.6)-(150.2)/(1+(exp (-(v+46)/(22.7))))) 
+	UNITSON		
+}
 
 

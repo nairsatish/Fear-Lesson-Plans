@@ -14,7 +14,7 @@ def get_array(path):
     return array
 
 
-_ = plot_traces(config_file='1Cell_SC.json', node_ids=[0], report_name='v_report',show=False, title='PN cell')
+_ = plot_traces(config_file='1Cell_SC.json', node_ids=[0], report_name='v_report',show=False, title='PN type A in tylers model at 400 pA')
 
 
 #pyr2int = get_array('output/syns_pyr2int_cai.h5')

@@ -116,10 +116,10 @@ def sense_vs_cond_tone():
     fig, axs = plt.subplots(2,2,figsize=(12,6))#6.4,4.8 default
     axs[0,0].set_title("sen period")
     axs[0,1].set_title('condition period')
-    start1 = 4000
-    end1 = 5000
-    start2 = 52000
-    end2 = 53000
+    start1 = 0
+    end1 = 80000
+    start2 = 400
+    end2 = 500
     raster(spikes_df, node_set, start=start1, end=end1, ax=axs[0,0])
     raster(spikes_df, node_set, start=start2, end=end2, ax=axs[0,1])
     spike_frequency_bar_graph(spikes_df,node_set,start=start1,end=end1,ax=axs[1,0],ms=(end1-start1))
@@ -127,14 +127,19 @@ def sense_vs_cond_tone():
 
 
 
-
 #plot_syn_weight()
 #plot_cai()
 sense_vs_cond_tone()
-node = 7
-plot_traces(config_file='simulation_config_W+Cai.json',node_ids=node,times=(4000,5100),show=False,title='sense period')
-plot_traces(config_file='simulation_config_W+Cai.json',node_ids=node,times=(52000,53000),show=False, title='cond period')
-
+node = 6
+#plot_traces(config_file='simulation_config_W+Cai.json',node_ids=node,times=(4000,4500),show=False,title='sense period')
+#plot_traces(config_file='simulation_config_W+Cai.json',node_ids=node,show=False)
+time = (4000, 4400)
+#time = (8000, 8400)
+#time = (12000, 12400)
+#time = (16000, 16400)
+#plot_rates(config_file='simulation_config_W+Cai.json', show=False, times=time,group_by='pop_name')
 plt.show()
+
+
 
 
