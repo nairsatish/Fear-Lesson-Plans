@@ -6,7 +6,7 @@
   "target_simulator": "NEURON",
   "run": {
     "tstart": 0.0,
-    "tstop": 40000,
+    "tstop": 232500,
     "dt": 0.1,
     "dL": 20.0,
     "spike_threshold": -15.0,
@@ -21,7 +21,7 @@
     "tone_spikes": {
       "input_type": "spikes",
       "module": "csv",
-      "input_file": "$BASE_DIR/12_cell_inputs/tone_spikes.csv",
+      "input_file": "$BASE_DIR/12_cell_inputs/tone_spikes_50.csv",
       "node_set": "tone"
     },
     "shock_spikes": {

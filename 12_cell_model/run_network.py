@@ -3,7 +3,7 @@ from bmtk.simulator import bionet
 import numpy as np
 import synapses
 import warnings
-
+import random
 
 def run(config_file):
     warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -20,6 +20,12 @@ def run(config_file):
 
 if __name__ == '__main__':
     if __file__ != sys.argv[-1]:
+        seed = 967
+        random.seed(seed)
+        np.random.seed(seed)
         run(sys.argv[-1])
     else:
+        seed = 967
+        random.seed(seed)
+        np.random.seed(seed)
         run('simulation_config_W+Cai.json')

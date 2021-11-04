@@ -9,6 +9,7 @@ df = to_dataframe(config_file='simulation_config_W+Cai.json')
 #df0.to_csv("spikes.csv")
 node_spike_array = []
 
+##tone sense
 def tone_response(node_spike_array):
     node_num = 0
 
@@ -77,12 +78,15 @@ def tone_response(node_spike_array):
         node_num = node_num+1
 
 def find_bins(array, width):
-    minimmum = np.min(array)
-    maximmum = np.max(array)
-    bound_min = -1.0 * (minimmum % width - minimmum)
-    bound_max = maximmum - maximmum % width + width
-    n = int((bound_max - bound_min) / width) + 1
-    bins = np.linspace(bound_min, bound_max, n)
+    try:
+        minimmum = np.min(array)
+        maximmum = np.max(array)
+        bound_min = -1.0 * (minimmum % width - minimmum)
+        bound_max = maximmum - maximmum % width + width
+        n = int((bound_max - bound_min) / width) + 1
+        bins = np.linspace(bound_min, bound_max, n)
+    except:
+        bins = 10
     return bins
 
 def set_up_graphs_sense():
@@ -120,98 +124,24 @@ def set_up_graphs_sense():
 
     plt.setp(axs[-1, :], xlabel='time (ms)')
     plt.setp(axs[:, 0], ylabel='spike count')
+    plt.show()
 
-def spike_freq_bar_tone():
+def spike_freq_bar_tone(axs):
     hz = []
     for i in range(12):
         hz.append(((len(node_spike_array[i]))/0.4)/10) # calculates firing rate in Hz
-
-    plot2 = plt.figure(2)
     x = [0,1,2,3,4,5,6,7,8,9,10,11]
     cells = ["PN1", "PN2", "PN3", "PN4", "PN5", "PN6", "PN7", "PN8", "SOM1", "SOM2", "PV1", "PV2"]
-    plt.xticks(x, cells)
-    plt.bar(height=hz,x=cells)
-    plt.title("firing rates during tone during sensitization")
-    plt.xlabel("cells")
-    plt.ylabel("firing rate (Hz)")
-    plt.grid()
+    axs.set_xticklabels(cells)
+    axs.bar(height=hz,x=cells)
+    axs.set_title("firing rates during tone during sensitization")
+    axs.set_xlabel("cells")
+    axs.set_ylabel("firing rate (Hz)")
+    axs.grid()
+    return axs
+    plt.show()
 
-def create_arrays_extinction_early(node_spike_array):
-    total_spikes = []
-    timestamp = 116000
-    node_num = 0
-    while(node_num <= 12):
-        df0 = df.loc[df['node_ids'] == node_num]
-        df0.sort_values(by=['timestamps'])
-        x0 = df0['timestamps'].tolist()
-        trial_spikes = []
-        i = 0
-        while(i < 10):
-            for j in range(len(x0)):
-                if(x0[j] >= timestamp+(i*4000) and x0[j] <= timestamp+(i*4000+400)):
-                    value = (x0[j]-(i*4000) - timestamp)
-                    trial_spikes.append(value)
-
-        #should go through all 30 trials and get every value and condense them
-            i = i+1
-
-        # should create a list of lists 12 of them each one being a node
-        node_spike_array.append(trial_spikes)
-        node_num = node_num+1
-    #print(total_spikes)
-    #node_spike_array = total_spikes
-    #print(node_spike_array)
-
-def set_up_graphs_EE():
-    fig, axs = plt.subplots(4, 3, sharey=True, tight_layout=True, sharex=True)
-    fig.suptitle('Spike histogram for early extinction', y=1)
-
-    i = 0
-    column_cnt = 0
-    row_cnt = 0
-
-    while (i < 12):
-        bins = find_bins(extinction_array[i], 10)
-
-        axs[row_cnt, column_cnt].hist(x=extinction_array[i], bins=bins)
-        axs[row_cnt, column_cnt].set_title('PN ' + str(i + 1))
-        if (i == 8):
-            axs[row_cnt, column_cnt].set_title('OLM 1 ')
-        if (i == 9):
-            axs[row_cnt, column_cnt].set_title('OLM 2 ')
-        if (i == 10):
-            axs[row_cnt, column_cnt].set_title('PV 1 ')
-        if (i == 11):
-            axs[row_cnt, column_cnt].set_title('PV 1 ')
-        # axs[row_cnt, column_cnt].ylabel("spikes")
-        # axs[row_cnt, column_cnt].xlabel('ms')
-
-        # axs[row_cnt, column_cnt].set_xlim([0,400])
-
-        column_cnt = column_cnt + 1
-        if (column_cnt > 2):
-            column_cnt = 0
-            row_cnt = row_cnt + 1
-
-        i = i + 1
-
-    plt.setp(axs[-1, :], xlabel='time (ms)')
-    plt.setp(axs[:, 0], ylabel='spike count')
-
-tone_response(node_spike_array)
-
-set_up_graphs_sense()
-
-spike_freq_bar_tone()
-
-#EE stuff
-extinction_array = []
-#create_arrays_extinction_early(extinction_array)
-#set_up_graphs_EE()
-
-plt.show()
-
-shock_response_arr = []
+#shock sense
 def shock_response(node_spike_array):
     node_num = 0
 
@@ -280,24 +210,178 @@ def shock_response(node_spike_array):
 
         node_num = node_num+1
 
-def spike_freq_bar_shock():
+def spike_freq_bar_shock(shock_response_arr, axes):
     hz = []
     for i in range(12):
         hz.append(((len(shock_response_arr[i]))/0.1)/10) # calculates firing rate in Hz
 
     print(shock_response_arr[9])
-    plot2 = plt.figure(3)
     x = [0,1,2,3,4,5,6,7,8,9,10,11]
     cells = ["PN1", "PN2", "PN3", "PN4", "PN5", "PN6", "PN7", "PN8", "SOM1", "SOM2", "PV1", "PV2"]
-    plt.xticks(x, cells)
-    plt.bar(height=hz,x=cells)
-    plt.title("firing rates during shock during sensitization")
-    plt.xlabel("cells")
-    plt.ylabel("firing rate (Hz)")
-    plt.grid()
+    axes.set_xticklabels(cells)
+    axes.bar(height=hz,x=cells)
+    axes.set_title("firing rates during shock during sensitization")
+    axes.set_xlabel("cells")
+    axes.set_ylabel("firing rate (Hz)")
+    axes.grid()
+    return axes
 
-shock_response(shock_response_arr)
 
-spike_freq_bar_shock()
+## tone during cond
+def tone_during_cond(node_spike_array, axes):
+    total_spikes = []
+    timestamp = 40000
+    node_num = 0
+    while(node_num <= 12):
+        df0 = df.loc[df['node_ids'] == node_num]
+        df0.sort_values(by=['timestamps'])
+        x0 = df0['timestamps'].tolist()
+        trial_spikes = []
+        i = 0
+        while(i < 10):
+            for j in range(len(x0)):
+                if(x0[j] >= timestamp+(i*4000) and x0[j] <= timestamp+(i*4000+400)):
+                    value = (x0[j]-(i*4000) - timestamp)
+                    trial_spikes.append(value)
+
+        #should go through all 30 trials and get every value and condense them
+            i = i+1
+
+        # should create a list of lists 12 of them each one being a node
+        node_spike_array.append(trial_spikes)
+        node_num = node_num+1
+
+    hz = []
+    for i in range(12):
+        hz.append(((len(node_spike_array[i]))/0.4)/10) # calculates firing rate in Hz
+
+    x = [0,1,2,3,4,5,6,7,8,9,10,11]
+    cells = ["PN1", "PN2", "PN3", "PN4", "PN5", "PN6", "PN7", "PN8", "SOM1", "SOM2", "PV1", "PV2"]
+    axes.set_xticklabels(cells)
+    axes.bar(height=hz, x=cells)
+    axes.set_title("firing rates during tone during conditioning")
+    axes.set_xlabel("cells")
+    axes.set_ylabel("firing rate (Hz)")
+    axes.grid()
+    return axes
+
+def shock_during_cond(node_spike_array, axes):
+    total_spikes = []
+    timestamp = 40000
+    node_num = 0
+    while(node_num <= 12):
+        df0 = df.loc[df['node_ids'] == node_num]
+        df0.sort_values(by=['timestamps'])
+        x0 = df0['timestamps'].tolist()
+        trial_spikes = []
+        i = 0
+        while(i < 10):
+            for j in range(len(x0)):
+                if(x0[j] >= timestamp+(i*4000+400) and x0[j] <= timestamp+(i*4000+500)):
+                    value = (x0[j]-(i*4000) - timestamp)
+                    trial_spikes.append(value)
+
+        #should go through all 30 trials and get every value and condense them
+            i = i+1
+
+        # should create a list of lists 12 of them each one being a node
+        node_spike_array.append(trial_spikes)
+        node_num = node_num+1
+
+    hz = []
+    for i in range(12):
+        hz.append(((len(node_spike_array[i]))/0.1)/10) # calculates firing rate in Hz
+
+    x = [0,1,2,3,4,5,6,7,8,9,10,11]
+    cells = ["PN1", "PN2", "PN3", "PN4", "PN5", "PN6", "PN7", "PN8", "SOM1", "SOM2", "PV1", "PV2"]
+    axes.set_xticklabels(cells)
+    axes.bar(height=hz, x=cells)
+    axes.set_title("firing rates during tone + shock during conditioning")
+    axes.set_xlabel("cells")
+    axes.set_ylabel("firing rate (Hz)")
+    axes.grid()
+    return axes
+
+
+def create_arrays_extinction_early(node_spike_array):
+    total_spikes = []
+    timestamp = 116000
+    node_num = 0
+    while(node_num <= 12):
+        df0 = df.loc[df['node_ids'] == node_num]
+        df0.sort_values(by=['timestamps'])
+        x0 = df0['timestamps'].tolist()
+        trial_spikes = []
+        i = 0
+        while(i < 10):
+            for j in range(len(x0)):
+                if(x0[j] >= timestamp+(i*4000) and x0[j] <= timestamp+(i*4000+400)):
+                    value = (x0[j]-(i*4000) - timestamp)
+                    trial_spikes.append(value)
+
+        #should go through all 30 trials and get every value and condense them
+            i = i+1
+
+        # should create a list of lists 12 of them each one being a node
+        node_spike_array.append(trial_spikes)
+        node_num = node_num+1
+    #print(total_spikes)
+    #node_spike_array = total_spikes
+    #print(node_spike_array)
+
+def set_up_graphs_EE():
+    fig, axs = plt.subplots(4, 3, sharey=True, tight_layout=True, sharex=True)
+    fig.suptitle('Spike histogram for early extinction', y=1)
+
+    i = 0
+    column_cnt = 0
+    row_cnt = 0
+
+    while (i < 12):
+        bins = find_bins(extinction_array[i], 10)
+
+        axs[row_cnt, column_cnt].hist(x=extinction_array[i], bins=bins)
+        axs[row_cnt, column_cnt].set_title('PN ' + str(i + 1))
+        if (i == 8):
+            axs[row_cnt, column_cnt].set_title('OLM 1 ')
+        if (i == 9):
+            axs[row_cnt, column_cnt].set_title('OLM 2 ')
+        if (i == 10):
+            axs[row_cnt, column_cnt].set_title('PV 1 ')
+        if (i == 11):
+            axs[row_cnt, column_cnt].set_title('PV 1 ')
+        # axs[row_cnt, column_cnt].ylabel("spikes")
+        # axs[row_cnt, column_cnt].xlabel('ms')
+
+        # axs[row_cnt, column_cnt].set_xlim([0,400])
+
+        column_cnt = column_cnt + 1
+        if (column_cnt > 2):
+            column_cnt = 0
+            row_cnt = row_cnt + 1
+
+        i = i + 1
+
+    plt.setp(axs[-1, :], xlabel='time (ms)')
+    plt.setp(axs[:, 0], ylabel='spike count')
+    plt.show()
+
+
+tone_response(node_spike_array)
+
+set_up_graphs_sense()
+fig, axs = plt.subplots(2,2, sharex=True, tight_layout=True,figsize=(12,6))
+spike_freq_bar_tone(axs[0,0])
+shock_arr = []
+shock_response(shock_arr)
+spike_freq_bar_shock(shock_arr, axs[0,1])
+tone_cond = []
+tone_during_cond(tone_cond, axs[1,0])
+shock_cond = []
+shock_during_cond(shock_cond, axs[1,1])
 
 plt.show()
+#EE stuff
+extinction_array = []
+create_arrays_extinction_early(extinction_array)
+set_up_graphs_EE()

@@ -1,10 +1,10 @@
 import csv
 
 def tone(tstart):
-     with open('tone_spikes.csv', 'a', newline='') as f1:
+     with open('../12_cell_model/12_cell_inputs/tone_spikes.csv', 'a', newline='') as f1:
         writer = csv.writer(f1)
         
-        for i in range(0, 505, 5):
+        for i in range(0, 505, 20):
             writer.writerow([ str(tstart + i) + " 'tone' 0"])
         
 def shock(tstart):

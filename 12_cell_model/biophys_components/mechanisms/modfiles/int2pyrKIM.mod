@@ -30,9 +30,9 @@ PARAMETER {
 	srcid = -1 (1)
 	destid = -1 (1)
 	
-	Cdur_gaba = 0.7254 (ms)
-	AlphaTmax_gaba = 7.2609 (/ms)
-	Beta_gaba = 0.2667 (/ms)
+	Cdur_gaba = 0.7254 (ms) : 0.7254
+	AlphaTmax_gaba = 7.2609 (/ms) : 7.2609
+	Beta_gaba = 0.2667 (/ms) :0.2667
 	Erev_gaba = -75 (mV)
 	gbar_gaba = 0.6e-3 (uS)
 

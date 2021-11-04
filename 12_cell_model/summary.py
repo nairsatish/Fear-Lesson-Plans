@@ -14,23 +14,28 @@ def get_array(path):
     return array
 
 def plot_syn_weight():
-    int2pyr = get_array('output/syns_int2pyr.h5')
-    pyr2pyr = get_array('output/syns_pyr2pyr.h5')
-    pyr2int = get_array('output/syns_pyr2int.h5')
+    #int2pyr = get_array('output/syns_int2pyr.h5')
+    #pyr2pyr = get_array('output/syns_pyr2pyr.h5')
+    #pyr2int = get_array('output/syns_pyr2int.h5')
     tone2pyr = get_array('output/syns_tone2pyr.h5')
 
 
-    fig, axs = plt.subplots(2,2, sharex=True, tight_layout=True)
-    fig.suptitle('syn weights')
-    axs[0, 0].plot(int2pyr)
-    axs[0, 0].set_title("int2pyr syn weight")
-    axs[0, 1].plot(pyr2pyr)
-    axs[0, 1].set_title("pyr2pyr syn weight")
-    axs[1, 0].plot(pyr2int)
-    axs[1, 0].set_title("pyr2int syn weight")
-    axs[1, 1].plot(tone2pyr)
-    axs[1, 1].set_title("tone2pyr syn weight")
+    #fig, axs = plt.subplots(2,2, sharex=True, tight_layout=True)
+    #fig.suptitle('syn weights')
+    #axs[0, 0].plot(int2pyr)
+    #axs[0, 0].set_title("int2pyr syn weight")
+    #axs[0, 1].plot(pyr2pyr)
+    #axs[0, 1].set_title("pyr2pyr syn weight")
+    #axs[1, 0].plot(pyr2int)
+    #axs[1, 0].set_title("pyr2int syn weight")
+    #axs[1, 1].plot(tone2pyr)
+    #axs[1, 1].set_title("tone2pyr syn weight")
 
+    #plt.show()
+    plt.plot(tone2pyr)
+    plt.title("tone weight over time")
+    plt.ylabel("weight")
+    plt.xlabel("time")
     plt.show()
 
 def plot_cai():
@@ -117,9 +122,9 @@ def sense_vs_cond_tone():
     axs[0,0].set_title("sen period")
     axs[0,1].set_title('condition period')
     start1 = 0
-    end1 = 80000
-    start2 = 400
-    end2 = 500
+    end1 = 40000
+    start2 = 56000
+    end2 = 56500
     raster(spikes_df, node_set, start=start1, end=end1, ax=axs[0,0])
     raster(spikes_df, node_set, start=start2, end=end2, ax=axs[0,1])
     spike_frequency_bar_graph(spikes_df,node_set,start=start1,end=end1,ax=axs[1,0],ms=(end1-start1))
@@ -127,17 +132,43 @@ def sense_vs_cond_tone():
 
 
 
-#plot_syn_weight()
+plot_syn_weight()
+exit(-1)
 #plot_cai()
-sense_vs_cond_tone()
+#exit(-1)
+#sense_vs_cond_tone()
 node = 6
-#plot_traces(config_file='simulation_config_W+Cai.json',node_ids=node,times=(4000,4500),show=False,title='sense period')
+#plot_traces(config_file='simulation_config_W+Cai.json',node_ids=node,title='sense period', show=False,times = (4000, 7400))
+#plot_traces(config_file='simulation_config_W+Cai.json',node_ids=10,title='sense period',show=False,times = (4000, 7400))
+#plot_traces(config_file='simulation_config_W+Cai.json',node_ids=11,title='sense period',show=False,times = (4000, 7400))
+#plot_traces(config_file='simulation_config_W+Cai.json',node_ids=9,title='sense period',show=False,times = (4000, 7400))
 #plot_traces(config_file='simulation_config_W+Cai.json',node_ids=node,show=False)
 time = (4000, 4400)
 #time = (8000, 8400)
 #time = (12000, 12400)
 #time = (16000, 16400)
 #plot_rates(config_file='simulation_config_W+Cai.json', show=False, times=time,group_by='pop_name')
+plt.show()
+
+
+igaba = get_array('output/igaba.h5')
+iampa = get_array('output/iampa.h5')
+inmda = get_array('output/inmda.h5')
+print(len(igaba))
+#igaba = igaba[40000:45000]
+#iampa = iampa[40000:45000]
+#inmda = inmda[40000:45000]
+
+plot = plt.figure(3)
+plt.plot(igaba)
+plt.title("gaba current for int2PN")
+plot2 = plt.figure(4)
+plt.plot(iampa)
+plt.title("ampa current for tone2PN")
+plot3 = plt.figure(5)
+plt.plot(inmda)
+plt.title("nmda current for tone2PN")
+
 plt.show()
 
 

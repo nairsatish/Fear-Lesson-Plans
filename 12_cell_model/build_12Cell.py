@@ -167,7 +167,7 @@ def one_to_one(source, target):
         print("connecting cell {} to {}".format(sid, tid))
         tmp_nsyn = 1
     else:
-        return None
+        return 0
 
     return tmp_nsyn
 
@@ -185,20 +185,20 @@ def PV2PV(source, target):
         print("connecting PV cell {} to PV {}".format(sid, tid))
         tmp_nsyn = 1
     else:
-        return None
+        return 0
     return tmp_nsyn
 
 def PV2PN(source, target):
     sid = source.node_id
     tid = target.node_id
     print("connecting PV cells {} to PN cell {}".format(sid, tid))
-    return 1
+    return 3
 
 def OLM2PN(source, target):
     sid = source.node_id
     tid = target.node_id
     print("connecting OLM cells {} to PN cell {}".format(sid, tid))
-    return 1
+    return 3
 
 def BG_to_PN_A(source, target):
     sid = source.node_id
@@ -207,7 +207,7 @@ def BG_to_PN_A(source, target):
         print("connecting BG {} to PN_A{}".format(sid,tid))
         tmp_nsyn = 1
     else:
-        return None
+        return 0
 
     return tmp_nsyn
 
@@ -219,7 +219,7 @@ def BG_to_PN_C(source, target):
         print("connecting BG {} to PN_C{}".format(sid,tid))
         tmp_nsyn = 1
     else:
-        return None
+        return 0
 
     return tmp_nsyn
 
@@ -231,7 +231,7 @@ def BG_to_PV(source, target):
         print("connecting BG {} to pv{}".format(sid,tid))
         tmp_nsyn = 1
     else:
-        return None
+        return 0
 
     return tmp_nsyn
 
@@ -243,7 +243,7 @@ def BG_to_OLM(source, target):
         print("connecting BG {} to olm{}".format(sid,tid))
         tmp_nsyn = 1
     else:
-        return None
+        return 0
 
     return tmp_nsyn
 
@@ -432,7 +432,7 @@ backgroundPV.save_nodes(output_dir='network')
 backgroundOLM.build()
 backgroundOLM.save_nodes(output_dir='network')
 
-t_sim = 40000  # early extinction time is 232500 sensitization time is 40000
+t_sim = 232500  # early extinction time is 232500 sensitization time is 40000
 print("stim time is set to %s" % t_sim)
 
 
@@ -467,7 +467,7 @@ print('Number of background spikes for PN_A: {}'.format(psg.n_spikes()))
 
 psg = PoissonSpikeGenerator(population='bg_pn_c')
 psg.add(node_ids=range(3),  # need same number as cells
-        firing_rate=1,    # 1 spike every 1 second Hz
+        firing_rate=2,    # 1 spike every 1 second Hz
         times=(0.0, t_sim/1000))  # time is in seconds for some reason
 psg.to_sonata('12_cell_inputs/bg_pn_c_spikes.h5')
 

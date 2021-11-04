@@ -8,8 +8,8 @@
 
 rm -rf output
 
-echo "Running 10 cell model at $(date)"
+echo "Running 12 cell model at $(date)"
 
 mpiexec nrniv -mpi -quiet -python run_network.py simulation_config_W+Cai.json
 
-echo "Done running 10 cell model at $(date)"
+echo "Done running 12 cell model at $(date)"
