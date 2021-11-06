@@ -198,7 +198,7 @@ def OLM2PN(source, target):
     sid = source.node_id
     tid = target.node_id
     print("connecting OLM cells {} to PN cell {}".format(sid, tid))
-    return 3
+    return 2
 
 def BG_to_PN_A(source, target):
     sid = source.node_id

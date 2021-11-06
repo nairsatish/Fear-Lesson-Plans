@@ -364,13 +364,27 @@ def set_up_graphs_EE():
 
     plt.setp(axs[-1, :], xlabel='time (ms)')
     plt.setp(axs[:, 0], ylabel='spike count')
-    plt.show()
+
+def tone_during_EE(spike_array, axs):
+    hz = []
+    print(spike_array)
+    for i in range(12):
+        hz.append(((len(spike_array[i])) / 0.4) / 10)  # calculates firing rate in Hz
+    x = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    cells = ["PN1", "PN2", "PN3", "PN4", "PN5", "PN6", "PN7", "PN8", "SOM1", "SOM2", "PV1", "PV2"]
+    axs.set_xticklabels(cells)
+    axs.bar(height=hz, x=cells)
+    axs.set_title("firing rates during tone during EE")
+    axs.set_xlabel("cells")
+    axs.set_ylabel("firing rate (Hz)")
+    axs.grid()
+    return axs
 
 
 tone_response(node_spike_array)
 
 set_up_graphs_sense()
-fig, axs = plt.subplots(2,2, sharex=True, tight_layout=True,figsize=(12,6))
+fig, axs = plt.subplots(3,2, sharex=True, tight_layout=True, figsize=(12,6))
 spike_freq_bar_tone(axs[0,0])
 shock_arr = []
 shock_response(shock_arr)
@@ -380,8 +394,12 @@ tone_during_cond(tone_cond, axs[1,0])
 shock_cond = []
 shock_during_cond(shock_cond, axs[1,1])
 
-plt.show()
+
+
 #EE stuff
 extinction_array = []
 create_arrays_extinction_early(extinction_array)
+tone_during_EE(extinction_array,axs[2,0])
+plt.show()
 set_up_graphs_EE()
+plt.show()

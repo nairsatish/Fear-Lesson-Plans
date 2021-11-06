@@ -14,29 +14,29 @@ def get_array(path):
     return array
 
 def plot_syn_weight():
-    #int2pyr = get_array('output/syns_int2pyr.h5')
-    #pyr2pyr = get_array('output/syns_pyr2pyr.h5')
-    #pyr2int = get_array('output/syns_pyr2int.h5')
+    int2pyr = get_array('output/syns_int2pyr.h5')
+    pyr2pyr = get_array('output/syns_pyr2pyr.h5')
+    pyr2int = get_array('output/syns_pyr2int.h5')
     tone2pyr = get_array('output/syns_tone2pyr.h5')
 
 
-    #fig, axs = plt.subplots(2,2, sharex=True, tight_layout=True)
-    #fig.suptitle('syn weights')
-    #axs[0, 0].plot(int2pyr)
-    #axs[0, 0].set_title("int2pyr syn weight")
-    #axs[0, 1].plot(pyr2pyr)
-    #axs[0, 1].set_title("pyr2pyr syn weight")
-    #axs[1, 0].plot(pyr2int)
-    #axs[1, 0].set_title("pyr2int syn weight")
-    #axs[1, 1].plot(tone2pyr)
-    #axs[1, 1].set_title("tone2pyr syn weight")
+    fig, axs = plt.subplots(2,2, sharex=True, tight_layout=True)
+    fig.suptitle('syn weights')
+    axs[0, 0].plot(int2pyr)
+    axs[0, 0].set_title("int2pyr syn weight")
+    axs[0, 1].plot(pyr2pyr)
+    axs[0, 1].set_title("pyr2pyr syn weight")
+    axs[1, 0].plot(pyr2int)
+    axs[1, 0].set_title("pyr2int syn weight")
+    axs[1, 1].plot(tone2pyr)
+    axs[1, 1].set_title("tone2pyr syn weight")
 
-    #plt.show()
-    plt.plot(tone2pyr)
-    plt.title("tone weight over time")
-    plt.ylabel("weight")
-    plt.xlabel("time")
     plt.show()
+    #plt.plot(tone2pyr)
+    #plt.title("tone weight over time")
+    #plt.ylabel("weight")
+    #plt.xlabel("time")
+    #plt.show()
 
 def plot_cai():
     int2pyr = get_array('output/syns_int2pyr_cai.h5')

@@ -1,6 +1,6 @@
 {
     "level_of_detail": "int2pyr",
-    "initW": "600",
+    "initW": "500",
     "threshold1": "1.35",
     "threshold2": "1.5",
     "Cdur_gaba": "0.7254",
