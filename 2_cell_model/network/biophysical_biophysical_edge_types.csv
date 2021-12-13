@@ -1,2 +1,0 @@
-edge_type_id target_query source_query model_template delay dynamics_params distance_range syn_weight
-100 pop_name=='PyrC' pop_name=='OLM' int2pyr 0.1 SOM2PN.json "[-10000, 10000]" 1.0

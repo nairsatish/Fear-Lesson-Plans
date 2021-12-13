@@ -30,9 +30,9 @@ PARAMETER {
 	srcid = -1 (1)
 	destid = -1 (1)
 	
-	Cdur_gaba = 0.7254 (ms)
-	AlphaTmax_gaba = 7.2609 (/ms)
-	Beta_gaba = 0.2667 (/ms)
+	Cdur_gaba = 0.7254 (ms) : 0.7254
+	AlphaTmax_gaba = 7.2609 (/ms) : 7.2609
+	Beta_gaba = 0.2667 (/ms) :0.2667
 	Erev_gaba = -75 (mV)
 	gbar_gaba = 0.6e-3 (uS)
 
@@ -40,7 +40,7 @@ PARAMETER {
 	pooldiam =  1.8172 (micrometer)
 	z = 2
 
-	k = 0.001 :change this to be lower
+	k = 0.001
 	
 	tauCa = 50 (ms)
 	
@@ -112,6 +112,7 @@ ASSIGNED {
 STATE { r_nmda r_gaba capoolcon }
 
 INITIAL {
+
 	on_gaba = 0
 	r_gaba = 0
 	W = initW
@@ -159,14 +160,10 @@ DERIVATIVE release {
 			on_gaba = 0
 		}
 	}
-	if(on_gaba > 0 )
-		{
-			printf("SYN IS ON, ON_GABA is 1")
-		}
 	r_gaba' = AlphaTmax_gaba*on_gaba*(1-r_gaba)-Beta_gaba*r_gaba
 
-	dW_gaba = eta(capoolcon)*(lambda1*omega(capoolcon, threshold1, threshold2)-lambda2*GAP1(GAPstart1, GAPstop1)*W)*dt
-	:dW_gaba = eta(capoolcon)*(lambda1*omega(capoolcon, threshold1, threshold2)-lambda2*W)*dt
+	:dW_gaba = eta(capoolcon)*(lambda1*omega(capoolcon, threshold1, threshold2)-lambda2*GAP1(GAPstart1, GAPstop1)*W)*dt
+	dW_gaba = eta(capoolcon)*(lambda1*omega(capoolcon, threshold1, threshold2)-lambda2*W)*dt
 
 	: Limit for extreme large weight changes
 	if (fabs(dW_gaba) > maxChange) {
@@ -186,6 +183,7 @@ DERIVATIVE release {
 	}
 
 	W = W + dW_gaba*scaleW
+	:printf("%g/n", dW_gaba)
 	
 	:Weight value limits
 	if (W > Wmax) { 
@@ -202,6 +200,7 @@ DERIVATIVE release {
 	ICag = P0g*g_gaba*(v - eca)
 	Icatotal = ICag + k*ica*4*pi*((15/2)^2)*(0.01)    :  icag+k*ica*Area of soma*unit change
 	capoolcon'= -fCag*Afactor*Icatotal + (Cainf-capoolcon)/tauCa
+	:capoolcon'=0
 	:printf("%g",capoolcon)
 	:Afactor is a constant ICag = -0 , tauCA is a contant, Cainf is a constant
 	:if(Icatotal > 0.000001){

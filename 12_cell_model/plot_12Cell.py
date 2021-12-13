@@ -133,7 +133,8 @@ def spike_freq_bar_tone(axs):
     x = [0,1,2,3,4,5,6,7,8,9,10,11]
     cells = ["PN1", "PN2", "PN3", "PN4", "PN5", "PN6", "PN7", "PN8", "SOM1", "SOM2", "PV1", "PV2"]
     axs.set_xticklabels(cells)
-    axs.bar(height=hz,x=cells)
+    axs.bar(height=hz,x=cells,color=['black', 'black', 'black', 'black', 'black', 'black','black', 'black',
+                                      'red', 'red', 'green', 'green'])
     axs.set_title("firing rates during tone during sensitization")
     axs.set_xlabel("cells")
     axs.set_ylabel("firing rate (Hz)")
@@ -219,7 +220,8 @@ def spike_freq_bar_shock(shock_response_arr, axes):
     x = [0,1,2,3,4,5,6,7,8,9,10,11]
     cells = ["PN1", "PN2", "PN3", "PN4", "PN5", "PN6", "PN7", "PN8", "SOM1", "SOM2", "PV1", "PV2"]
     axes.set_xticklabels(cells)
-    axes.bar(height=hz,x=cells)
+    axes.bar(height=hz,x=cells,color=['black', 'black', 'black', 'black', 'black', 'black','black', 'black',
+                                      'red', 'red', 'green', 'green'])
     axes.set_title("firing rates during shock during sensitization")
     axes.set_xlabel("cells")
     axes.set_ylabel("firing rate (Hz)")
@@ -258,7 +260,8 @@ def tone_during_cond(node_spike_array, axes):
     x = [0,1,2,3,4,5,6,7,8,9,10,11]
     cells = ["PN1", "PN2", "PN3", "PN4", "PN5", "PN6", "PN7", "PN8", "SOM1", "SOM2", "PV1", "PV2"]
     axes.set_xticklabels(cells)
-    axes.bar(height=hz, x=cells)
+    axes.bar(height=hz, x=cells, color=['black', 'black', 'black', 'black', 'black', 'black','black', 'black',
+                                      'red', 'red', 'green', 'green'])
     axes.set_title("firing rates during tone during conditioning")
     axes.set_xlabel("cells")
     axes.set_ylabel("firing rate (Hz)")
@@ -295,7 +298,8 @@ def shock_during_cond(node_spike_array, axes):
     x = [0,1,2,3,4,5,6,7,8,9,10,11]
     cells = ["PN1", "PN2", "PN3", "PN4", "PN5", "PN6", "PN7", "PN8", "SOM1", "SOM2", "PV1", "PV2"]
     axes.set_xticklabels(cells)
-    axes.bar(height=hz, x=cells)
+    axes.bar(height=hz, x=cells, color=['black', 'black', 'black', 'black', 'black', 'black','black', 'black',
+                                      'red', 'red', 'green', 'green'])
     axes.set_title("firing rates during tone + shock during conditioning")
     axes.set_xlabel("cells")
     axes.set_ylabel("firing rate (Hz)")
@@ -373,8 +377,9 @@ def tone_during_EE(spike_array, axs):
     x = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
     cells = ["PN1", "PN2", "PN3", "PN4", "PN5", "PN6", "PN7", "PN8", "SOM1", "SOM2", "PV1", "PV2"]
     axs.set_xticklabels(cells)
-    axs.bar(height=hz, x=cells)
-    axs.set_title("firing rates during tone during EE")
+    axs.bar(height=hz, x=cells,color=['black', 'black', 'black', 'black', 'black', 'black','black', 'black',
+                                      'red', 'red', 'green', 'green'])
+    axs.set_title("firing rates during tone during early extinction")
     axs.set_xlabel("cells")
     axs.set_ylabel("firing rate (Hz)")
     axs.grid()
@@ -384,7 +389,7 @@ def tone_during_EE(spike_array, axs):
 tone_response(node_spike_array)
 
 set_up_graphs_sense()
-fig, axs = plt.subplots(3,2, sharex=True, tight_layout=True, figsize=(12,6))
+fig, axs = plt.subplots(3,2, sharex=False,sharey=True, tight_layout=True, figsize=(12,6))
 spike_freq_bar_tone(axs[0,0])
 shock_arr = []
 shock_response(shock_arr)
@@ -393,7 +398,7 @@ tone_cond = []
 tone_during_cond(tone_cond, axs[1,0])
 shock_cond = []
 shock_during_cond(shock_cond, axs[1,1])
-
+fig.delaxes(axs[2][1])
 
 
 #EE stuff
