@@ -13,8 +13,6 @@ import numpy as np
 import random
 
 
-st.write(glob.glob("/*"))
-
 def bg2PN(syn_params, sec_x, sec_id):
     lsyn = h.bg2pyr(sec_x, sec=sec_id)
 
@@ -592,6 +590,7 @@ st.write("""
 
 if st.button("build model"):
     os.chdir("2_cell_model")
+    st.write(glob.glob("/*"))
     if os.path.isdir('biophys_components/mechanisms/x86_64'):
         shutil.rmtree('biophys_components/mechanisms/x86_64')
     os.chdir('biophys_components/mechanisms')
