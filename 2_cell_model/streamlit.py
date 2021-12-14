@@ -590,6 +590,7 @@ st.write("""
 """)
 
 if st.button("build model"):
+    os.chdir("2_cell_model")
     if os.path.isdir('biophys_components/mechanisms/x86_64'):
         shutil.rmtree('biophys_components/mechanisms/x86_64')
     os.chdir('biophys_components/mechanisms')
