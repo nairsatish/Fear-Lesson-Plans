@@ -1,0 +1,9 @@
+streamlit==1.2.0
+bmtk==0.0.9
+glob2==0.7
+json5==0.8.5
+NEURON==8.0.0
+backports.os==0.1.1
+backports.shutil-get-terminal-size==1.0.0
+numpy==1.18.5
+mkl-random==1.1.0
