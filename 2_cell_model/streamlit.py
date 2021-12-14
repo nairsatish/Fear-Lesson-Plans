@@ -590,8 +590,8 @@ st.write("""
 
 if st.button("build model"):
     os.chdir("2_cell_model")
-    #arr = os.listdir("2_cell_model")
-    #st.write(arr)
+    arr = os.listdir("2_cell_model")
+    st.write(arr)
     if os.path.isdir('biophys_components/mechanisms/x86_64'):
         shutil.rmtree('biophys_components/mechanisms/x86_64')
     os.chdir('biophys_components/mechanisms')
