@@ -13,6 +13,7 @@ import numpy as np
 import random
 
 
+print(glob.glob("/2_cell_model/*"))
 
 def bg2PN(syn_params, sec_x, sec_id):
     lsyn = h.bg2pyr(sec_x, sec=sec_id)
