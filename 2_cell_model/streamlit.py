@@ -590,6 +590,7 @@ st.write("""
 
 if st.button("build model"):
     path = os.getcwd()
+    st.write(path)
     if (path!="2_cell_model"):
         os.chdir("2_cell_model")
     if os.path.isdir('biophys_components/mechanisms/x86_64'):
