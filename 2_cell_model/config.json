@@ -1,4 +1,4 @@
 {
-  "network": "/Users/gregglickert/Desktop/lesson_plans/PlasticityToy/2_cell_model/circuit_config.json",
-  "simulation": "/Users/gregglickert/Desktop/lesson_plans/PlasticityToy/2_cell_model/simulation_config.json"
+  "network": "PlasticityToy/2_cell_model/circuit_config.json",
+  "simulation": "PlasticityToy/2_cell_model/simulation_config.json"
 }
