@@ -1,4 +1,4 @@
 {
-  "network": "PlasticityToy/2_cell_model/circuit_config.json",
-  "simulation": "PlasticityToy/2_cell_model/simulation_config.json"
+  "network": "circuit_config.json",
+  "simulation": "simulation_config.json"
 }
