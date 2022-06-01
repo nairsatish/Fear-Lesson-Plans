@@ -1,0 +1,2 @@
+node_type_id model_template mem_potential model_type morphology pop_name
+100 hoc:SOM_Cell e biophysical  PyrA

@@ -6,53 +6,25 @@
   "target_simulator": "NEURON",
   "run": {
     "tstart": 0.0,
-    "tstop": 80000,
+    "tstop": 400.0,
     "dt": 0.1,
     "dL": 20.0,
     "spike_threshold": -15.0,
-    "nsteps_block": 5000,
-    "overwrite_output_dir": true
+    "nsteps_block": 5000
   },
   "conditions": {
     "celsius": 34.0,
-    "v_init": -70.0
+    "v_init": -80.0
   },
   "inputs": {
-    "tone_spikes": {
-      "input_type": "spikes",
-      "module": "csv",
-      "input_file": "$BASE_DIR/12_cell_inputs/tone_spikes_50.csv",
-      "node_set": "tone"
-    },
-    "shock_spikes": {
-      "input_type": "spikes",
-      "module": "csv",
-      "input_file": "$BASE_DIR/12_cell_inputs/shock_spikes.csv",
-      "node_set": "shock"
-    },
-    "bg_pn_a_spikes": {
-      "input_type": "spikes",
-      "module": "sonata",
-      "input_file": "$BASE_DIR/12_cell_inputs/bg_pn_a_spikes.h5",
-      "node_set": "bg_pn_a"
-    },
-    "bg_pn_c_spikes": {
-      "input_type": "spikes",
-      "module": "sonata",
-      "input_file": "$BASE_DIR/12_cell_inputs/bg_pn_c_spikes.h5",
-      "node_set": "bg_pn_c"
-    },
-    "bg_pv_spikes": {
-      "input_type": "spikes",
-      "module": "sonata",
-      "input_file": "$BASE_DIR/12_cell_inputs/bg_pv_spikes.h5",
-      "node_set": "bg_pv"
-    },
-    "bg_olm_spikes": {
-      "input_type": "spikes",
-      "module": "sonata",
-      "input_file": "$BASE_DIR/12_cell_inputs/bg_olm_spikes.h5",
-      "node_set": "bg_olm"
+    "current_clamp": {
+      "input_type": "current_clamp",
+      "module": "IClamp",
+      "node_set": "all",
+      "gids": "all",
+      "amp": 0.4,
+      "delay": 100.0,
+      "duration": 200.0
     }
   },
   "output": {
@@ -66,32 +38,7 @@
       "cells": "all",
       "module": "membrane_report",
       "sections": "soma"
-    },
-    "syn_report4": {
-      "cells": "all",
-      "variable_name": "igaba",
-      "module": "netcon_report",
-      "sections": "all",
-      "syn_type": "int2pyrKIM",
-      "file_name": "igaba.h5"
-    },
-    "syn_report5.5": {
-      "cells": "all",
-      "variable_name": "inmda",
-      "module": "netcon_report",
-      "sections": "all",
-      "syn_type": "tone2pyr",
-      "file_name": "inmda.h5"
-    },
-    "syn_report5": {
-      "cells": "all",
-      "variable_name": "iampa",
-      "module": "netcon_report",
-      "sections": "all",
-      "syn_type": "tone2pyr",
-      "file_name": "iampa.h5"
     }
   },
-  "node_sets_file": "$BASE_DIR/node_sets.json",
-  "network": "$BASE_DIR/circuit_config.json"
+  "node_sets_file": "$BASE_DIR/node_sets.json"
 }

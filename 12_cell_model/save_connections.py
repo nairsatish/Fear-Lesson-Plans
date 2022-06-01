@@ -28,7 +28,7 @@ def save_connections(graph, sim):
         the simulation about to be run (not used in this function)
     """
     cells = graph.get_local_cells()
-    cell = cells[list(cells.keys())[9]]
+    cell = cells[list(cells.keys())[1]]
 
     h.distance(sec=cell.hobj.soma[0])  # Makes the distances correct.
 

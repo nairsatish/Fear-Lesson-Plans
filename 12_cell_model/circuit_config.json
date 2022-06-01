@@ -18,62 +18,9 @@
       {
         "node_types_file": "$NETWORK_DIR/biophysical_node_types.csv",
         "nodes_file": "$NETWORK_DIR/biophysical_nodes.h5"
-      },
-      {
-        "nodes_file": "$NETWORK_DIR/tone_nodes.h5",
-        "node_types_file": "$NETWORK_DIR/tone_node_types.csv"
-      },
-      {
-        "node_types_file": "$NETWORK_DIR/shock_node_types.csv",
-        "nodes_file": "$NETWORK_DIR/shock_nodes.h5"
-      },
-      {
-        "node_types_file": "$NETWORK_DIR/bg_pn_a_node_types.csv",
-        "nodes_file": "$NETWORK_DIR/bg_pn_a_nodes.h5"
-      },
-      {
-        "node_types_file": "$NETWORK_DIR/bg_pn_c_node_types.csv",
-        "nodes_file": "$NETWORK_DIR/bg_pn_c_nodes.h5"
-      },
-      {
-        "node_types_file": "$NETWORK_DIR/bg_pv_node_types.csv",
-        "nodes_file": "$NETWORK_DIR/bg_pv_nodes.h5"
-      },
-      {
-        "nodes_file": "$NETWORK_DIR/bg_olm_nodes.h5",
-        "node_types_file": "$NETWORK_DIR/bg_olm_node_types.csv"
       }
     ],
-    "edges": [
-      {
-        "edge_types_file": "$NETWORK_DIR/shock_biophysical_edge_types.csv",
-        "edges_file": "$NETWORK_DIR/shock_biophysical_edges.h5"
-      },
-      {
-        "edge_types_file": "$NETWORK_DIR/tone_biophysical_edge_types.csv",
-        "edges_file": "$NETWORK_DIR/tone_biophysical_edges.h5"
-      },
-      {
-        "edges_file": "$NETWORK_DIR/biophysical_biophysical_edges.h5",
-        "edge_types_file": "$NETWORK_DIR/biophysical_biophysical_edge_types.csv"
-      },
-      {
-        "edges_file": "$NETWORK_DIR/bg_pn_a_biophysical_edges.h5",
-        "edge_types_file": "$NETWORK_DIR/bg_pn_a_biophysical_edge_types.csv"
-      },
-      {
-        "edges_file": "$NETWORK_DIR/bg_pn_c_biophysical_edges.h5",
-        "edge_types_file": "$NETWORK_DIR/bg_pn_c_biophysical_edge_types.csv"
-      },
-      {
-        "edges_file": "$NETWORK_DIR/bg_olm_biophysical_edges.h5",
-        "edge_types_file": "$NETWORK_DIR/bg_olm_biophysical_edge_types.csv"
-      },
-      {
-        "edge_types_file": "$NETWORK_DIR/bg_pv_biophysical_edge_types.csv",
-        "edges_file": "$NETWORK_DIR/bg_pv_biophysical_edges.h5"
-      }
-    ],
+    "edges": [],
     "gap_juncs": []
   }
 }
