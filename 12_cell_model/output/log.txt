@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2022-08-19 14:07:02,313 [INFO] Created log file
 2022-08-19 14:07:03,208 [INFO] Building cells.
 2022-08-19 14:07:03,226 [INFO] Building recurrent connections
@@ -63,3 +64,8 @@
 2022-08-19 14:08:31,829 [INFO]     step:255000 t_sim:25500.00 ms
 2022-08-19 14:08:33,537 [INFO]     step:260000 t_sim:26000.00 ms
 2022-08-19 14:08:35,336 [INFO]     step:265000 t_sim:26500.00 ms
+=======
+2022-04-07 21:49:29,061 [INFO] Created log file
+2022-04-07 21:49:29,212 [INFO] Building cells.
+2022-04-07 21:49:29,216 [INFO] Building recurrent connections
+>>>>>>> parent of f80f834 (trying colab)
