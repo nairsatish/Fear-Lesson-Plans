@@ -1,0 +1,24 @@
+Running 12 cell model at Tue Aug 16 15:06:00 CDT 2022
+numprocs=12
+NEURON -- VERSION 7.7.2 7.7 (2b7985ba) 2019-06-20
+Duke, Yale, and the BlueBrain Project -- Copyright 1984-2018
+See http://neuron.yale.edu/neuron/credits
+
+2022-08-16 15:06:02,110 [INFO] Created log file
+2022-08-16 15:06:02,110 [INFO] Running NEURON with mpi (12 cores).
+Additional mechanisms from files
+ modfiles//bg2pyr.mod modfiles//bginh.mod modfiles//cad.mod modfiles//CaDynamics.mod modfiles//cadyn.mod modfiles//Ca_HVA.mod modfiles//cal2CA3.mod modfiles//cal2.mod modfiles//Ca_LVA.mod modfiles//ca.mod modfiles//capoolCA3.mod modfiles//capool.mod modfiles//cas.mod modfiles//cat.mod modfiles//cav31.mod modfiles//currentclamp.mod modfiles//function_TMonitor.mod modfiles//gabaa.mod modfiles//gap.mod modfiles//Gfluct_new_exc.mod modfiles//Gfluct_new_inh.mod modfiles//halfgap.mod modfiles//hCA3.mod modfiles//h.mod modfiles//Ih.mod modfiles//imCA3.mod modfiles//im.mod modfiles//Im_v2.mod modfiles//int2intFENG.mod modfiles//int2pyrFENG.mod modfiles//int2pyrKIM.mod modfiles//interD2interD_SOMPV_STFD_new.mod modfiles//interD2interD_STFD_new.mod modfiles//interD2pyrD_CR2P_STFD_new.mod modfiles//interD2pyrD_SOM2P_STFD_new.mod modfiles//interD2pyrD_STFD_new.mod modfiles//kadist.mod modfiles//kaprox.mod modfiles//kca.mod modfiles//Kd.mod modfiles//kdrca1DA.mod modfiles//kdrca1.mod modfiles//kdrCA3.mod modfiles//kdrinter.mod modfiles//kdrinter_WB.mod modfiles//km.mod modfiles//K_P.mod modfiles//K_T.mod modfiles//Kv2like.mod modfiles//Kv3_1.mod modfiles//kv.mod modfiles//leakCA3.mod modfiles//leakDA.mod modfiles//leakinter.mod modfiles//leak.mod modfiles//MyExp2Sid.mod modfiles//na12.mod modfiles//na16.mod modfiles//na3DA.mod modfiles//na3.mod modfiles//nainter.mod modfiles//nainter_WB.mod modfiles//na.mod modfiles//nap2.mod modfiles//napCA3.mod modfiles//nap.mod modfiles//NaTa.mod modfiles//natCA3.mod modfiles//nat.mod modfiles//NaTs.mod modfiles//NaV.mod modfiles//OLM_cat.mod modfiles//OLM_ccanl.mod modfiles//OLM_IA.mod modfiles//OLM_ichan2.mod modfiles//OLM_Ih.mod modfiles//OLM_Lca.mod modfiles//OLM_nap.mod modfiles//OLM_sahp.mod modfiles//pyr2intFENG.mod modfiles//pyr2intKIM.mod modfiles//pyr2pyrFENG.mod modfiles//pyr2pyrKIM.mod modfiles//pyrD2interD_P2CR_STFD.mod modfiles//pyrD2interD_P2SOM_STFD.mod modfiles//pyrD2interD_STFD.mod modfiles//pyrD2pyrD_STFD_new.mod modfiles//sahpCA3.mod modfiles//sahp.mod modfiles//sahpNE.mod modfiles//shock2int.mod modfiles//shock2pyr.mod modfiles//SK.mod modfiles//synapse_inter2pyr.mod modfiles//tone2pyr.mod modfiles//vecevent.mod modfiles//xtra_imemrec.mod modfiles//xtra.mod
+2022-08-16 15:06:02,193 [INFO] Building cells.
+2022-08-16 15:06:02,197 [INFO] Building recurrent connections
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   PID 103360 RUNNING AT engr-nelvm-res
+=   EXIT CODE: 139
+=   CLEANING UP REMAINING PROCESSES
+=   YOU CAN IGNORE THE BELOW CLEANUP MESSAGES
+===================================================================================
+YOUR APPLICATION TERMINATED WITH THE EXIT STRING: Segmentation fault (signal 11)
+This typically refers to a problem with your application.
+Please see the FAQ page for debugging suggestions
+Done running 12 cell model at Tue Aug 16 15:06:10 CDT 2022

@@ -1,0 +1,2 @@
+edge_type_id target_query source_query delay syn_weight model_template distance_range dynamics_params
+112 pop_name=='PyrA' * 0.1 1.0 bg2PN "[-10000, 10000]" BG2PNA.json
