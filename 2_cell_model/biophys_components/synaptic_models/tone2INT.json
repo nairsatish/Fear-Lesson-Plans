@@ -1,5 +1,5 @@
 {
-    "level_of_detail": "tone2pyr",
+    "level_of_detail": "tone2Inter",
     "AlphaTmax_ampa": "3.8142",
     "Beta_ampa": "0.1429",
     "Cdur_ampa": "1.4210",
@@ -10,7 +10,7 @@
     "Cdur_nmda": "16.7650",
     "gbar_nmda": "0.0005",
     "Erev_nmda": "0",
-    "initW": 0,
+    "initW": 5,
     "delay": "0.1",
     "lambda1": "1.0",
     "lambda2": "0.02",
