@@ -10,12 +10,12 @@
     "Cdur_nmda": "16.7650",
     "gbar_nmda": "0.0005",
     "Erev_nmda": "0",
-    "initW": "5",
+    "initW": 0,
     "delay": "0.1",
     "lambda1": "1.0",
     "lambda2": "0.02",
     "threshold1": "0.03",
     "threshold2": "0.03",
-	      "fmax": "3",
-	      "tauCa": "25"
+    "fmax": "3",
+    "tauCa": "25"
 }
