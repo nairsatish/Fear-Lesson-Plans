@@ -17,17 +17,29 @@
     "v_init": -80.0
   },
   "inputs": {
+    "tone_spikes": {
+      "input_type": "spikes",
+      "module": "csv",
+      "input_file": "$BASE_DIR/3_cell_inputs/tone_spikes.csv",
+      "node_set": "tone"
+    },
+    "shock_spikes": {
+      "input_type": "spikes",
+      "module": "csv",
+      "input_file": "$BASE_DIR/3_cell_inputs/shock_spikes.csv",
+      "node_set": "shock"
+    },
     "bg_pn_c_spikes": {
       "input_type": "spikes",
       "module": "sonata",
       "input_file": "$BASE_DIR/3_cell_inputs/bg_pn_c_spikes.h5",
       "node_set": "bg_pn_c"
     },
-    "bg_vip_spikes": {
+    "bg_pv_spikes": {
       "input_type": "spikes",
       "module": "sonata",
-      "input_file": "$BASE_DIR/3_cell_inputs/bg_vip_spikes.h5",
-      "node_set": "bg_vip"
+      "input_file": "$BASE_DIR/3_cell_inputs/bg_pv_spikes.h5",
+      "node_set": "bg_pv"
     },
     "bg_som_spikes": {
       "input_type": "spikes",
@@ -35,11 +47,11 @@
       "input_file": "$BASE_DIR/3_cell_inputs/bg_som_spikes.h5",
       "node_set": "bg_som"
     },
-    "tone_spikes": {
+    "bg_vip_spikes": {
       "input_type": "spikes",
-      "module": "csv",
-      "input_file": "$BASE_DIR/3_cell_inputs/tone_spikes.csv",
-      "node_set": "tone"
+      "module": "sonata",
+      "input_file": "$BASE_DIR/3_cell_inputs/bg_vip_spikes.h5",
+      "node_set": "bg_vip"
     }
   },
   "output": {
