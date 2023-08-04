@@ -187,7 +187,7 @@ if ((eta(capoolcon)*(lambda1*omega(capoolcon, threshold1, threshold2)-lambda2*GA
 	} else if (neuroM==3) {
 	g_gaba = gbar_gaba*r_gaba*facfactor*DA1(DAstart1,DAstop1)*DA2(DAstart2,DAstop2)*NEn(NEstart1,NEstop1)*NE2(NEstart2,NEstop2)   : Dopamine & Norepinephrine effect on GABA		    
 	} else {
-	g_gaba = gbar_gaba*r_gaba*facfactor
+	g_gaba = gbar_gaba*r_gaba :*facfactor
 	}
 
     igaba = W*g_gaba*(v - Erev_gaba)
