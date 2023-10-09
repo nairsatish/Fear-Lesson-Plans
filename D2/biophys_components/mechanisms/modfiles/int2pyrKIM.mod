@@ -194,7 +194,7 @@ DERIVATIVE release {
 
 
 
-	g_gaba = gbar_gaba*r_gaba*facfactor
+	g_gaba = gbar_gaba*r_gaba: *facfactor
 	igaba = W*g_gaba*(v - Erev_gaba)
 	:printf("%g",igaba)
 	ICag = P0g*g_gaba*(v - eca)
