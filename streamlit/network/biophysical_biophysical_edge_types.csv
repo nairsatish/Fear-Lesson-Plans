@@ -1,3 +1,0 @@
-edge_type_id target_query source_query dynamics_params model_template distance_range delay syn_weight
-100 pop_name=='PV' pop_name=='PyrC' PN2PV.json pyr2int "[-10000, 10000]" 0.1 1.0
-101 pop_name=='PyrC' pop_name=='PV' PV2PN.json int2pyr "[-10000, 10000]" 0.1 1.0

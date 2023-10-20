@@ -1,2 +1,0 @@
-2022-09-07 11:30:21,787 [INFO] Created log file
-2022-09-07 11:30:21,987 [INFO] Building cells.

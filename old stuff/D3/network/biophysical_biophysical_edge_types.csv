@@ -1,0 +1,6 @@
+edge_type_id target_query source_query distance_range model_template syn_weight dynamics_params delay
+103 pop_name=='SOM' pop_name=='PyrC' "[-10000, 10000]" pyr2int 1.0 PN2SOM.json 0.1
+104 pop_name=='PV' pop_name=='PyrC' "[-10000, 10000]" pyr2int 1.0 PN2PV.json 0.1
+105 pop_name=='PyrC' pop_name=='PV' "[-10000, 10000]" int2pyr 1.0 PV2PN.json 0.1
+106 pop_name=='PyrC' pop_name=='SOM' "[-10000, 10000]" int2pyr 1.0 SOM2PN.json 0.1
+107 pop_name=='SOM' pop_name=='VIP' "[-10000, 10000]" int2int 1.0 VIP2SOM.json 0.1

@@ -1,2 +1,0 @@
-edge_type_id target_query source_query distance_range delay model_template dynamics_params syn_weight
-106 pop_name=='PV' * "[-10000, 10000]" 0.1 bg2PN BG2PV.json 1.0

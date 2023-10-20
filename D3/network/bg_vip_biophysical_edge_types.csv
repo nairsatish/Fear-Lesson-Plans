@@ -1,2 +1,0 @@
-edge_type_id target_query source_query dynamics_params syn_weight model_template distance_range delay
-106 pop_name=='VIP' * BG2VIP.json 1.0 bg2PN "[-10000, 10000]" 0.1

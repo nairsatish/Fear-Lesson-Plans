@@ -1,0 +1,5 @@
+node_type_id mem_potential pop_name morphology model_template model_type
+100 e PyrC  hoc:Cell_C biophysical
+101 e PV  hoc:basket biophysical
+102 e SOM  hoc:SOM_Cell_old biophysical
+103 e VIP  hoc:SOM_Cell_old biophysical

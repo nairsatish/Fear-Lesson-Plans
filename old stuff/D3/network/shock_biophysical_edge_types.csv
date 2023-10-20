@@ -1,0 +1,2 @@
+edge_type_id target_query source_query distance_range model_template syn_weight target_sections dynamics_params delay
+100 "pop_name=='['PV', 'SOM']'" * "[-10000, 10000]" shock2int 1.0 ['basal'] shock2INT12.json 0.1

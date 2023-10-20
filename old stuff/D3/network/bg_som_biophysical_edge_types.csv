@@ -1,0 +1,2 @@
+edge_type_id target_query source_query distance_range model_template syn_weight dynamics_params delay
+110 pop_name=='SOM' * "[-10000, 10000]" bg2PN 1.0 BG2SOM.json 0.1
