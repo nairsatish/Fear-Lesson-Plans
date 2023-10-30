@@ -47,7 +47,7 @@ PARAMETER {
 
 	tauCa = 50 (ms)		: decay time constant
 	P0 = .015	: P0 is the fraction of NMDARs in the closed state that shift to open after presynaptic spike
-	fCa = .024	: Determines the decay of Ca pool 
+	fCa = .050 :0.24	: Determines the decay of Ca pool 
 	
 	lambda1 = 10:80: 20 : 15 :8 :5: 2.5	: Learning parameters
 	lambda2 = 0.3 : .01	: Learning parameters
