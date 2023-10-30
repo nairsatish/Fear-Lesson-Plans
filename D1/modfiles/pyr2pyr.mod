@@ -55,8 +55,8 @@ PARAMETER {
 	threshold2 = 0.50 : 0.40 :0.4 :0.3 :0.60 (uM)	: LTP Threshold in omega function
 
 	initW = 1 : 2 : 2: 2 : 1 : 10 : 6 :1.5	:Initial Weight of AMPA
-	fmax = 2.5 : 4 : 2 : 3 : 1.5 : 3	: fmax determines max weight 
-	fmin = .8	: fmin determines the minimum weight
+	fmax = 1000 : 4 : 2 : 3 : 1.5 : 3	: fmax determines max weight 
+	fmin = 0.001	: fmin determines the minimum weight
 	
 }
 
